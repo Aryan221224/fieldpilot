@@ -1,35 +1,150 @@
-# Demo video — under 3:00, with a continuous 75 s hardware clip and voice-over
+# Demo video: FieldPilot in 2:55
 
-Rules this script satisfies:
+**Runtime target: 2:55.** The rule is under 3:00, and judges may stop watching at 3:00. Upload to
+YouTube as Public. **Track: Physical AI.** The video must show the project working on its device,
+say how Nebius Token Factory and NVIDIA Nemotron are used, and contain **at least one continuous
+minute of the hardware operating**. Use no copyrighted music and no third-party logos.
 
-- The video is public on YouTube and under 3:00.
-- It shows the project working, with **audio explaining how Nebius Token Factory and the NVIDIA models are used**.
-- Physical AI: it includes **at least one continuous minute of real hardware operating**.
-- No copyrighted music. Use silence or a royalty-free track you have a licence for.
+Every number below comes from a saved file in this repository (see "Source" in each shot).
+Simulated results carry the word SIMULATED on screen. Never present a simulated or rehearsal number
+as a field result.
 
-Record the bench rig (phone on a tripod) and the console (OBS, 1920×1080, browser zoom 110 %)
-at the same time, then cut between them.
+## The story in one line
 
-| Time | Picture | Voice-over (read slowly) |
-|---|---|---|
-| 0:00–0:14 | **Our T1 spraying a real field** (team clip `T1_field_manual.mp4`, about 10 s from the 0:03–0:27 shot), lower-third *"Our airframe: 10 L quad, JIYI K3-A Pro · manual flight, before FieldPilot"* | "There are about six hundred thousand spray drones on farms worldwide. Every one has an app that plans the flight. None plans the operator's day: eight minutes per battery, two hours to charge, jobs in the order the phone rang, sorties in wind where the spray drifts. In India's Drone Didi scheme, most operators in one state are losing money. FieldPilot plans the day." |
-| 0:14–0:40 | **Operator desk** `/desk`, India demo: Hindi/Hinglish bookings → **Read with Nemotron** → job cards with a "bigha — confirm" flag → **Plan my day** → timeline: green spray windows per farm, sorties with battery sets. Quick cut: switch the demo to Brazil (Portuguese, alqueire, 40 L drone, Delta T rules) → plan | "Nemotron 3.5 Lightning on Nebius Token Factory reads every booking, in any language. Code checks every number it extracts. Then the day is planned on the live forecast at each farm, the local spray rules, and the batteries the operator actually has — the same engine in India and in Brazil." |
-| 0:40–0:55 | Comparison table → benchmark chart (effective ha per battery cycle · % sorties outside window · leftover mix) → **Read aloud** plays the brief 3 s | "Same bookings, same forecast, same batteries. Across five countries: more effective hectares per battery cycle, no sorties outside the spray window, no unneeded hectares, and only a few hundred millilitres of mix left per farm." |
-| 0:55–1:10 | **Field console** for one farm: photos → trace streaming (Nemotron tool calls) → map with two zones orange → Tavily label check with the ppqs.gov.in citation → SOP panel | "On the farm, Nemotron 3 Super runs the tools, and Nemotron Super VL reads the photos: the crop twin decides which zones a spray pays for, Tavily checks the product and dose against the government registration, and the SOP gate checks the law." |
-| **1:10–2:25** | **Continuous bench clip on our T1** (docs/BENCH_RIG.md, Option C). Console map flies the approved mission (picture-in-picture); the T1's own pump and four nozzles spray only on the treated zones' passes, fade in each turn, stop in transit; press ABORT once. Lower-third: *"Aircraft position simulated · our drone's own pump, tank and nozzles · battery out, props off"* | "This is our drone's own spray system. The flight is simulated; the pump is real. It sprays only the zones the physics justified, at the flow the K3-A Pro would use at that speed… off in transit… and the abort cuts it instantly." (Stay quiet for part of it.) |
-| 2:25–2:45 | Load sheet → **K3-A Pro flight card** (L/mu, 4 m spacing, zone corners) → 3 s of `/ops`: mast GO/NO-GO and the as-applied map (label "simulated field day" if replayed) → 3 s of `/ops` **Firmware: ArduPilot SITL** tab, 1 ha run (lower-third *"Simulated: unmodified ArduCopter on a T1 model · 1094 s flown vs 1103 s planned"*) → `cli airframe`: "kit as shipped: 13 sorties, 6.5 ha a day, aircraft in the air 12 % of the window" | "Our controller is closed, so FieldPilot hands the pilot a flight card for each approved sortie. On open firmware it uploads the mission directly: in simulation, unmodified ArduPilot flew our plan to within one percent. And on our own kit, two packs and one charger, the drone is in the air twelve percent of the spray window. The charger sets the day, which is exactly what FieldPilot plans around." |
-| 2:45–2:58 | Title card: measured numbers from `eval/results/efficiency_*.json` · "Nemotron on Nebius Token Factory · Tavily · WOFOST" | "FieldPilot: every battery cycle, litre and flight minute where the crop needs it." |
+*Every spray-drone app plans the flight. Nobody plans the operator's day. FieldPilot does it with
+NVIDIA Nemotron, on the drone she already owns.*
 
-## Making the refusal (offline or live)
+## Shot list
 
-- **Live:** pick an hour when the forecast wind is above 3 m/s. The SOP check uses the real Open-Meteo forecast.
-- **Offline rehearsal:** `FIELDPILOT_OFFLINE_WIND=4.2 python3 -m uvicorn fieldpilot.api:app --port 8080`. The console labels the forecast "OFFLINE (synthetic, NOT a forecast)". Never present this as real weather in the video.
+The voice-over (VO) is about 330 words at a calm 140 words a minute. The hardware minute is mostly
+silent so the pump can be heard. On-screen text (OST) is a lower-third, white on a dark band, held at
+least 3 s.
 
-## Shot checklist
+### 1 · Hook, 0:00–0:12
 
-- [ ] Header badges show the live Nemotron model name, not "offline stub".
-- [ ] The SOP BLOCKED panel is readable for at least 3 s.
-- [ ] Hardware clip is one unbroken take of at least 60 s (75 s is safer) on the T1, with the nozzles, the empty battery bay and the folded props visible.
-- [ ] The team field clip is labelled "manual flight" and is under 15 s; it is context, not the hardware minute.
-- [ ] Every number spoken comes from `runs/<run_id>.json` or `eval/results/*.json`.
-- [ ] Upload as **Public**, check that it plays logged out, and check it is under 3:00.
+| | |
+|---|---|
+| Picture | Our T1 spraying a real field: `media/T1_field_manual.mp4`, 0:03–0:15 |
+| OST | *Our drone: T1 10 L quad · JIYI K3-A Pro · manual flight, before FieldPilot* |
+| VO | "Six hundred thousand spray drones work farms today. Every one comes with an app that plans the flight. None of them plans the operator's day." |
+| Source | DJI Agriculture annual report 2025 (about 600,000 drones in use) |
+
+### 2 · The problem, 0:12–0:27
+
+| | |
+|---|---|
+| Picture | Three plain number cards on black, 4 s each, then the T1's battery bay |
+| OST | **8–9 min** of spraying per battery · **about 2 h** to recharge · **90 %** of Drone Didis in Madhya Pradesh at a loss |
+| VO | "In India, a Drone Didi gets eight or nine minutes of spraying per battery, then waits two hours to charge. Jobs come in the order the phone rang, and sorties fly in noon wind, where the spray drifts. In one state, ninety percent of these operators are losing money. The problem isn't the drone. It's the day." |
+| Source | Feminism in India ground report, 4 Jun 2026; Dainik Bhaskar via Navbharat Live, 15 Sep 2025 |
+
+### 3 · Nemotron reads the bookings, 0:27–0:47
+
+| | |
+|---|---|
+| Picture | FieldPilot.exe, **operator desk**, India demo: Hindi and Hinglish WhatsApp bookings → **Read with Nemotron** → job cards appear, one flagged *bigha taken as 2529 m² · confirm* |
+| OST | *Nemotron 3.5 Lightning on Nebius Token Factory · schema-constrained JSON*, then *Code checks every number the model reads* |
+| VO | "Nemotron 3.5 Lightning on Nebius Token Factory reads every booking, from Hindi voice notes to local units like the bigha. Then code checks every number it pulled out. If the farmer never said it, it goes on the call list, not into the plan." |
+| Source | `runs/day_2026-10-30_20261029T085856Z.json` (7 bookings, live) |
+
+### 4 · Plan my day, 0:47–1:05
+
+| | |
+|---|---|
+| Picture | **Plan my day** → the timeline: green spray windows per farm, sorties on battery sets 1 and 2, the charger queue → the comparison panel → **Read aloud** plays 3 s of the Hindi brief |
+| OST | *Live forecast · India 2023 drone SOP · 2 packs, 1 charger*, then *Same bookings, same forecast, same batteries* |
+| VO | "Plan my day schedules every farm against the live forecast, India's drone rules and the batteries she actually owns. Same bookings, same weather, same batteries: the common way flies ten sorties outside the legal window. FieldPilot flies none." |
+| Source | Same file: 0 vs 10 sorties outside the window; 0.9 L vs 32.9 L of mix left over |
+
+### 5 · At scale, 1:05–1:15
+
+| | |
+|---|---|
+| Picture | `eval/results/efficiency_2026-10-30.png`, then one number card |
+| OST | *5 countries · 15 days · 105 bookings · live forecasts*, then **2.4× the useful hectares · 43 % fewer battery cycles · 67 % → 0 % of sorties in bad weather** |
+| VO | "Across five countries and a hundred and five bookings: two point four times the useful hectares, on forty-three percent fewer battery cycles, and no sorties in bad weather." |
+| Source | `eval/results/efficiency_2026-10-30.json`: effective ha 74.3 → 175.3, battery cycles 235 → 133, out-of-window sorties 67.2 % → 0 % |
+
+### 6 · On the farm: three Nemotron models and a calibrated gate, 1:15–1:30
+
+| | |
+|---|---|
+| Picture | **Field console** `/` → **Run demo**: zone photos → the trace streams native tool calls → the map: healthy zones green, A2 and B2 orange *review* → 2 s of the Tavily registry row from `docs/TAVILY.md` (ppqs.gov.in) |
+| OST | *Nemotron 3 Super: the tool loop · Nemotron 3.5 Super VL: the photos*, then *Gate calibrated on 150 labelled leaf photos*, then *Tavily: the registered dose, from the government site* |
+| VO | "On the farm, Nemotron 3 Super runs the tools and Super VL reads the photos. A conformal gate, calibrated on a hundred and fifty labelled leaves, lets the healthy zones through and sends every diseased one to the operator. Tavily checks the dose against the government registry." |
+| Source | `eval/results/calibration_2026-10-29.md` (healthy vs diseased right 98 %); `docs/TAVILY.md` |
+
+### 7 · The hardware minute, 1:30–2:35 (one continuous take, 65 s, no cuts)
+
+| | |
+|---|---|
+| Picture | Wide shot of **our T1** on the bench: tank, 6 mm line and four nozzles visible, battery bay empty, props folded. Picture-in-picture, top right: the console map flying the approved mission. The pump sprays only on the treated zones' passes, the flow follows the simulated speed and stops on each turn. At about 2:25, press **ABORT**: the spray stops at once |
+| OST (4 s each, spaced out) | *Aircraft position: simulated · pump, tank and nozzles: our T1, real* → *Flow follows ground speed and stops below 0.5 m/s, the K3-A Pro's own law* → *Only the zones the crop twin says are worth spraying* → *ABORT: pump off* |
+| VO (sparse) | At 1:32: "This is our drone's own spray system. The flight is simulated; the pump is real." At 1:55: "It sprays only the zones that pay for it, at the flow our controller would use at that speed, and stops on every turn." At 2:25: "And the abort cuts it instantly." |
+| Source | `docs/BENCH_RIG.md`; the bench log `runs/bench_*.json` from this take |
+
+### 8 · Proof that it flies, 2:35–2:47
+
+| | |
+|---|---|
+| Picture | 3 s each: the **K3-A Pro flight card** (L/mu, 4 m spacing) → `/sims`, the *K3-A Pro twin* result → `/ops`, **Firmware: ArduPilot SITL** tab → `/ops`, the field-day map with drift compensation on and off |
+| OST | *SIMULATED · K3-A Pro twin: the tank runs dry within 3.9 m of the planned cut*, then *SIMULATED · unmodified ArduCopter: 1094 s flown vs 1103 s planned, every zone within 1 % of its dose*, then *SIMULATED · drift compensation: worst zone coverage 85 % → 96 %* |
+| VO | "Our controller is closed, so the pilot gets a flight card for each sortie, and a twin of the controller flies it. On open firmware, unmodified ArduPilot flies our plan to within one percent." |
+| Source | `docs/K3_TWIN.md`; `runs/sitl/` and `docs/FIRMWARE.md`; `runs/fieldday/2026-10-31/FIELD_DAY_REPORT.md` |
+
+### 9 · Close, 2:47–2:55
+
+| | |
+|---|---|
+| Picture | Title card: **FieldPilot** · *Future Agri* · `github.com/Aryan221224/fieldpilot`, with a small line *NVIDIA Nemotron on Nebius Token Factory · Tavily · WOFOST · ArduPilot* |
+| OST | *Asked alone, Nemotron would have sprayed in 11 of 18 situations where it should not. FieldPilot: 0.* |
+| VO | "Asked alone, Nemotron would have sprayed in eleven of eighteen situations where it shouldn't. FieldPilot: zero. Every battery, every litre, where the crop needs it." |
+| Source | `eval/results/grounding_2026-10-29.json` (7 money-losing and 4 unsafe situations, all distinct; FieldPilot 0) |
+
+## How to record it (one afternoon)
+
+1. **Screens:** record with OBS at 1920×1080, 30 fps. Open `dist\FieldPilot\FieldPilot.exe`. Close every other window and turn off notifications.
+2. **Desk take:** load the India demo, then press **Read with Nemotron**, **Plan my day** and **Read aloud**. Record one take and cut it later. Record Brazil once for B-roll.
+3. **Console take:** press **Run demo** on `/`, let the trace stream, then show the map and the proposal.
+4. **Hardware take:**
+   - Put the phone on a tripod, in landscape, in 4K if possible.
+   - Light the bench from the side so the spray shows; a dark background behind the nozzles helps.
+   - Start `scripts\t1_console.bat` and `scripts\t1_bench.bat COM6` ([BENCH_RIG.md](BENCH_RIG.md)), then approve the mission.
+   - Film **at least 70 s without stopping**, and press ABORT near the end.
+   - Record OBS at the same time, for the picture-in-picture.
+5. **Proof take:** record `/sims` (K3-A Pro twin), the Firmware and Field day tabs on `/ops`, and the flight card.
+6. **Voice:** record the VO separately in a quiet room, with the phone 20 cm from your mouth, then lay it over the picture.
+7. **Edit:** cut to the timings above, keep the 65 s hardware take uncut, and export at 1080p.
+8. **Upload:**
+   - Post it on YouTube as **Public**, titled *FieldPilot: Nemotron plans a spray-drone operator's day (Physical AI)*.
+   - Paste the description below.
+   - Open it logged out to check it plays, and that it runs under 3:00.
+
+## If the bench rig cannot be filmed today
+
+The hardware minute is required. From strongest to weakest:
+
+1. **The bench rig above:** FieldPilot drives the real pump. This is the preferred option.
+2. **The T1 flying a FieldPilot flight card** over your own field.
+   - The pilot enters the card's zone corners, 4 m spacing, speed and L/mu dose in the JIYI app, loads the litres on the card, and flies it.
+   - Film one continuous minute of the drone spraying the planned zones.
+   - Fly only with your licensed pilot, in legal weather and airspace, with props clear of people.
+3. **The T1's pump on the bench, run from the JIYI app's pump test**, with the console beside it and labelled honestly. This is the weakest, because FieldPilot is not commanding the hardware.
+
+## YouTube description (paste)
+
+FieldPilot by Future Agri plans a spray-drone operator's whole day: which farm first, which battery
+set flies it, whether the weather lets the spray land, and how much product each refill needs. NVIDIA
+Nemotron 3.5 Lightning on Nebius Token Factory reads bookings in Hindi and Portuguese. Nemotron 3 Super
+runs the field agent's tools. Nemotron 3.5 Super VL reads the crop photos behind a calibrated conformal
+gate. Tavily checks the dose against the government registry. Hardware: our T1 10 L quad's own pump, tank
+and nozzles (aircraft position simulated, battery out, props off). Simulated results (K3-A Pro twin,
+ArduCopter SITL, field day) are labelled as such. Code: github.com/Aryan221224/fieldpilot
+
+## Final checks before upload
+
+- [ ] Under 3:00, plays logged out, Public.
+- [ ] The hardware take is one unbroken shot of at least 60 s, with the nozzles, the empty battery bay and the folded props visible.
+- [ ] "Nebius Token Factory" and "NVIDIA Nemotron" are spoken, and the model names appear on screen.
+- [ ] Every spoken number matches its source file above, and every simulated result says SIMULATED on screen.
+- [ ] No music without a licence, and no third-party logos.

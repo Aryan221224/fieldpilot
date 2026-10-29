@@ -13,10 +13,10 @@
 - [x] Uses NVIDIA open models (Nemotron 3 Super, 3.5 Super VL and 3.5 Lightning on Token Factory)
 - [x] Open-source licence file (Apache 2.0)
 - [x] README with setup instructions
-- [ ] Public repository (push before submitting)
-- [ ] Demo video < 3 min with ≥ 1 min of the hardware operating (docs/VIDEO_SCRIPT.md)
+- [x] Public repository: github.com/Aryan221224/fieldpilot
+- [ ] Demo video < 3 min with ≥ 1 min of the hardware operating (shot list: [VIDEO_SCRIPT.md](VIDEO_SCRIPT.md))
 - [ ] Demo URL (optional for Physical AI)
-- [x] Newly created during the submission window (repository started 21 Sep 2026)
+- [x] Newly created during the submission window (after 26 Aug 2026)
 
 ## Bonus prizes this also targets
 
