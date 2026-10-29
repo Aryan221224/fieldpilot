@@ -1,5 +1,5 @@
 {
- "generated_utc": "20261029T085644Z",
+ "generated_utc": "20261029T091537Z",
  "mode": {
   "llm": "nebius-token-factory",
   "vision": "nebius-token-factory",
@@ -7,8 +7,8 @@
   "drone": "sim"
  },
  "counts": {
-  "PASS": 6,
-  "WARN": 2,
+  "PASS": 7,
+  "WARN": 1,
   "FAIL": 0,
   "SKIP": 1
  },
@@ -23,7 +23,7 @@
    "check": "token factory catalog",
    "status": "PASS",
    "detail": "agent nvidia/nemotron-3-super-120b-a12b | vision nvidia/Nemotron-3.5-Super-VL",
-   "seconds": 1.85,
+   "seconds": 1.06,
    "catalog_size": 30,
    "nvidia_models": [
     "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
@@ -40,10 +40,10 @@
   {
    "check": "nemotron tool calling",
    "status": "PASS",
-   "detail": "native tool call in 1.36s -> get_zone_status({'zone_id': 'B2'})",
-   "seconds": 1.36,
+   "detail": "native tool call in 1.12s -> get_zone_status({'zone_id': 'B2'})",
+   "seconds": 1.12,
    "protocol": "native",
-   "latency_s": 1.36,
+   "latency_s": 1.12,
    "calls": [
     [
      "get_zone_status",
@@ -54,17 +54,17 @@
    ],
    "usage": {
     "prompt": 379,
-    "completion": 46
+    "completion": 42
    },
-   "reasoning_chars": 66
+   "reasoning_chars": 50
   },
   {
    "check": "vision model",
    "status": "PASS",
-   "detail": "nvidia/Nemotron-3.5-Super-VL parsed JSON in 5.09s (A1_1.jpg)",
-   "seconds": 5.09,
+   "detail": "nvidia/Nemotron-3.5-Super-VL parsed JSON in 2.35s (A1_1.jpg)",
+   "seconds": 2.35,
    "image": "examples\\images\\A1_1.jpg",
-   "latency_s": 5.09,
+   "latency_s": 2.35,
    "reply": {
     "plant_visible": true,
     "green_fraction": 0.55,
@@ -75,41 +75,41 @@
   {
    "check": "tavily search",
    "status": "PASS",
-   "detail": "3 results in 4.14s",
-   "seconds": 4.14,
-   "latency_s": 4.14,
+   "detail": "3 results in 1.23s",
+   "seconds": 1.23,
+   "latency_s": 1.23,
    "source": "tavily",
    "urls": [
+    "https://www.potatonewstoday.com/2024/07/16/cpri-issues-advisory-as-late-blight-disease-threatens-potato-crops-across-india",
     "https://www.hindustantimes.com/cities/chandigarh-news/cpri-issues-advisory-as-late-blight-disease-threatens-potato-crops-101720823388794.html",
-    "https://epubs.icar.org.in/index.php/IJAgS/article/view/147373",
-    "https://www.bharatcertis.com/tips-for-controlling-late-blight-in-potato-farming.php"
+    "https://epubs.icar.org.in/index.php/IJAgS/article/view/147373"
    ]
   },
   {
    "check": "open-meteo weather",
    "status": "PASS",
-   "detail": "wind 2.4 m/s, gust 6.5 m/s, rain 59.0% -> NO-GO: 59% chance of rain within 2 h (wash-off)",
-   "seconds": 0.82,
+   "detail": "wind 1.9 m/s, gust 5.5 m/s, rain 55.0% -> NO-GO: 55% chance of rain within 2 h (wash-off)",
+   "seconds": 0.87,
    "source": "open-meteo forecast",
    "now": {
-    "wind_ms": 2.4,
-    "gust_ms": 6.5,
-    "rain_prob_2h": 59.0,
+    "wind_ms": 1.9,
+    "gust_ms": 5.5,
+    "rain_prob_2h": 55.0,
     "temp_c": 28.4
    },
    "go": false,
    "reasons": [
-    "59% chance of rain within 2 h (wash-off)"
+    "55% chance of rain within 2 h (wash-off)"
    ]
   },
   {
    "check": "crop twin (PCSE)",
-   "status": "WARN",
-   "detail": "potato test zone -> spot_spray in 1.1s (weather: SYNTHETIC weather -- NOT FOR ADVICE)",
-   "seconds": 211.48,
-   "weather": "SYNTHETIC weather -- NOT FOR ADVICE",
+   "status": "PASS",
+   "detail": "potato test zone -> spot_spray in 1.28s (weather: Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29))",
+   "seconds": 2.51,
+   "weather": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
    "recommended": "spot_spray",
-   "latency_s": 1.1
+   "latency_s": 1.28
   },
   {
    "check": "conformal calibration",
