@@ -240,7 +240,10 @@ def live(cfg: Config | None = None) -> Report:
 # ---------------------------------------------------------------------------
 
 def _git(*args: str) -> str:
-    r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
+    import os
+    # Only the project folder itself counts as the repository: never a parent folder's repo.
+    env = dict(os.environ, GIT_CEILING_DIRECTORIES=str(Path(ROOT).resolve().parent))
+    r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, env=env)
     return r.stdout.strip() if r.returncode == 0 else ""
 
 
