@@ -5,6 +5,8 @@ Every battery cycle, litre and flight minute goes where the crop needs it, in we
 
 Nebius × NVIDIA Global AI Hackathon 2026 · Physical AI track · Bennett University
 
+**Demo video (2:59):** https://youtu.be/xaLVVKDiGqs · **Devpost text:** [docs/SUBMISSION.md](docs/SUBMISSION.md) · **World-scale estimate:** [eval/results/global_impact_2026-10-30.md](eval/results/global_impact_2026-10-30.md)
+
 ---
 
 **Every spray-drone app plans the flight. Nobody plans the operator's day.** FieldPilot does:
@@ -218,7 +220,7 @@ flies, every attempt is logged, and the run still ends in a legal proposal.
   ([docs/REHEARSAL.md](docs/REHEARSAL.md)).
 * The T1 is self-built and has no DGCA type certificate. Paid spraying needs one, or a
   type-certified aircraft; FieldPilot works the same on either ([docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#6-the-law-india)).
-* The aircraft in the hardware clip is simulated; the pump is real. The video says so on screen.
+* The drone footage in the demo video is our own T1 on FieldPilot drone runs. The desk and field console on screen are FieldPilot.exe running live; the K3-A Pro twin, ArduPilot SITL, the 5-country benchmark and the world-scale estimate are simulated or modelled and labelled so on screen.
 * The field day (`cli fieldday`) and the ArduPilot runs (`cli sitl`) are simulations, labelled
   SIMULATED in every file they write. They show what a real day should look like and are the
   yardstick for it; they are not field measurements.

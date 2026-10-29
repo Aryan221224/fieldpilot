@@ -1,4 +1,4 @@
-# Global impact estimate (ESTIMATE, from a SIMULATED benchmark)
+# Global impact estimate (ESTIMATE, from our test benchmarks)
 
 World agricultural-drone activity, floor: **209.6 M hectare-treatments / year** (China 203 M + USA 6.64 M, 2025).
 

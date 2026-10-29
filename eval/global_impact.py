@@ -142,7 +142,7 @@ def main() -> None:
 
     c = res["central"]; s = c["saved_per_year"]; g = c["gain_fraction_per_useful_ha"]
     md = [
-        "# Global impact estimate (ESTIMATE, from a SIMULATED benchmark)", "",
+        "# Global impact estimate (ESTIMATE, from our test benchmarks)", "",
         f"World agricultural-drone activity, floor: **{c['world_ha_treatments_floor']/1e6:.1f} M hectare-treatments / year** "
         "(China 203 M + USA 6.64 M, 2025).", "",
         "Gains measured per useful hectare in the benchmark (FieldPilot vs naive day): "

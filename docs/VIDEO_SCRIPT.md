@@ -30,6 +30,8 @@ third-party trademarks or copyrighted music.
 Music is original, synthesised for the video. The voice is a synthetic voice (Kokoro, Apache-2.0).
 The drone footage is our T1 on FieldPilot prototype runs, labelled *FieldPilot drone run* on screen.
 
+> The final cut is the table above (2:59, https://youtu.be/xaLVVKDiGqs). The shot list below is the earlier plan and is kept for reference; where it differs, the table wins.
+
 ## The story in one line
 
 *Every spray-drone app plans the flight. Nobody plans the operator's day. FieldPilot does it with
