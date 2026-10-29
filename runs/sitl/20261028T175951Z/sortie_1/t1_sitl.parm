@@ -1,0 +1,70 @@
+# T1 10 L spray quad on ArduCopter (FieldPilot, sim/t1_sitl.parm).
+# Attitude tuning starts from ArduPilot's Callisto heavy-lift model; frame, motors, battery,
+# sprayer and failsafes are the T1's (fieldpilot/airframe.py: ardupilot_params()).
+FRAME_CLASS     1
+FRAME_TYPE      1
+ATC_ACCEL_P_MAX 30000
+ATC_ACCEL_R_MAX 30000
+ATC_ACCEL_Y_MAX 6000
+ATC_ANG_PIT_P   7
+ATC_ANG_RLL_P   7
+ATC_ANG_YAW_P   5
+ATC_INPUT_TC    0.25
+ATC_RAT_PIT_D   0.00375
+ATC_RAT_PIT_I   0.455
+ATC_RAT_PIT_P   0.455
+ATC_RAT_RLL_D   0.00375
+ATC_RAT_RLL_I   0.455
+ATC_RAT_RLL_P   0.455
+ATC_RAT_YAW_D   0.5
+ATC_RAT_YAW_I   0.05
+ATC_RAT_YAW_P   0.5
+ATC_THR_MIX_MAX 2
+MOT_BAT_VOLT_MAX 50.4
+MOT_BAT_VOLT_MIN 39.6
+MOT_HOVER_LEARN 0
+MOT_PWM_MAX     2000
+MOT_PWM_MIN     1000
+MOT_SPIN_ARM    0.10
+MOT_SPIN_MAX    0.95
+MOT_SPIN_MIN    0.15
+MOT_THST_EXPO   0.55
+MOT_THST_HOVER  0.52
+PSC_ANGLE_MAX   30
+# battery: 12S 16 Ah
+SIM_BATT_VOLTAGE 50.4
+SIM_BATT_CAP_AH 16
+BATT_MONITOR    4
+BATT_CAPACITY   16000
+BATT_LOW_MAH    4800
+BATT_LOW_VOLT   42.6
+BATT_CRT_VOLT   40.8
+BATT_FS_LOW_ACT 2
+BATT_FS_CRT_ACT 1
+# navigation: spray at 4.5 m/s, 1.5 m/s^2 at line ends (same assumption as the K3 twin)
+WPNAV_SPEED     450
+WPNAV_ACCEL     150
+WPNAV_RADIUS    100
+WPNAV_SPEED_UP  200
+WPNAV_SPEED_DN  150
+LAND_SPEED      50
+RTL_ALT         1000
+RTL_ALT_FINAL   0
+RTL_SPEED       600
+AUTO_OPTIONS    3
+# sprayer: flow follows ground speed, pump off below 0.5 m/s (the T1's law)
+SERVO9_FUNCTION 22
+SERVO9_MIN      1100
+SERVO9_MAX      1900
+SPRAY_ENABLE    1
+SPRAY_PUMP_RATE 13.7
+SPRAY_PUMP_MIN  0
+SPRAY_SPEED_MIN 50
+# geofence and RC-loss failsafe
+FENCE_ENABLE    1
+FENCE_TYPE      3
+FENCE_RADIUS    500
+FENCE_ALT_MAX   15
+FENCE_ACTION    1
+FS_THR_ENABLE   1
+LOG_DISARMED    0

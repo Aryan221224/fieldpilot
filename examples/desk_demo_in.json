@@ -1,0 +1,84 @@
+{
+ "_note": "Demo day: one operator flying the project's T1 10 L quad (2 packs, 1 charger) near Dankaur, Uttar Pradesh, India (India drone-SOP rule pack). Pins are approximate village centres; in use they come from the farmer's location pin. spray_ha = area a FieldPilot scan + crop twin justified; absent = not scanned, whole field.",
+ "date": null,
+ "operator": {
+  "name": "Village spray operator · Dankaur (demo)",
+  "base": [
+   28.3517,
+   77.553
+  ],
+  "country": "IN",
+  "utc_offset_h": 5.5,
+  "rules": "IN-SOP-2023",
+  "language": "hi",
+  "currency": "₹",
+  "rate_per_ha": 741,
+  "drone": "t1_10l",
+  "battery_sets": 2,
+  "chargers": 1,
+  "charge_min": 45,
+  "setup_min": 15,
+  "turnaround_min": 3,
+  "road_kmh": 25,
+  "road_factor": 1.4,
+  "day_start": "06:00",
+  "day_end": "18:00",
+  "local_units": {
+   "bigha": 2529
+  }
+ },
+ "messages": [
+  {
+   "text": "Didi namaste, Ramesh bol raha hoon Dankaur se. 2 acre aalu hai, patton pe kaale dhabbe aa rahe hain, jhulsa lag raha hai. Kal subah spray kar do.",
+   "spray_ha": 0.35,
+   "pin": [
+    28.3517,
+    77.553
+   ]
+  },
+  {
+   "text": "रबूपुरा से सुनीता बोल रही हूँ। सरसों 2 बीघा है, माहू लग गया है। कल आ जाना।",
+   "pin": [
+    28.2546,
+    77.6004
+   ]
+  },
+  {
+   "text": "Jewar, Mahesh here. 3 acre potato, late blight started. Mancozeb main le aaunga.",
+   "spray_ha": 0.4,
+   "pin": [
+    28.1222,
+    77.556
+   ]
+  },
+  {
+   "text": "Dadri se Kamla Devi. Gehun 1.5 acre mein kharpatwar bahut hai, jaldi karna, parso paani lagana hai.",
+   "pin": [
+    28.5524,
+    77.5532
+   ]
+  },
+  {
+   "text": "Bilaspur se Imran. Aalu 4 acre, jhulsa shuru ho gaya hai.",
+   "spray_ha": 0.5,
+   "pin": [
+    28.4389,
+    77.6286
+   ]
+  },
+  {
+   "text": "झाझर से गीता। ढाई बीघा आलू, पत्ते सूख रहे हैं।",
+   "pin": [
+    28.2667,
+    77.7
+   ]
+  },
+  {
+   "text": "Vikram, Atta gaon. 2.5 acre sarson me spray chahiye is hafte.",
+   "pin": [
+    28.395,
+    77.505
+   ]
+  }
+ ]
+}

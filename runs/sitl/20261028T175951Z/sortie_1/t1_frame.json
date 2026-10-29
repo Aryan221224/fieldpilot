@@ -1,0 +1,44 @@
+# T1 10 L spray quad for ArduPilot SITL (FieldPilot, sim/t1_frame.json).
+# Every number is from the T1 specification sheet / BOM or derived in fieldpilot/airframe.py;
+# the layout follows ArduPilot's Callisto model (a 12S heavy-lift multirotor of the same size).
+{
+    # take-off mass with a full 10 L tank (sheet: standard take-off 24 kg). SITL keeps it
+    # constant, so it errs heavy as the tank empties.
+    "mass" : 14.8,
+
+    # diagonal wheelbase (sheet: 1300 mm)
+    "diagonal_size" : 1.30,
+
+    # drag reference: 10 m/s (sheet maximum) at ~20 degrees of tilt (assumption)
+    "refSpd" : 10.0,
+    "refAngle" : 30.6,
+
+    # cruise power at 24 kg from the airframe model: 3170 W at 46.8 V (12S, 3.9 V/cell)
+    "refVoltage" : 46.8,
+    "refCurrent" : 32.8,
+    "refAlt" : 200,
+    "refTempC" : 25,
+    "refBatRes" : 0.024,
+
+    # 12S 16 Ah pack (BOM: 2 x 16000 mAh; 12S from the kit's 12S charger)
+    "maxVoltage" : 50.4,
+    "battCapacityAh" : 16,
+
+    "propExpo" : 0.55,
+    "refRotRate" : 90,
+
+    # hover throttle at 24 kg of a 28 kg MTOW airframe (assumption)
+    "hoverThrOut" : 0.363,
+
+    "pwmMin" : 1000,
+    "pwmMax" : 2000,
+    "spin_min" : 0.15,
+    "spin_max" : 0.95,
+    "slew_max" : 0,
+
+    # 4 x 34.7-inch propellers (BOM): 4 x pi x (0.4407 m)^2
+    "disc_area" : 2.44,
+
+    "mdrag_coef" : 0.10,
+    "num_motors" : 4
+}

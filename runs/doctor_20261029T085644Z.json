@@ -1,0 +1,127 @@
+{
+ "generated_utc": "20261029T085644Z",
+ "mode": {
+  "llm": "nebius-token-factory",
+  "vision": "nebius-token-factory",
+  "search": "tavily",
+  "drone": "sim"
+ },
+ "counts": {
+  "PASS": 6,
+  "WARN": 2,
+  "FAIL": 0,
+  "SKIP": 1
+ },
+ "checks": [
+  {
+   "check": "python packages",
+   "status": "PASS",
+   "detail": "all required packages import",
+   "seconds": 0.0
+  },
+  {
+   "check": "token factory catalog",
+   "status": "PASS",
+   "detail": "agent nvidia/nemotron-3-super-120b-a12b | vision nvidia/Nemotron-3.5-Super-VL",
+   "seconds": 1.85,
+   "catalog_size": 30,
+   "nvidia_models": [
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "nvidia/Nemotron-3.5-Super-VL",
+    "nvidia/Nemotron-3_5-Lightning",
+    "nvidia/nemotron-3-super-120b-a12b"
+   ],
+   "picked": {
+    "agent": "nvidia/nemotron-3-super-120b-a12b",
+    "vision": "nvidia/Nemotron-3.5-Super-VL"
+   }
+  },
+  {
+   "check": "nemotron tool calling",
+   "status": "PASS",
+   "detail": "native tool call in 1.36s -> get_zone_status({'zone_id': 'B2'})",
+   "seconds": 1.36,
+   "protocol": "native",
+   "latency_s": 1.36,
+   "calls": [
+    [
+     "get_zone_status",
+     {
+      "zone_id": "B2"
+     }
+    ]
+   ],
+   "usage": {
+    "prompt": 379,
+    "completion": 46
+   },
+   "reasoning_chars": 66
+  },
+  {
+   "check": "vision model",
+   "status": "PASS",
+   "detail": "nvidia/Nemotron-3.5-Super-VL parsed JSON in 5.09s (A1_1.jpg)",
+   "seconds": 5.09,
+   "image": "examples\\images\\A1_1.jpg",
+   "latency_s": 5.09,
+   "reply": {
+    "plant_visible": true,
+    "green_fraction": 0.55,
+    "visible_problem": "none"
+   },
+   "model": "nvidia/Nemotron-3.5-Super-VL"
+  },
+  {
+   "check": "tavily search",
+   "status": "PASS",
+   "detail": "3 results in 4.14s",
+   "seconds": 4.14,
+   "latency_s": 4.14,
+   "source": "tavily",
+   "urls": [
+    "https://www.hindustantimes.com/cities/chandigarh-news/cpri-issues-advisory-as-late-blight-disease-threatens-potato-crops-101720823388794.html",
+    "https://epubs.icar.org.in/index.php/IJAgS/article/view/147373",
+    "https://www.bharatcertis.com/tips-for-controlling-late-blight-in-potato-farming.php"
+   ]
+  },
+  {
+   "check": "open-meteo weather",
+   "status": "PASS",
+   "detail": "wind 2.4 m/s, gust 6.5 m/s, rain 59.0% -> NO-GO: 59% chance of rain within 2 h (wash-off)",
+   "seconds": 0.82,
+   "source": "open-meteo forecast",
+   "now": {
+    "wind_ms": 2.4,
+    "gust_ms": 6.5,
+    "rain_prob_2h": 59.0,
+    "temp_c": 28.4
+   },
+   "go": false,
+   "reasons": [
+    "59% chance of rain within 2 h (wash-off)"
+   ]
+  },
+  {
+   "check": "crop twin (PCSE)",
+   "status": "WARN",
+   "detail": "potato test zone -> spot_spray in 1.1s (weather: SYNTHETIC weather -- NOT FOR ADVICE)",
+   "seconds": 211.48,
+   "weather": "SYNTHETIC weather -- NOT FOR ADVICE",
+   "recommended": "spot_spray",
+   "latency_s": 1.1
+  },
+  {
+   "check": "conformal calibration",
+   "status": "WARN",
+   "detail": "no calibration.json: gate runs uncalibrated (p >= 0.85 fallback)",
+   "seconds": 0.0
+  },
+  {
+   "check": "drone link",
+   "status": "SKIP",
+   "detail": "FP_DRONE=sim (set FP_DRONE=mavlink + FP_MAVLINK_URL to test the vehicle)",
+   "seconds": 0.0
+  }
+ ]
+}

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldPilot · operator console</title>
+<style>
+  :root{
+    --bg:#0b1310; --panel:#111c18; --panel2:#15231e; --line:#233630; --line2:#2d443c;
+    --ink:#e8f1ec; --ink2:#c3d3ca; --muted:#8aa196; --faint:#5f7569;
+    --nv:#76b900;            /* NVIDIA green: model steps */
+    --healthy:#3fb37f; --treat:#e8a33a; --review:#a78bfa; --idle:#4b6358;
+    --danger:#ef4f4f; --ok:#3fb37f; --info:#5aa7e8;
+    --r:10px; --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif}
+  button{font:inherit;cursor:pointer}
+  header{height:58px;display:flex;align-items:center;gap:16px;padding:0 18px;border-bottom:1px solid var(--line);
+         background:linear-gradient(180deg,#0f1a16,#0b1310)}
+  .brand{display:flex;align-items:baseline;gap:10px}
+  .brand b{font-size:19px;letter-spacing:.2px}
+  .brand span{color:var(--muted);font-size:13px}
+  .badges{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .badge{font-size:12px;padding:4px 9px;border-radius:99px;border:1px solid var(--line2);color:var(--ink2);white-space:nowrap}
+  .badge i{font-style:normal;color:var(--muted);margin-right:5px}
+  .badge.live{border-color:#3b5c1a;color:#cdeb9f;background:#16220d}
+  .badge.stub{border-color:#5a4a1f;color:#f1d68e;background:#211b0c}
+  main{display:grid;grid-template-columns:360px minmax(420px,1fr) 450px;height:calc(100% - 58px)}
+  section{min-height:0;display:flex;flex-direction:column}
+  .col{padding:14px;gap:12px;overflow:auto}
+  .left{border-right:1px solid var(--line)}
+  .right{border-left:1px solid var(--line);display:grid;grid-template-rows:minmax(170px,1fr) auto auto;overflow:hidden}
+  .right .tracewrap{display:flex;flex-direction:column;min-height:0}
+  .right .propwrap{min-height:0}
+  #proposal{max-height:calc(100vh - 330px);overflow:auto}
+  h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px;font-weight:600}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+  .btn{border:1px solid var(--line2);background:var(--panel2);color:var(--ink);border-radius:8px;padding:9px 12px}
+  .btn:hover{border-color:var(--muted)}
+  .btn.primary{background:var(--nv);border-color:var(--nv);color:#0b1a02;font-weight:650}
+  .btn.go{background:var(--ok);border-color:var(--ok);color:#04150d;font-weight:700;font-size:16px;padding:12px}
+  .btn.stop{background:var(--danger);border-color:var(--danger);color:#fff;font-weight:800;font-size:16px;padding:12px;letter-spacing:.04em}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .row{display:flex;gap:8px;align-items:center}
+  .grow{flex:1}
+  .muted{color:var(--muted)} .small{font-size:12.5px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tile{position:relative;aspect-ratio:1;border:1px dashed var(--line2);border-radius:8px;overflow:hidden;
+        background:var(--panel2);display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .tile .zid{position:absolute;left:6px;top:5px;font-weight:700;font-size:13px;text-shadow:0 1px 2px #000;z-index:2}
+  .tile .n{position:absolute;right:6px;bottom:5px;font-size:11px;background:#000a;padding:1px 6px;border-radius:9px;z-index:2}
+  .tile.has{border-style:solid}
+  .tile .plus{color:var(--faint);font-size:26px}
+  .mapwrap{flex:1;min-height:0;position:relative}
+  svg#map{width:100%;height:100%;display:block}
+  svg#map text{paint-order:stroke;stroke:#0b1310;stroke-width:3px;stroke-linejoin:round}
+  .legend{position:absolute;left:14px;bottom:12px;display:flex;gap:12px;font-size:12px;color:var(--ink2);
+          background:#0b1310cc;padding:6px 10px;border-radius:8px;border:1px solid var(--line)}
+  .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+  .tele{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line)}
+  .tele div{padding:9px 12px;border-right:1px solid var(--line)}
+  .tele div:last-child{border-right:0}
+  .tele b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
+  .tele small{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em}
+  .trace{flex:1;min-height:0;overflow:auto;padding-right:4px}
+  .ev{border-left:2px solid var(--line2);padding:6px 0 8px 12px;margin-left:6px;position:relative}
+  .ev::before{content:"";position:absolute;left:-6px;top:10px;width:10px;height:10px;border-radius:50%;background:var(--line2)}
+  .ev.call::before{background:var(--nv)} .ev.res.bad::before{background:var(--danger)}
+  .ev.res::before{background:var(--info)} .ev.prop::before{background:var(--treat)}
+  .ev .h{font-size:13px;color:var(--ink2)} .ev .h b{color:var(--ink)}
+  .ev .tag{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:6px}
+  .ev .body{font-size:13px;color:var(--ink2);margin-top:3px}
+  .ev .think{font-size:12.5px;color:var(--muted);font-style:italic}
+  .zl{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+  .chip{font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--line2);color:var(--ink2)}
+  .chip.t{border-color:#6b4f1d;color:#f6cf87} .chip.r{border-color:#4d3f7a;color:#cdbdfd} .chip.h{border-color:#1f5a40;color:#9fe3c2}
+  .proposal h3{margin:0 0 6px;font-size:17px;line-height:1.3}
+  .tabs{display:flex;gap:6px;margin:6px 0}
+  .tabs button{border:1px solid var(--line2);background:transparent;color:var(--muted);border-radius:6px;padding:3px 9px;font-size:12px}
+  .tabs button.on{color:var(--ink);border-color:var(--muted)}
+  .checks{list-style:none;padding:0;margin:8px 0;display:grid;gap:3px}
+  .checks li{font-size:12.5px;color:var(--ink2);display:flex;gap:6px}
+  .checks li .i{width:16px;text-align:center;font-weight:700}
+  .checks li.ok .i{color:var(--ok)} .checks li.bad .i{color:var(--danger)}
+  .stat{display:flex;gap:14px;margin:8px 0;flex-wrap:wrap}
+  .stat div{font-size:12px;color:var(--muted)} .stat b{display:block;font-size:16px;color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{text-align:left;padding:5px 4px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:500;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.rec td{color:var(--ink)} tr.rec td:first-child::before{content:"★ ";color:var(--treat)}
+  .rng{position:relative;height:8px;background:var(--line);border-radius:4px;min-width:54px}
+  .rng i{position:absolute;top:0;height:8px;border-radius:4px;background:var(--ink2);opacity:.55}
+  .rng b{position:absolute;top:-2px;width:2px;height:12px;background:var(--ink)}
+  .banner{font-size:12.5px;padding:8px 10px;border-radius:8px;background:#211b0c;border:1px solid #5a4a1f;color:#f1d68e}
+  .empty{color:var(--faint);font-size:13px;padding:10px 0}
+  .sop{margin:10px 0;border:1px solid var(--line2);border-radius:8px;padding:8px 10px}
+  .sop .v{font-weight:700;letter-spacing:.04em}
+  .sop.CLEAR{border-color:#1f5a40} .sop.CLEAR .v{color:var(--ok)}
+  .sop.BLOCKED{border-color:#7a2a2a} .sop.BLOCKED .v{color:var(--danger)}
+  .sop.NEEDS_HUMAN{border-color:#5a4a1f} .sop.NEEDS_HUMAN .v{color:#f1d68e}
+  .sop li .src{color:var(--muted);font-size:11px}
+  .checks li.unv .i{color:#f1d68e}
+  .papers{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .papers a{font-size:12px;color:var(--ink2);border:1px solid var(--line2);border-radius:6px;padding:3px 8px;text-decoration:none}
+  select,input[type=text]{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);border-radius:6px;padding:6px}
+  .kbd{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  @media (max-width:1180px){main{grid-template-columns:300px 1fr;} .right{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><b>Future Agri · FieldPilot</b><span>Nemotron plans · physics decides · a human approves · the drone flies</span></div>
+  <a href="/sims" style="color:var(--ink2);font-size:13px;white-space:nowrap;margin-right:12px">simulation lab</a><a href="/desk" style="color:var(--ink2);font-size:13px;white-space:nowrap">operator desk →</a>
+  <div class="badges" id="badges"></div>
+</header>
+<main>
+  <section class="col left">
+    <div>
+      <h2>Field visit</h2>
+      <div class="card">
+        <div class="small muted" id="fieldname">loading…</div>
+        <div class="tiles" id="tiles" style="margin-top:10px"></div>
+        <input type="file" id="picker" accept="image/*" multiple hidden>
+        <div class="small muted" style="margin-top:8px">Tap a zone to add its photos, or add many at once named <span class="kbd">A1_*.jpg</span>, <span class="kbd">B2_*.jpg</span>…</div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="bulk">Add photos</button>
+          <button class="btn primary grow" id="run" disabled>Run agent</button>
+        </div>
+        <button class="btn" id="demo" style="width:100%;margin-top:8px">Run on example photos (synthetic)</button>
+      </div>
+    </div>
+    <div>
+      <h2>Zone detail</h2>
+      <div class="card" id="zone"><div class="empty">Select a zone on the map after a run.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mapwrap">
+      <svg id="map" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend">
+        <span style="--c:var(--healthy)">no action</span>
+        <span style="--c:var(--treat)">treat (drone)</span>
+        <span style="--c:var(--review)">human review</span>
+        <span style="--c:var(--idle)">not inspected</span>
+      </div>
+    </div>
+    <div class="tele" id="tele"></div>
+  </section>
+
+  <section class="col right">
+    <div class="tracewrap">
+      <h2>Agent trace <span class="muted small" id="modelnames" style="text-transform:none;letter-spacing:0"></span></h2>
+      <div class="trace card" id="trace"><div class="empty">No run yet.</div></div>
+    </div>
+    <div class="propwrap">
+      <h2>Proposal</h2>
+      <div class="card proposal" id="proposal"><div class="empty">The agent's proposal appears here. Only a human can dispatch the drone.</div></div>
+    </div>
+    <button class="btn stop" id="abort">ABORT · RETURN TO LAUNCH</button>
+  </section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let S = {field:null, run:null, runId:null, photos:{}, pendingZone:null, lang:"en", selected:null, job:null};
+
+// ---------- geometry ----------
+let proj = null;
+function makeProj(field){
+  const lat0 = field.home[0], lon0 = field.home[1], R = 6378137, k = Math.cos(lat0*Math.PI/180);
+  const toXY = (lat,lon) => [ (lon-lon0)*Math.PI/180*R*k, (lat-lat0)*Math.PI/180*R ];
+  const pts = field.geofence.map(p => toXY(p[0],p[1]));
+  const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+  const minx=Math.min(...xs), maxx=Math.max(...xs), miny=Math.min(...ys), maxy=Math.max(...ys);
+  const W=800,H=600,pad=48, s=Math.min((W-2*pad)/(maxx-minx),(H-2*pad)/(maxy-miny));
+  const ox=(W-(maxx-minx)*s)/2, oy=(H-(maxy-miny)*s)/2;
+  return {s, f:(lat,lon)=>{const [x,y]=toXY(lat,lon); return [ox+(x-minx)*s, H-(oy+(y-miny)*s)];}};
+}
+const pstr = (ring) => ring.map(p=>proj.f(p[0],p[1]).map(v=>v.toFixed(1)).join(",")).join(" ");
+
+function zoneStatus(z){
+  const r = S.run; if(!r || !r.observations || !r.observations[z]) return "idle";
+  const o = r.observations[z]; if(o.needs_review) return "review";
+  const ev = r.evals && r.evals[z]; if(!ev) return "idle";
+  if(ev.recommended && ev.recommended !== "no_action"){
+    const p = r.plans["P-"+z+"-"+ev.recommended]; return (p && p.drone) ? "treat" : "manual";
+  }
+  return "healthy";
+}
+const COL = {idle:"var(--idle)", healthy:"var(--healthy)", treat:"var(--treat)", review:"var(--review)", manual:"var(--info)"};
+
+function drawMap(){
+  const f = S.field; if(!f) return;
+  proj = proj || makeProj(f);
+  const svg = $("#map"); let h = "";
+  h += `<defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#16241f" stroke-width="1"/></pattern></defs>`;
+  h += `<rect width="800" height="600" fill="url(#grid)"/>`;
+  h += `<polygon points="${pstr(f.geofence)}" fill="none" stroke="#ef4f4f" stroke-width="1.5" stroke-dasharray="7 5" opacity=".8"/>`;
+  const gf = proj.f(f.geofence[3][0], f.geofence[3][1]);
+  h += `<text x="${gf[0]+6}" y="${gf[1]+16}" fill="#ef4f4f" font-size="12" opacity=".85">geofence · max ${f.max_alt_m} m AGL</text>`;
+  for(const z of f.zones){
+    const st = zoneStatus(z.zone_id), sel = S.selected === z.zone_id;
+    h += `<polygon class="zone" data-z="${z.zone_id}" points="${pstr(z.polygon)}" fill="${COL[st]}" fill-opacity="${st==='idle'?0.18:0.32}" stroke="${sel?'#fff':COL[st]}" stroke-width="${sel?3:1.5}" style="cursor:pointer"/>`;
+    const c = z.polygon.reduce((a,p)=>[a[0]+p[0]/z.polygon.length,a[1]+p[1]/z.polygon.length],[0,0]);
+    const [cx,cy] = proj.f(c[0],c[1]);
+    h += `<text x="${cx}" y="${cy-4}" text-anchor="middle" fill="#fff" font-size="20" font-weight="700" pointer-events="none">${z.zone_id}</text>`;
+    const r = S.run; const o = r && r.observations && r.observations[z.zone_id];
+    if(o){ const p=o.primary; const lab = {treat:"spray · sev "+p.severity, review:"needs review", healthy: p.severity? ("no action · sev "+p.severity) : "healthy", manual:"manual action", idle:(p.severity?"sev "+p.severity:"inspected")}[st];
+      h += `<text x="${cx}" y="${cy+17}" text-anchor="middle" fill="#e8f1ec" font-size="13" pointer-events="none" opacity=".92">${esc(lab)}</text>`; }
+  }
+  const m = S.run && S.run.mission;
+  if(m && m.path){
+    h += `<polyline points="${m.path.map(p=>proj.f(p[0],p[1]).join(",")).join(" ")}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="4 4"/>`;
+  }
+  const t = S.tele;
+  if(t && t.trail && t.trail.length>1){
+    for(let i=1;i<t.trail.length;i++){
+      const a=proj.f(t.trail[i-1][0],t.trail[i-1][1]), b=proj.f(t.trail[i][0],t.trail[i][1]);
+      h += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${t.trail[i][2]?'#e8a33a':'#5aa7e8'}" stroke-width="${t.trail[i][2]?5:2}" stroke-linecap="round" opacity=".9"/>`;
+    }
+  }
+  const hp = proj.f(f.home[0], f.home[1]);
+  h += `<g transform="translate(${hp[0]},${hp[1]})"><rect x="-9" y="-9" width="18" height="18" rx="3" fill="#0b1310" stroke="#e8f1ec" stroke-width="1.5"/><text y="4.5" text-anchor="middle" font-size="12" font-weight="700" fill="#e8f1ec">H</text></g>`;
+  if(t && t.connected){
+    const d = proj.f(t.lat, t.lon);
+    h += `<g transform="translate(${d[0]},${d[1]})">${t.spraying?'<circle r="22" fill="#e8a33a" opacity=".22"/>':''}<circle r="9" fill="${t.armed?'#76b900':'#8aa196'}" stroke="#0b1310" stroke-width="2"/><path d="M-15 -15L15 15M15 -15L-15 15" stroke="${t.armed?'#76b900':'#8aa196'}" stroke-width="2"/></g>`;
+  }
+  svg.innerHTML = h;
+  svg.querySelectorAll(".zone").forEach(el => el.onclick = () => { S.selected = el.dataset.z; drawMap(); drawZone(); });
+}
+
+// ---------- panels ----------
+function drawBadges(st){
+  const m = st.mode, md = st.models || {};
+  const b = (k,v,live) => `<span class="badge ${live?'live':'stub'}"><i>${k}</i>${esc(v)}</span>`;
+  // Only a real Nebius call gets the green "live" badge; a local GPU server is labelled as such.
+  const loc = v => String(v||"").startsWith("LOCAL-GPU");
+  // Perception prefers Nemotron 3.5 Super VL; say so if a catalog forces another VLM.
+  const nonNv = v => v && !/nvidia|nemotron|cosmos/i.test(String(v)) ? " (non-NVIDIA)" : "";
+  $("#badges").innerHTML =
+    b("agent", m.llm==="OFFLINE-STUB" ? "offline stub" : (loc(m.llm) ? "LOCAL GPU · " : "") + (md.agent||"Nemotron"),
+      m.llm!=="OFFLINE-STUB" && !loc(m.llm)) +
+    b("vision", m.vision==="OFFLINE-STUB" ? "pixel heuristics" : (loc(m.vision) ? "LOCAL GPU · " : "") + (md.vision||m.vision) + (m.vision==="OFFLINE-STUB" ? "" : nonNv(md.vision||m.vision)),
+      m.vision!=="OFFLINE-STUB" && !loc(m.vision)) +
+    b("search", m.search==="tavily" ? "Tavily" : "offline", m.search==="tavily") +
+    b("drone", m.drone==="sim" ? "simulator" : "MAVLink", m.drone!=="sim");
+}
+
+function drawTiles(){
+  const f = S.field; if(!f) return;
+  $("#tiles").innerHTML = f.zones.map(z => {
+    const ph = S.photos[z.zone_id] || [];
+    const img = ph.length ? `<img src="${ph[0].url}">` : `<span class="plus">+</span>`;
+    return `<div class="tile ${ph.length?'has':''}" data-z="${z.zone_id}"><span class="zid">${z.zone_id}</span>${img}${ph.length?`<span class="n">${ph.length}</span>`:''}</div>`;
+  }).join("");
+  document.querySelectorAll(".tile").forEach(el => el.onclick = () => { S.pendingZone = el.dataset.z; $("#picker").click(); });
+  $("#run").disabled = !Object.values(S.photos).some(a => a.length);
+}
+
+function fmt(n){ return (n==null) ? "–" : Number(n).toLocaleString("en-IN"); }
+
+function drawZone(){
+  const z = S.selected, r = S.run, el = $("#zone");
+  if(!z || !r || !r.observations || !r.observations[z]){ el.innerHTML = `<div class="empty">${z?("Zone "+z+" has not been inspected."):"Select a zone on the map after a run."}</div>`; return; }
+  const o = r.observations[z], ev = r.evals && r.evals[z], p = o.primary;
+  let h = `<div class="row"><b style="font-size:18px">${z}</b><span class="chip ${o.needs_review?'r':(p.severity?'t':'h')}">${esc(p.label)}${p.severity?" · sev "+p.severity:""}</span></div>`;
+  h += `<div class="stat"><div>confidence<b>${(p.confidence*100).toFixed(0)}%</b></div><div>BBCH<b>${o.bbch}</b></div><div>canopy (model / pixels)<b>${o.canopy_cover_pct}% / ${o.canopy_cover_exg_pct}%</b></div></div>`;
+  if(p.evidence) h += `<div class="small muted">evidence: ${esc(p.evidence)}</div>`;
+  h += `<div class="small muted" style="margin-top:4px">gate: ${esc(o.gate)} · set {${esc(o.prediction_set.join(", "))}}</div>`;
+  h += `<div class="small muted">source: ${esc(o.source)}</div>`;
+  if(o.needs_review){
+    h += `<div class="banner" style="margin-top:8px"><b>Needs a human:</b> ${esc(o.review_reasons.join("; "))}</div>
+      <div class="row" style="margin-top:8px;flex-wrap:wrap">
+        <select id="adjcat"><option value="disease">disease</option><option value="pest">pest</option><option value="nutrient_deficiency">nutrient deficiency</option><option value="water_stress">water stress</option><option value="none">healthy</option></select>
+        <input type="text" id="adjlabel" placeholder="label, e.g. early blight" style="flex:1;min-width:120px">
+        <select id="adjsev"><option>0</option><option selected>1</option><option>2</option><option>3</option></select>
+        <button class="btn" id="adjgo">Confirm</button>
+      </div>`;
+  }
+  if(ev){
+    h += `<div style="margin-top:10px" class="small">${esc(ev.decision_reason)}</div>`;
+    const opts = ev.options || [];
+    const lo = Math.min(...opts.map(x=>x.yield_t_ha_p10)), hi = Math.max(...opts.map(x=>x.yield_t_ha_p90)) || 1;
+    h += `<table style="margin-top:6px"><tr><th>option</th><th>yield t/ha</th><th class="num" title="mean margin of the worst 20% of simulated seasons">worst-20% ₹/ha</th><th class="num">gain</th><th class="num" title="share of seasons where this beats doing nothing">P↑</th></tr>`;
+    for(const x of opts){
+      const a=(x.yield_t_ha_p10-lo)/(hi-lo||1)*100, b=(x.yield_t_ha_p90-lo)/(hi-lo||1)*100, m=(x.yield_t_ha_p50-lo)/(hi-lo||1)*100;
+      h += `<tr class="${x.code===ev.recommended?'rec':''}"><td>${esc(x.code.replace('_',' '))}${x.drone?' ✈':''}</td>
+        <td><div class="rng" title="${x.yield_t_ha_p10}–${x.yield_t_ha_p90} (median ${x.yield_t_ha_p50})"><i style="left:${a}%;width:${Math.max(2,b-a)}%"></i><b style="left:${m}%"></b></div></td>
+        <td class="num">${fmt(x.margin_cvar_inr_ha)}</td><td class="num">${x.code==='no_action'?'–':(x.gain_vs_no_action_cvar>0?'+':'')+fmt(x.gain_vs_no_action_cvar)}</td>
+        <td class="num">${x.p_better_than_no_action==null?'–':Math.round(x.p_better_than_no_action*100)+'%'}</td></tr>`;
+    }
+    h += `</table><div class="small muted" style="margin-top:6px">emergence (inferred from BBCH): ${esc(ev.emergence)} · ensemble ${esc(ev.assumptions.ensemble)} · ${esc(ev.assumptions.engine||"")}</div>
+      <div class="small muted">weather: ${esc(ev.weather_source)}</div>`;
+  }
+  el.innerHTML = h;
+  const g = $("#adjgo"); if(g) g.onclick = adjudicate;
+}
+
+function drawProposal(){
+  const r = S.run, el = $("#proposal");
+  if(!r || !r.proposal){ el.innerHTML = `<div class="empty">The agent's proposal appears here. Only a human can dispatch the drone.</div>`; return; }
+  const p = r.proposal, m = r.mission;
+  let h = `<h3>${esc(p.headline)}</h3>`;
+  h += `<div class="tabs"><button data-l="en" class="${S.lang==='en'?'on':''}">English</button><button data-l="hi" class="${S.lang==='hi'?'on':''}">हिन्दी</button></div>`;
+  h += `<div class="small" style="color:var(--ink2)">${esc(S.lang==='hi' && p.rationale_hi ? p.rationale_hi : p.rationale)}</div>`;
+  if(p.zones_for_human_review && p.zones_for_human_review.length) h += `<div class="zl">${p.zones_for_human_review.map(z=>`<span class="chip r">review ${z}</span>`).join("")}</div>`;
+  if(p.manual_actions && p.manual_actions.length) h += `<div class="small muted" style="margin-top:6px">manual: ${esc(p.manual_actions.join("; "))}</div>`;
+  if(p.completed_by) h += `<div class="banner" style="margin-top:8px">Completed by the deterministic policy: ${esc(p.fallback_reason)}</div>`;
+  if(m){
+    h += `<div class="stat"><div>mission<b>${esc(m.mission_id)}</b></div><div>zones<b>${esc(m.zones.join(" → "))}</b></div><div>time<b>${(m.est_time_s/60).toFixed(1)} min</b></div><div>energy<b>${m.est_energy_wh} Wh</b></div><div>liquid<b>${Math.round(m.spray_ml)} mL</b></div></div>`;
+    h += `<ul class="checks">${m.checks.map(c=>`<li class="${c.ok?'ok':'bad'}"><span class="i">${c.ok?'✓':'✗'}</span><span><b>${esc(c.check)}</b> · ${esc(c.detail)}</span></li>`).join("")}</ul>`;
+  }
+  const sp = r.sop;
+  if(m && sp){
+    const bad = sp.checks.filter(c=>c.hard && c.ok!==true), adv = sp.checks.filter(c=>!c.hard && c.ok===false);
+    const ok = sp.checks.filter(c=>c.ok===true).map(c=>c.rule);
+    h += `<div class="sop ${esc(sp.verdict)}"><div class="small">Government of India drone SOP · <span class="v">${esc(sp.verdict.replace("_"," "))}</span></div>`;
+    if(bad.length || adv.length) h += `<ul class="checks">${bad.concat(adv).map(c=>`<li class="${c.ok===false?'bad':'unv'}"><span class="i">${c.ok===false?'✗':'?'}</span><span><b>${esc(c.rule)}</b> · ${esc(c.value)} (limit ${esc(c.limit)})<br><span class="src">${esc(c.source)}</span></span></li>`).join("")}</ul>`;
+    if(sp.earliest_clear) h += `<div class="small">Next legal window: <b>${esc(new Date(sp.earliest_clear).toLocaleString("en-IN",{timeZone:"Asia/Kolkata",weekday:"short",hour:"2-digit",minute:"2-digit"}))} IST</b></div>`;
+    h += `<div class="small muted" style="margin-top:4px">passed: ${esc(ok.join(", "))} · forecast: ${esc(sp.forecast_source||"")}</div></div>`;
+    if(r.label) h += `<div class="small" style="margin:4px 0">Label (CIB&amp;RC): ${esc(r.label.reason)}${(r.label.citations||[]).length?` · <a href="${esc(r.label.citations[0])}" target="_blank" rel="noopener" style="color:var(--info)">source</a>`:""}</div>`;
+  }
+  const st = p.status;
+  if(st === "awaiting_approval"){
+    const blocked = sp && sp.verdict==="BLOCKED", needs = sp && sp.verdict==="NEEDS_HUMAN";
+    if(needs) h += `<input type="text" id="override" placeholder="Operator: how were the '?' items checked? (required)" style="width:100%;margin-top:6px">`;
+    h += `<div class="row"><button class="btn go grow" id="approve" ${blocked?"disabled":""}>${blocked?"SOP blocks this flight":"Approve &amp; fly "+esc(p.mission_id)}</button><button class="btn" id="reject">Reject</button></div>
+      <div class="small muted" style="margin-top:6px">Approve re-checks weather, the vehicle's preflight and the SOP before anything is uploaded.</div>
+      <div class="small" style="margin-top:6px">T1 · JIYI K3-A Pro: <a href="/api/runs/${esc(S.runId)}/card" target="_blank">flight card</a> · <a href="/api/runs/${esc(S.runId)}/card?fmt=kml">KML for the JIYI app</a></div>`;
+  } else {
+    h += `<div class="small" style="margin-top:6px">status: <b>${esc(st)}</b></div>`;
+    if(p.approval && st==="blocked_at_approval") h += `<div class="banner">Blocked at approval: ${esc(p.approval.checks.filter(c=>!c.ok).map(c=>c.check+": "+c.detail).join("; "))}</div>`;
+  }
+  if(m) h += `<div class="papers">${[["gram_panchayat_notice","Gram Panchayat notice"],["spray_record","Spray record"],["farmer_slip","किसान पर्ची"]].map(([k,t])=>`<a href="/api/runs/${encodeURIComponent(r.run_id)}/paperwork/${k}" target="_blank" rel="noopener">${t}</a>`).join("")}</div>`;
+  if((p.zones_for_human_review||[]).length && st !== "dispatched") h += `<button class="btn" id="replan" style="width:100%;margin-top:8px">Re-plan after review</button>`;
+  el.innerHTML = h;
+  el.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { S.lang = b.dataset.l; drawProposal(); });
+  if($("#approve")) $("#approve").onclick = approve;
+  if($("#reject")) $("#reject").onclick = async () => { await post(`/api/runs/${S.runId}/reject`, {reason:"operator rejected"}); await refreshRun(); };
+  if($("#replan")) $("#replan").onclick = replan;
+}
+
+function evHTML(e){
+  const t = e.type;
+  if(t==="status") return `<div class="ev"><div class="h">${esc(e.message)}</div></div>`;
+  if(t==="thought") return `<div class="ev"><div class="think">${esc(e.text)}</div></div>`;
+  if(t==="say") return `<div class="ev"><div class="body">${esc(e.text)}</div></div>`;
+  if(t==="error") return `<div class="ev res bad"><div class="h"><b>error</b> ${esc(e.message)}</div></div>`;
+  if(t==="tool_call"){
+    const args = JSON.stringify(e.arguments||{}); const a = args.length>140 ? args.slice(0,139)+"…" : args;
+    return `<div class="ev call"><div class="h"><b>${esc(e.name)}</b><span class="tag">${esc(e.protocol||"")}${e.model?(" · "+esc(e.model)):""}</span></div><div class="body kbd">${esc(a)}</div></div>`;
+  }
+  if(t==="tool_result"){
+    const r = e.result||{}; let b = "";
+    if(!e.ok) b = `<span style="color:var(--danger)">${esc(r.error)}</span>`;
+    else if(e.name==="inspect_zones") b = `<div class="zl">${(r.zones||[]).map(z=>`<span class="chip ${z.needs_human_review?'r':(z.severity?'t':'h')}">${z.zone} ${esc(z.finding)}${z.severity?(" ·"+z.severity):""}</span>`).join("")}</div>`;
+    else if(e.name==="simulate_zone_options") b = `<div class="zl">${(r.zones||[]).map(z=>`<span class="chip ${z.recommended!=='no_action'?'t':'h'}">${z.zone} → ${esc(z.recommended)}</span>`).join("")}</div>`;
+    else if(e.name==="build_treatment_mission") b = `${esc(r.mission_id)} · ${r.ok?"all checks pass":"checks FAILED"} · ${r.est_time_min} min · ${Math.round(r.spray_ml)} mL`;
+    else if(e.name==="check_flight_window") b = `weather ${r.weather_go?"GO":"NO-GO"} · drone ${r.drone_ready?"ready":"not ready"} · ${esc(r.weather_source)}`;
+    else if(e.name==="search_advisories") b = r.source==="tavily" ? `${(r.results||[]).length} sources · ${(r.results||[]).slice(0,2).map(x=>esc(x.title)).join(" · ")}` : esc(r.note||r.source);
+    else if(e.name==="check_sop") b = `SOP <b>${esc(r.verdict)}</b>${(r.failed||[]).length?" · "+esc(r.failed[0]):""}${r.earliest_clear_utc?" · next window "+esc(r.earliest_clear_utc.slice(11,16))+" UTC":""}`;
+    else if(e.name==="verify_label") b = `${r.ok===true?"registered":r.ok===false?"NOT within label":"unverified"} · ${esc(r.reason)}`;
+    else if(e.name==="submit_proposal") b = `status: ${esc(r.status)}`;
+    return `<div class="ev res ${e.ok?'':'bad'}"><div class="h">${esc(e.name)} <span class="tag">${e.seconds!=null?e.seconds+" s":""}</span></div><div class="body">${b}</div></div>`;
+  }
+  if(t==="proposal") return `<div class="ev prop"><div class="h"><b>proposal ready</b> — waiting for the operator</div></div>`;
+  return "";
+}
+
+function drawTele(){
+  const t = S.tele || {};
+  const cell = (k,v) => `<div><small>${k}</small><b>${v}</b></div>`;
+  $("#tele").innerHTML = cell("state", esc(t.state||"–")) + cell("mode", esc(t.mode||"–")) +
+    cell("alt", (t.alt_m??0).toFixed(1)+" m") + cell("battery", t.battery_pct>=0 ? t.battery_pct.toFixed(0)+"%" : "–") +
+    cell("mission", t.mission_total ? `${Math.max(0,t.mission_seq)}/${t.mission_total}` : "–") +
+    cell("payload", t.spraying ? `<span style="color:var(--treat)">SPRAY ${esc(t.zone_id)}</span>` : "off");
+}
+
+// ---------- actions ----------
+async function post(url, form){
+  const fd = new FormData(); for(const [k,v] of Object.entries(form||{})) fd.append(k, v);
+  const r = await fetch(url, {method:"POST", body: fd}); const j = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.detail || r.statusText); return j;
+}
+function follow(job){
+  S.job = job; $("#trace").innerHTML = ""; S.run = null; drawProposal(); drawMap();
+  const es = new EventSource(`/api/jobs/${job}/events`);
+  es.onmessage = async (m) => {
+    const e = JSON.parse(m.data);
+    if(e.type==="done"){ es.close(); S.runId = e.run_id; if(e.error) alert(e.error); await refreshRun(); ["#run","#demo"].forEach(s=>$(s).disabled=false); return; }
+    if(e.type==="status" && e.models) $("#modelnames").textContent = "· " + [e.models.agent, e.models.vision].filter(Boolean).join(" + ");
+    $("#trace").insertAdjacentHTML("beforeend", evHTML(e)); $("#trace").scrollTop = 1e9;
+  };
+}
+async function refreshRun(){
+  if(!S.runId) return; const r = await fetch(`/api/runs/${S.runId}`); S.run = await r.json();
+  if(!S.selected && S.run.observations){
+    const pick = Object.keys(S.run.observations).find(z => zoneStatus(z)==="treat") || Object.keys(S.run.observations)[0];
+    S.selected = pick;
+  }
+  drawMap(); drawZone(); drawProposal();
+}
+async function approve(){
+  const b = $("#approve"); b.disabled = true; b.textContent = "checking weather + preflight…";
+  const ov = $("#override") ? $("#override").value : "";
+  try{ const r = await post(`/api/runs/${S.runId}/approve`, {operator:"operator", override_reason:ov}); if(!r.dispatched) alert(r.sop ? r.reason : "Blocked: "+r.failed.map(c=>c.check+" – "+c.detail).join("; ")); }
+  catch(e){ alert(e.message); }
+  await refreshRun();
+}
+async function adjudicate(){
+  await post(`/api/runs/${S.runId}/adjudicate`, {zone_id:S.selected, category:$("#adjcat").value, label:$("#adjlabel").value || $("#adjcat").value, severity:$("#adjsev").value});
+  await refreshRun();
+}
+async function replan(){ const j = await post(`/api/runs/${S.runId}/replan`, {}); follow(j.job); }
+
+$("#picker").onchange = (ev) => {
+  for(const f of ev.target.files){
+    let z = S.pendingZone;
+    if(!z){ const m = f.name.match(/^([A-Za-z]\d+)[_\-. ]/); z = m ? m[1].toUpperCase() : null; }
+    if(!z || !S.field.zones.some(q=>q.zone_id===z)) continue;
+    (S.photos[z] = S.photos[z] || []).push({file:f, url:URL.createObjectURL(f)});
+  }
+  S.pendingZone = null; ev.target.value = ""; drawTiles();
+};
+$("#bulk").onclick = () => { S.pendingZone = null; $("#picker").click(); };
+$("#run").onclick = async () => {
+  const fd = new FormData(), map = {};
+  for(const [z, arr] of Object.entries(S.photos)) for(const [i,p] of arr.entries()){ const name = `${z}_${i}_${p.file.name}`; fd.append("files", p.file, name); map[name] = z; }
+  fd.append("zones", JSON.stringify(map));
+  ["#run","#demo"].forEach(s=>$(s).disabled=true);
+  const r = await fetch("/api/runs", {method:"POST", body: fd}); const j = await r.json();
+  if(!r.ok){ alert(j.detail); ["#run","#demo"].forEach(s=>$(s).disabled=false); return; }
+  S.selected = null; follow(j.job);
+};
+$("#demo").onclick = async () => {
+  ["#run","#demo"].forEach(s=>$(s).disabled=true);
+  const j = await post("/api/demo-run", {});
+  S.photos = {};
+  for(const z of S.field.zones.map(q=>q.zone_id)) S.photos[z] = [{url:`/api/jobs/${j.job}/image/${z}/0`, file:null}];
+  drawTiles(); S.selected = null; follow(j.job);
+};
+$("#abort").onclick = async () => { await post("/api/abort", {}); };
+
+async function tick(){
+  try{ const r = await fetch("/api/telemetry"); S.tele = await r.json(); drawTele(); drawMap(); }catch(e){}
+}
+(async function init(){
+  const st = await (await fetch("/api/state")).json();
+  S.field = st.field; S.tele = st.drone; drawBadges(st);
+  $("#fieldname").textContent = `${st.field.name} · ${st.field.crop} (${st.field.variety}) · ${st.field.area_m2} m²`;
+  if(st.drone_error) $("#fieldname").insertAdjacentHTML("afterend", `<div class="banner" style="margin-top:8px">Drone not connected: ${esc(st.drone_error)}</div>`);
+  drawTiles(); drawMap(); drawTele();
+  setInterval(tick, 400);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+FieldPilot by Future Agri
+Copyright 2026 Aryan Singh and the Future Agri team, Bennett University
+
+Licensed under the Apache License, Version 2.0.
+
+Third-party data and software:
+- WOFOST crop parameters (github.com/ajwdewit/WOFOST_crop_parameters), fetched into vendor/ by scripts/setup_vendor.ps1.
+- PCSE (Wageningen Environmental Research), EUPL-1.2, installed from PyPI.

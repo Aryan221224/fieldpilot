@@ -1,0 +1,1584 @@
+{
+ "fieldpilot": {
+  "policy": "fieldpilot",
+  "day": "2026-10-30",
+  "operator": "Serviço de pulverização · Londrina (demo)",
+  "drone": "agri_40l",
+  "rules": "GOOD-PRACTICE",
+  "plan": [
+   {
+    "job_id": "J-010CF",
+    "farmer": "Maria de Rolândia",
+    "village": "",
+    "arrive": "11:40",
+    "done": "12:27",
+    "drive_km": 27.9,
+    "sprayed_ha": 7.26,
+    "field_ha": 7.26,
+    "scanned": false,
+    "needed_ha": 7.26,
+    "sorties": [
+     {
+      "start": "12:00",
+      "end": "12:05",
+      "battery_set": 1,
+      "in_window": true
+     },
+     {
+      "start": "12:07",
+      "end": "12:12",
+      "battery_set": 2,
+      "in_window": true
+     },
+     {
+      "start": "12:14",
+      "end": "12:20",
+      "battery_set": 3,
+      "in_window": true
+     },
+     {
+      "start": "12:22",
+      "end": "12:27",
+      "battery_set": 4,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 0,
+    "flight_min": 22.0,
+    "water_l": 75.4,
+    "leftover_mix_l": 0.5,
+    "charge": 653,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-A01AE",
+    "farmer": "João",
+    "village": "Cambé",
+    "arrive": "12:45",
+    "done": "13:41",
+    "drive_km": 13.3,
+    "sprayed_ha": 5.5,
+    "field_ha": 12.0,
+    "scanned": true,
+    "needed_ha": 5.5,
+    "sorties": [
+     {
+      "start": "13:05",
+      "end": "13:11",
+      "battery_set": 1,
+      "in_window": true
+     },
+     {
+      "start": "13:13",
+      "end": "13:18",
+      "battery_set": 2,
+      "in_window": true
+     },
+     {
+      "start": "13:35",
+      "end": "13:41",
+      "battery_set": 3,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 0,
+    "flight_min": 16.9,
+    "water_l": 56.7,
+    "leftover_mix_l": 0.7,
+    "charge": 495,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-1F352",
+    "farmer": "Sítio Boa Vista",
+    "village": "Tamarana",
+    "arrive": "15:40",
+    "done": "16:56",
+    "drive_km": 69.3,
+    "sprayed_ha": 9.0,
+    "field_ha": 20.0,
+    "scanned": true,
+    "needed_ha": 9.0,
+    "sorties": [
+     {
+      "start": "16:00",
+      "end": "16:05",
+      "battery_set": 4,
+      "in_window": true
+     },
+     {
+      "start": "16:07",
+      "end": "16:13",
+      "battery_set": 1,
+      "in_window": true
+     },
+     {
+      "start": "16:15",
+      "end": "16:20",
+      "battery_set": 2,
+      "in_window": true
+     },
+     {
+      "start": "16:22",
+      "end": "16:28",
+      "battery_set": 3,
+      "in_window": true
+     },
+     {
+      "start": "16:50",
+      "end": "16:56",
+      "battery_set": 4,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 0,
+    "flight_min": 27.7,
+    "water_l": 91.6,
+    "leftover_mix_l": 0.7,
+    "charge": 810,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-F8C5A",
+    "farmer": "Ana",
+    "village": "Londrina",
+    "arrive": "18:13",
+    "done": "18:35",
+    "drive_km": 57.9,
+    "sprayed_ha": 0.5,
+    "field_ha": 0.5,
+    "scanned": false,
+    "needed_ha": 0.5,
+    "sorties": [
+     {
+      "start": "18:33",
+      "end": "18:35",
+      "battery_set": 1,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 0,
+    "flight_min": 1.8,
+    "water_l": 5.4,
+    "leftover_mix_l": 0.3,
+    "charge": 45,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   }
+  ],
+  "batteries": [
+   {
+    "set": 1,
+    "job": "J-010CF",
+    "flew": "12:00",
+    "charge_from": "12:05",
+    "ready": "12:50"
+   },
+   {
+    "set": 2,
+    "job": "J-010CF",
+    "flew": "12:07",
+    "charge_from": "12:12",
+    "ready": "12:57"
+   },
+   {
+    "set": 3,
+    "job": "J-010CF",
+    "flew": "12:14",
+    "charge_from": "12:50",
+    "ready": "13:35"
+   },
+   {
+    "set": 4,
+    "job": "J-010CF",
+    "flew": "12:22",
+    "charge_from": "12:57",
+    "ready": "13:42"
+   },
+   {
+    "set": 1,
+    "job": "J-A01AE",
+    "flew": "13:05",
+    "charge_from": "13:35",
+    "ready": "14:20"
+   },
+   {
+    "set": 2,
+    "job": "J-A01AE",
+    "flew": "13:13",
+    "charge_from": "13:42",
+    "ready": "14:27"
+   },
+   {
+    "set": 3,
+    "job": "J-A01AE",
+    "flew": "13:35",
+    "charge_from": "14:20",
+    "ready": "15:05"
+   },
+   {
+    "set": 4,
+    "job": "J-1F352",
+    "flew": "16:00",
+    "charge_from": "16:05",
+    "ready": "16:50"
+   },
+   {
+    "set": 1,
+    "job": "J-1F352",
+    "flew": "16:07",
+    "charge_from": "16:13",
+    "ready": "16:58"
+   },
+   {
+    "set": 2,
+    "job": "J-1F352",
+    "flew": "16:15",
+    "charge_from": "16:50",
+    "ready": "17:35"
+   },
+   {
+    "set": 3,
+    "job": "J-1F352",
+    "flew": "16:22",
+    "charge_from": "16:58",
+    "ready": "17:43"
+   },
+   {
+    "set": 4,
+    "job": "J-1F352",
+    "flew": "16:50",
+    "charge_from": "17:35",
+    "ready": "18:20"
+   },
+   {
+    "set": 1,
+    "job": "J-F8C5A",
+    "flew": "18:33",
+    "charge_from": "18:35",
+    "ready": "19:20"
+   }
+  ],
+  "deferred": [
+   {
+    "job_id": "J-ADA99",
+    "farmer": "Carlos",
+    "reason": "no spray window left today with the batteries available",
+    "next_window": "Sat 31 Oct 17:00"
+   }
+  ],
+  "metrics": {
+   "farms_served": 4,
+   "farms_booked": 5,
+   "needed_ha_served": 22.26,
+   "sprayed_ha": 22.26,
+   "sprayed_beyond_need_ha": 0.0,
+   "battery_cycles": 13,
+   "needed_ha_per_battery_cycle": 1.712,
+   "effective_ha": 22.26,
+   "effective_ha_per_battery_cycle": 1.712,
+   "farms_served_in_window": 4,
+   "flight_min": 68.4,
+   "out_of_window_sorties": 0,
+   "in_window_pct": 100.0,
+   "water_l": 229.1,
+   "leftover_mix_l": 2.2,
+   "farmer_cost": 2003,
+   "drive_km": 168.4,
+   "idle_min": 394,
+   "finish": "18:35"
+  }
+ },
+ "baseline": {
+  "policy": "baseline",
+  "day": "2026-10-30",
+  "operator": "Serviço de pulverização · Londrina (demo)",
+  "drone": "agri_40l",
+  "rules": "GOOD-PRACTICE",
+  "plan": [
+   {
+    "job_id": "J-A01AE",
+    "farmer": "João",
+    "village": "Cambé",
+    "arrive": "05:52",
+    "done": "07:54",
+    "drive_km": 16.9,
+    "sprayed_ha": 12.0,
+    "field_ha": 12.0,
+    "scanned": false,
+    "needed_ha": 5.5,
+    "sorties": [
+     {
+      "start": "06:12",
+      "end": "06:18",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "06:20",
+      "end": "06:26",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "06:28",
+      "end": "06:34",
+      "battery_set": 3,
+      "in_window": false
+     },
+     {
+      "start": "06:36",
+      "end": "06:42",
+      "battery_set": 4,
+      "in_window": false
+     },
+     {
+      "start": "07:03",
+      "end": "07:09",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "07:11",
+      "end": "07:17",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "07:48",
+      "end": "07:54",
+      "battery_set": 3,
+      "in_window": false
+     }
+    ],
+    "out_of_window_sorties": 7,
+    "flight_min": 41.4,
+    "water_l": 123.5,
+    "leftover_mix_l": 36.5,
+    "charge": 1080,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-010CF",
+    "farmer": "Maria de Rolândia",
+    "village": "",
+    "arrive": "08:12",
+    "done": "09:24",
+    "drive_km": 13.3,
+    "sprayed_ha": 7.26,
+    "field_ha": 7.26,
+    "scanned": false,
+    "needed_ha": 7.26,
+    "sorties": [
+     {
+      "start": "08:32",
+      "end": "08:37",
+      "battery_set": 4,
+      "in_window": false
+     },
+     {
+      "start": "08:39",
+      "end": "08:45",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "08:47",
+      "end": "08:52",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "09:18",
+      "end": "09:24",
+      "battery_set": 3,
+      "in_window": false
+     }
+    ],
+    "out_of_window_sorties": 4,
+    "flight_min": 22.4,
+    "water_l": 75.4,
+    "leftover_mix_l": 4.6,
+    "charge": 653,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-ADA99",
+    "farmer": "Carlos",
+    "village": "Ibiporã",
+    "arrive": "10:21",
+    "done": "11:36",
+    "drive_km": 42.9,
+    "sprayed_ha": 8.0,
+    "field_ha": 8.0,
+    "scanned": false,
+    "needed_ha": 3.0,
+    "sorties": [
+     {
+      "start": "10:41",
+      "end": "10:46",
+      "battery_set": 4,
+      "in_window": false
+     },
+     {
+      "start": "10:48",
+      "end": "10:53",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "10:55",
+      "end": "11:00",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "11:02",
+      "end": "11:07",
+      "battery_set": 3,
+      "in_window": false
+     },
+     {
+      "start": "11:31",
+      "end": "11:36",
+      "battery_set": 4,
+      "in_window": false
+     }
+    ],
+    "out_of_window_sorties": 5,
+    "flight_min": 25.9,
+    "water_l": 82.8,
+    "leftover_mix_l": 37.2,
+    "charge": 720,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-1F352",
+    "farmer": "Sítio Boa Vista",
+    "village": "Tamarana",
+    "arrive": "13:03",
+    "done": "16:43",
+    "drive_km": 65.4,
+    "sprayed_ha": 20.0,
+    "field_ha": 20.0,
+    "scanned": false,
+    "needed_ha": 9.0,
+    "sorties": [
+     {
+      "start": "13:23",
+      "end": "13:29",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "13:31",
+      "end": "13:37",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "13:39",
+      "end": "13:45",
+      "battery_set": 3,
+      "in_window": false
+     },
+     {
+      "start": "13:47",
+      "end": "13:53",
+      "battery_set": 4,
+      "in_window": false
+     },
+     {
+      "start": "14:14",
+      "end": "14:20",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "14:22",
+      "end": "14:28",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "14:59",
+      "end": "15:05",
+      "battery_set": 3,
+      "in_window": false
+     },
+     {
+      "start": "15:07",
+      "end": "15:13",
+      "battery_set": 4,
+      "in_window": false
+     },
+     {
+      "start": "15:44",
+      "end": "15:50",
+      "battery_set": 1,
+      "in_window": false
+     },
+     {
+      "start": "15:52",
+      "end": "15:58",
+      "battery_set": 2,
+      "in_window": false
+     },
+     {
+      "start": "16:29",
+      "end": "16:35",
+      "battery_set": 3,
+      "in_window": true
+     },
+     {
+      "start": "16:37",
+      "end": "16:43",
+      "battery_set": 4,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 10,
+    "flight_min": 69.9,
+    "water_l": 204.9,
+    "leftover_mix_l": 35.1,
+    "charge": 1800,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   },
+   {
+    "job_id": "J-F8C5A",
+    "farmer": "Ana",
+    "village": "Londrina",
+    "arrive": "18:00",
+    "done": "18:22",
+    "drive_km": 57.9,
+    "sprayed_ha": 0.5,
+    "field_ha": 0.5,
+    "scanned": false,
+    "needed_ha": 0.5,
+    "sorties": [
+     {
+      "start": "18:20",
+      "end": "18:22",
+      "battery_set": 1,
+      "in_window": true
+     }
+    ],
+    "out_of_window_sorties": 0,
+    "flight_min": 1.8,
+    "water_l": 5.4,
+    "leftover_mix_l": 34.6,
+    "charge": 45,
+    "product": "",
+    "product_used": null,
+    "product_wasted": null
+   }
+  ],
+  "batteries": [
+   {
+    "set": 1,
+    "job": "J-A01AE",
+    "flew": "06:12",
+    "charge_from": "06:18",
+    "ready": "07:03"
+   },
+   {
+    "set": 2,
+    "job": "J-A01AE",
+    "flew": "06:20",
+    "charge_from": "06:26",
+    "ready": "07:11"
+   },
+   {
+    "set": 3,
+    "job": "J-A01AE",
+    "flew": "06:28",
+    "charge_from": "07:03",
+    "ready": "07:48"
+   },
+   {
+    "set": 4,
+    "job": "J-A01AE",
+    "flew": "06:36",
+    "charge_from": "07:11",
+    "ready": "07:56"
+   },
+   {
+    "set": 1,
+    "job": "J-A01AE",
+    "flew": "07:03",
+    "charge_from": "07:48",
+    "ready": "08:33"
+   },
+   {
+    "set": 2,
+    "job": "J-A01AE",
+    "flew": "07:11",
+    "charge_from": "07:56",
+    "ready": "08:41"
+   },
+   {
+    "set": 3,
+    "job": "J-A01AE",
+    "flew": "07:48",
+    "charge_from": "08:33",
+    "ready": "09:18"
+   },
+   {
+    "set": 4,
+    "job": "J-010CF",
+    "flew": "08:32",
+    "charge_from": "08:41",
+    "ready": "09:26"
+   },
+   {
+    "set": 1,
+    "job": "J-010CF",
+    "flew": "08:39",
+    "charge_from": "09:18",
+    "ready": "10:03"
+   },
+   {
+    "set": 2,
+    "job": "J-010CF",
+    "flew": "08:47",
+    "charge_from": "09:26",
+    "ready": "10:11"
+   },
+   {
+    "set": 3,
+    "job": "J-010CF",
+    "flew": "09:18",
+    "charge_from": "10:03",
+    "ready": "10:48"
+   },
+   {
+    "set": 4,
+    "job": "J-ADA99",
+    "flew": "10:41",
+    "charge_from": "10:46",
+    "ready": "11:31"
+   },
+   {
+    "set": 1,
+    "job": "J-ADA99",
+    "flew": "10:48",
+    "charge_from": "10:53",
+    "ready": "11:38"
+   },
+   {
+    "set": 2,
+    "job": "J-ADA99",
+    "flew": "10:55",
+    "charge_from": "11:31",
+    "ready": "12:16"
+   },
+   {
+    "set": 3,
+    "job": "J-ADA99",
+    "flew": "11:02",
+    "charge_from": "11:38",
+    "ready": "12:23"
+   },
+   {
+    "set": 4,
+    "job": "J-ADA99",
+    "flew": "11:31",
+    "charge_from": "12:16",
+    "ready": "13:01"
+   },
+   {
+    "set": 1,
+    "job": "J-1F352",
+    "flew": "13:23",
+    "charge_from": "13:29",
+    "ready": "14:14"
+   },
+   {
+    "set": 2,
+    "job": "J-1F352",
+    "flew": "13:31",
+    "charge_from": "13:37",
+    "ready": "14:22"
+   },
+   {
+    "set": 3,
+    "job": "J-1F352",
+    "flew": "13:39",
+    "charge_from": "14:14",
+    "ready": "14:59"
+   },
+   {
+    "set": 4,
+    "job": "J-1F352",
+    "flew": "13:47",
+    "charge_from": "14:22",
+    "ready": "15:07"
+   },
+   {
+    "set": 1,
+    "job": "J-1F352",
+    "flew": "14:14",
+    "charge_from": "14:59",
+    "ready": "15:44"
+   },
+   {
+    "set": 2,
+    "job": "J-1F352",
+    "flew": "14:22",
+    "charge_from": "15:07",
+    "ready": "15:52"
+   },
+   {
+    "set": 3,
+    "job": "J-1F352",
+    "flew": "14:59",
+    "charge_from": "15:44",
+    "ready": "16:29"
+   },
+   {
+    "set": 4,
+    "job": "J-1F352",
+    "flew": "15:07",
+    "charge_from": "15:52",
+    "ready": "16:37"
+   },
+   {
+    "set": 1,
+    "job": "J-1F352",
+    "flew": "15:44",
+    "charge_from": "16:29",
+    "ready": "17:14"
+   },
+   {
+    "set": 2,
+    "job": "J-1F352",
+    "flew": "15:52",
+    "charge_from": "16:37",
+    "ready": "17:22"
+   },
+   {
+    "set": 3,
+    "job": "J-1F352",
+    "flew": "16:29",
+    "charge_from": "17:14",
+    "ready": "17:59"
+   },
+   {
+    "set": 4,
+    "job": "J-1F352",
+    "flew": "16:37",
+    "charge_from": "17:22",
+    "ready": "18:07"
+   },
+   {
+    "set": 1,
+    "job": "J-F8C5A",
+    "flew": "18:20",
+    "charge_from": "18:22",
+    "ready": "19:07"
+   }
+  ],
+  "deferred": [],
+  "metrics": {
+   "farms_served": 5,
+   "farms_booked": 5,
+   "needed_ha_served": 25.26,
+   "sprayed_ha": 47.76,
+   "sprayed_beyond_need_ha": 22.5,
+   "battery_cycles": 29,
+   "needed_ha_per_battery_cycle": 0.871,
+   "effective_ha": 2.0,
+   "effective_ha_per_battery_cycle": 0.069,
+   "farms_served_in_window": 1,
+   "flight_min": 161.4,
+   "out_of_window_sorties": 26,
+   "in_window_pct": 10.3,
+   "water_l": 492.0,
+   "leftover_mix_l": 148.0,
+   "farmer_cost": 4298,
+   "drive_km": 196.4,
+   "idle_min": 201,
+   "finish": "18:22"
+  }
+ },
+ "delta": {
+  "farms_served": -1,
+  "farms_served_in_window": 3,
+  "needed_ha_served": -3.0,
+  "effective_ha": 20.26,
+  "battery_cycles": -16,
+  "needed_ha_per_battery_cycle": 0.841,
+  "effective_ha_per_battery_cycle": 1.643,
+  "flight_min": -93.0,
+  "out_of_window_sorties": -26,
+  "sprayed_beyond_need_ha": -22.5,
+  "water_l": -262.9,
+  "leftover_mix_l": -145.8,
+  "farmer_cost": -2295,
+  "drive_km": -28.0,
+  "idle_min": 193
+ },
+ "brief": {
+  "text": "Today: 4 farms, 22.26 ha, 13 sorties. Maria de Rolândia at the farm: first sortie 12:00. João at Cambé: first sortie 13:05. Sítio Boa Vista at Tamarana: first sortie 16:00. Ana at Londrina: first sortie 18:33. Put battery set 1 on charge at 12:05; ready 12:50. Call Carlos: next window Sat 31 Oct 17:00. No spraying in strong wind or heat.",
+  "by": "template",
+  "note": "model brief rejected: numbers not in the plan ['30']"
+ },
+ "windows": {
+  "J-A01AE": [
+   {
+    "h": 5,
+    "ok": false,
+    "why": [
+     "05:00 outside spray hours",
+     "wind 0.5 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.5,
+    "rh": 100,
+    "temp": 17
+   },
+   {
+    "h": 6,
+    "ok": false,
+    "why": [
+     "wind 0.8 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.8,
+    "rh": 100,
+    "temp": 17
+   },
+   {
+    "h": 7,
+    "ok": false,
+    "why": [
+     "wind 1.0 < 1.0 m/s (inversion risk)",
+     "Delta T 0.5 outside 2-10"
+    ],
+    "wind": 1.0,
+    "rh": 96,
+    "temp": 18
+   },
+   {
+    "h": 8,
+    "ok": false,
+    "why": [
+     "wind 0.5 < 1.0 m/s (inversion risk)",
+     "Delta T 1.2 outside 2-10"
+    ],
+    "wind": 0.5,
+    "rh": 90,
+    "temp": 19
+   },
+   {
+    "h": 9,
+    "ok": false,
+    "why": [
+     "wind 0.1 < 1.0 m/s (inversion risk)",
+     "Delta T 2.0 outside 2-10",
+     "rain 0.5 mm"
+    ],
+    "wind": 0.1,
+    "rh": 84,
+    "temp": 21
+   },
+   {
+    "h": 10,
+    "ok": false,
+    "why": [
+     "wind 0.7 < 1.0 m/s (inversion risk)",
+     "rain 0.7 mm"
+    ],
+    "wind": 0.7,
+    "rh": 79,
+    "temp": 22
+   },
+   {
+    "h": 11,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 1.5,
+    "rh": 72,
+    "temp": 24
+   },
+   {
+    "h": 12,
+    "ok": true,
+    "why": [],
+    "wind": 2.4,
+    "rh": 66,
+    "temp": 25
+   },
+   {
+    "h": 13,
+    "ok": true,
+    "why": [],
+    "wind": 3.1,
+    "rh": 64,
+    "temp": 26
+   },
+   {
+    "h": 14,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 3.4,
+    "rh": 70,
+    "temp": 24
+   },
+   {
+    "h": 15,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 3.1,
+    "rh": 66,
+    "temp": 25
+   },
+   {
+    "h": 16,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 3.1,
+    "rh": 62,
+    "temp": 26
+   },
+   {
+    "h": 17,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 3.1,
+    "rh": 66,
+    "temp": 25
+   },
+   {
+    "h": 18,
+    "ok": true,
+    "why": [],
+    "wind": 1.8,
+    "rh": 75,
+    "temp": 24
+   }
+  ],
+  "J-010CF": [
+   {
+    "h": 5,
+    "ok": false,
+    "why": [
+     "05:00 outside spray hours",
+     "wind 0.7 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.7,
+    "rh": 99,
+    "temp": 17
+   },
+   {
+    "h": 6,
+    "ok": false,
+    "why": [
+     "wind 0.8 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.8,
+    "rh": 100,
+    "temp": 17
+   },
+   {
+    "h": 7,
+    "ok": false,
+    "why": [
+     "wind 0.8 < 1.0 m/s (inversion risk)",
+     "Delta T 0.5 outside 2-10"
+    ],
+    "wind": 0.8,
+    "rh": 96,
+    "temp": 18
+   },
+   {
+    "h": 8,
+    "ok": false,
+    "why": [
+     "wind 0.3 < 1.0 m/s (inversion risk)",
+     "Delta T 1.1 outside 2-10"
+    ],
+    "wind": 0.3,
+    "rh": 91,
+    "temp": 19
+   },
+   {
+    "h": 9,
+    "ok": false,
+    "why": [
+     "wind 0.3 < 1.0 m/s (inversion risk)",
+     "Delta T 2.0 outside 2-10",
+     "rain 0.4 mm"
+    ],
+    "wind": 0.3,
+    "rh": 84,
+    "temp": 20
+   },
+   {
+    "h": 10,
+    "ok": false,
+    "why": [
+     "wind 1.0 < 1.0 m/s (inversion risk)",
+     "rain 0.6 mm"
+    ],
+    "wind": 1.0,
+    "rh": 79,
+    "temp": 22
+   },
+   {
+    "h": 11,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 2.1,
+    "rh": 71,
+    "temp": 24
+   },
+   {
+    "h": 12,
+    "ok": true,
+    "why": [],
+    "wind": 2.9,
+    "rh": 66,
+    "temp": 25
+   },
+   {
+    "h": 13,
+    "ok": true,
+    "why": [],
+    "wind": 3.6,
+    "rh": 64,
+    "temp": 25
+   },
+   {
+    "h": 14,
+    "ok": false,
+    "why": [
+     "rain 0.6 mm"
+    ],
+    "wind": 3.6,
+    "rh": 75,
+    "temp": 23
+   },
+   {
+    "h": 15,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 3.4,
+    "rh": 65,
+    "temp": 25
+   },
+   {
+    "h": 16,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 3.6,
+    "rh": 63,
+    "temp": 25
+   },
+   {
+    "h": 17,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 3.4,
+    "rh": 68,
+    "temp": 24
+   },
+   {
+    "h": 18,
+    "ok": true,
+    "why": [],
+    "wind": 2.3,
+    "rh": 74,
+    "temp": 23
+   }
+  ],
+  "J-ADA99": [
+   {
+    "h": 5,
+    "ok": false,
+    "why": [
+     "05:00 outside spray hours",
+     "wind 0.7 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.7,
+    "rh": 100,
+    "temp": 18
+   },
+   {
+    "h": 6,
+    "ok": false,
+    "why": [
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 1.3,
+    "rh": 100,
+    "temp": 18
+   },
+   {
+    "h": 7,
+    "ok": false,
+    "why": [
+     "Delta T 0.7 outside 2-10"
+    ],
+    "wind": 1.6,
+    "rh": 94,
+    "temp": 19
+   },
+   {
+    "h": 8,
+    "ok": false,
+    "why": [
+     "Delta T 1.9 outside 2-10"
+    ],
+    "wind": 1.1,
+    "rh": 85,
+    "temp": 21
+   },
+   {
+    "h": 9,
+    "ok": false,
+    "why": [
+     "wind 0.5 < 1.0 m/s (inversion risk)"
+    ],
+    "wind": 0.5,
+    "rh": 79,
+    "temp": 22
+   },
+   {
+    "h": 10,
+    "ok": false,
+    "why": [
+     "rain 0.8 mm"
+    ],
+    "wind": 1.0,
+    "rh": 78,
+    "temp": 23
+   },
+   {
+    "h": 11,
+    "ok": false,
+    "why": [
+     "wind 0.8 < 1.0 m/s (inversion risk)",
+     "rain 0.3 mm"
+    ],
+    "wind": 0.8,
+    "rh": 69,
+    "temp": 25
+   },
+   {
+    "h": 12,
+    "ok": false,
+    "why": [
+     "wind 0.9 < 1.0 m/s (inversion risk)"
+    ],
+    "wind": 0.9,
+    "rh": 64,
+    "temp": 27
+   },
+   {
+    "h": 13,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 2.0,
+    "rh": 63,
+    "temp": 27
+   },
+   {
+    "h": 14,
+    "ok": true,
+    "why": [],
+    "wind": 2.3,
+    "rh": 63,
+    "temp": 27
+   },
+   {
+    "h": 15,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 3.1,
+    "rh": 64,
+    "temp": 27
+   },
+   {
+    "h": 16,
+    "ok": true,
+    "why": [],
+    "wind": 2.8,
+    "rh": 61,
+    "temp": 27
+   },
+   {
+    "h": 17,
+    "ok": true,
+    "why": [],
+    "wind": 2.1,
+    "rh": 60,
+    "temp": 27
+   },
+   {
+    "h": 18,
+    "ok": false,
+    "why": [
+     "wind 0.9 < 1.0 m/s (inversion risk)"
+    ],
+    "wind": 0.9,
+    "rh": 74,
+    "temp": 26
+   }
+  ],
+  "J-1F352": [
+   {
+    "h": 5,
+    "ok": false,
+    "why": [
+     "05:00 outside spray hours",
+     "wind 0.1 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.1,
+    "rh": 100,
+    "temp": 17
+   },
+   {
+    "h": 6,
+    "ok": false,
+    "why": [
+     "wind 0.8 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.8,
+    "rh": 99,
+    "temp": 17
+   },
+   {
+    "h": 7,
+    "ok": false,
+    "why": [
+     "wind 0.7 < 1.0 m/s (inversion risk)",
+     "Delta T 0.4 outside 2-10"
+    ],
+    "wind": 0.7,
+    "rh": 97,
+    "temp": 18
+   },
+   {
+    "h": 8,
+    "ok": false,
+    "why": [
+     "wind 0.4 < 1.0 m/s (inversion risk)",
+     "Delta T 1.1 outside 2-10"
+    ],
+    "wind": 0.4,
+    "rh": 91,
+    "temp": 19
+   },
+   {
+    "h": 9,
+    "ok": false,
+    "why": [
+     "Delta T 1.7 outside 2-10"
+    ],
+    "wind": 1.4,
+    "rh": 86,
+    "temp": 20
+   },
+   {
+    "h": 10,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 2.0,
+    "rh": 78,
+    "temp": 21
+   },
+   {
+    "h": 11,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 3.1,
+    "rh": 72,
+    "temp": 22
+   },
+   {
+    "h": 12,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 3.1,
+    "rh": 67,
+    "temp": 24
+   },
+   {
+    "h": 13,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 3.3,
+    "rh": 62,
+    "temp": 25
+   },
+   {
+    "h": 14,
+    "ok": false,
+    "why": [
+     "rain 1.0 mm"
+    ],
+    "wind": 4.0,
+    "rh": 84,
+    "temp": 22
+   },
+   {
+    "h": 15,
+    "ok": false,
+    "why": [
+     "rain 0.3 mm"
+    ],
+    "wind": 4.2,
+    "rh": 66,
+    "temp": 24
+   },
+   {
+    "h": 16,
+    "ok": true,
+    "why": [],
+    "wind": 4.0,
+    "rh": 64,
+    "temp": 25
+   },
+   {
+    "h": 17,
+    "ok": true,
+    "why": [],
+    "wind": 3.8,
+    "rh": 66,
+    "temp": 24
+   },
+   {
+    "h": 18,
+    "ok": true,
+    "why": [],
+    "wind": 2.4,
+    "rh": 72,
+    "temp": 23
+   }
+  ],
+  "J-F8C5A": [
+   {
+    "h": 5,
+    "ok": false,
+    "why": [
+     "05:00 outside spray hours",
+     "wind 0.5 < 1.0 m/s (inversion risk)",
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 0.5,
+    "rh": 100,
+    "temp": 17
+   },
+   {
+    "h": 6,
+    "ok": false,
+    "why": [
+     "Delta T 0.1 outside 2-10"
+    ],
+    "wind": 1.1,
+    "rh": 100,
+    "temp": 18
+   },
+   {
+    "h": 7,
+    "ok": false,
+    "why": [
+     "Delta T 0.5 outside 2-10"
+    ],
+    "wind": 1.2,
+    "rh": 96,
+    "temp": 19
+   },
+   {
+    "h": 8,
+    "ok": false,
+    "why": [
+     "wind 0.7 < 1.0 m/s (inversion risk)",
+     "Delta T 1.3 outside 2-10"
+    ],
+    "wind": 0.7,
+    "rh": 89,
+    "temp": 20
+   },
+   {
+    "h": 9,
+    "ok": false,
+    "why": [
+     "wind 0.5 < 1.0 m/s (inversion risk)",
+     "rain 0.4 mm"
+    ],
+    "wind": 0.5,
+    "rh": 82,
+    "temp": 21
+   },
+   {
+    "h": 10,
+    "ok": false,
+    "why": [
+     "wind 0.6 < 1.0 m/s (inversion risk)",
+     "rain 0.4 mm"
+    ],
+    "wind": 0.6,
+    "rh": 76,
+    "temp": 22
+   },
+   {
+    "h": 11,
+    "ok": false,
+    "why": [
+     "wind 1.0 < 1.0 m/s (inversion risk)",
+     "rain 0.3 mm"
+    ],
+    "wind": 1.0,
+    "rh": 69,
+    "temp": 24
+   },
+   {
+    "h": 12,
+    "ok": true,
+    "why": [],
+    "wind": 1.7,
+    "rh": 65,
+    "temp": 26
+   },
+   {
+    "h": 13,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 2.2,
+    "rh": 64,
+    "temp": 26
+   },
+   {
+    "h": 14,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 2.9,
+    "rh": 64,
+    "temp": 26
+   },
+   {
+    "h": 15,
+    "ok": false,
+    "why": [
+     "rain 0.2 mm"
+    ],
+    "wind": 3.1,
+    "rh": 64,
+    "temp": 26
+   },
+   {
+    "h": 16,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 2.5,
+    "rh": 61,
+    "temp": 26
+   },
+   {
+    "h": 17,
+    "ok": false,
+    "why": [
+     "rain 0.1 mm"
+    ],
+    "wind": 2.6,
+    "rh": 61,
+    "temp": 26
+   },
+   {
+    "h": 18,
+    "ok": true,
+    "why": [],
+    "wind": 1.8,
+    "rh": 72,
+    "temp": 25
+   }
+  ]
+ },
+ "rules": {
+  "id": "GOOD-PRACTICE",
+  "title": "Drift and evaporation good practice (no drone-specific law)",
+  "binding": false,
+  "sources": [
+   "Delta T 2-8 ideal, >10 unsuitable: Australian (GRDC) spray-application guidance",
+   "wind roughly 3-10 mph (1.3-4.5 m/s): common pesticide-label / extension drift guidance"
+  ]
+ },
+ "forecast_source": "open-meteo hourly forecast per farm",
+ "models": {
+  "intake_and_brief": "nvidia/Nemotron-3_5-Lightning"
+ },
+ "token_factory": {
+  "calls": 6,
+  "prompt_tokens": 2885,
+  "completion_tokens": 643,
+  "usd_estimate": 0.00033,
+  "calls_by_purpose": {
+   "intake": 5,
+   "brief": 1
+  },
+  "calls_by_model": {
+   "nvidia/Nemotron-3_5-Lightning": 6
+  },
+  "schema_constrained_calls": 5,
+  "note": "this operator-day's Nemotron calls on Token Factory; estimate at list price"
+ },
+ "callback": []
+}

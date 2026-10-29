@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldPilot · field ops</title>
+<style>
+  :root{
+    --bg:#0b1310; --panel:#111c18; --panel2:#15231e; --line:#233630; --line2:#2d443c;
+    --ink:#e8f1ec; --ink2:#c3d3ca; --muted:#8aa196; --faint:#5f7569;
+    --nv:#76b900; --ok:#3fb37f; --warn:#e8a33a; --danger:#ef4f4f; --info:#5aa7e8;
+    --r:10px; --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif}
+  header{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  header b{font-size:19px} header span{color:var(--muted);font-size:13px}
+  header nav{margin-left:auto;display:flex;gap:14px} header nav a{color:var(--ink2);font-size:13px}
+  .tabs{display:flex;gap:6px;padding:10px 16px 0}
+  .tab{border:1px solid var(--line2);background:var(--panel2);color:var(--ink2);border-radius:8px 8px 0 0;padding:7px 14px;cursor:pointer;font:inherit}
+  .tab.on{background:var(--panel);color:var(--ink);border-bottom-color:var(--panel)}
+  main{padding:14px 16px;display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:0}
+  .s12{grid-column:span 12} .s8{grid-column:span 8} .s6{grid-column:span 6} .s4{grid-column:span 4}
+  h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:600}
+  .badge{display:inline-block;font-weight:800;font-size:28px;letter-spacing:.04em;border-radius:10px;padding:6px 16px}
+  .go{background:#0f2a1c;color:var(--ok);border:1px solid #1f5a3a}
+  .nogo{background:#2a1010;color:var(--danger);border:1px solid #5a1f1f}
+  .none{background:var(--panel2);color:var(--muted);border:1px solid var(--line2)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .m{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px}
+  .m div{font-size:11.5px;color:var(--muted)} .m b{font-size:20px}
+  .muted{color:var(--muted)} .small{font-size:12.5px}
+  table{border-collapse:collapse;width:100%}
+  td,th{border-bottom:1px solid var(--line);padding:6px 7px;text-align:left;font-size:13px;vertical-align:top}
+  th{color:var(--muted);font-weight:600}
+  .good{color:var(--ok);font-weight:650} .bad{color:var(--danger);font-weight:650} .amber{color:var(--warn);font-weight:650}
+  .chip{display:inline-block;font-size:12px;border-radius:99px;padding:2px 10px;border:1px solid var(--line2)}
+  .chip.flying{color:#bfe2ff;border-color:#2f5b80;background:#0f1d2a} .chip.charging{color:#f1d68e;border-color:#5a4a1f;background:#211b0c}
+  .chip.charged{color:#bdf0d2;border-color:#1f5a3a;background:#0f2a1c} .chip.cooling{color:#e5c9ff;border-color:#4b3266;background:#1b1324}
+  .btn{border:1px solid var(--line2);background:var(--panel2);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer}
+  .pack{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:8px 0}
+  .pack b{min-width:62px}
+  .banner{background:#211b0c;border:1px solid #5a4a1f;color:#f1d68e;border-radius:8px;padding:8px 12px;font-size:13.5px}
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px}
+  .kpi div{font-size:11.5px;color:var(--muted)} .kpi b{font-size:19px}
+  select,input{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:6px;font:inherit}
+  svg{width:100%;height:auto;display:block} svg text{fill:var(--ink2);font-size:10.5px}
+  .tag{display:inline-block;font-size:11px;border-radius:99px;padding:1px 7px;border:1px solid #5a4a1f;color:#f1d68e}
+  .empty{color:var(--faint);font-size:13.5px}
+  @media (max-width: 960px){ .s8,.s6,.s4{grid-column:span 12} .kpis{grid-template-columns:repeat(2,1fr)} .grid{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+<header>
+  <b>FieldPilot</b><span>field ops · mast · batteries · as applied · devices</span>
+  <nav><a href="/desk">operator desk</a><a href="/">field console</a><a href="/sims">simulation lab</a><a href="/settings">settings</a></nav>
+</header>
+<div class="tabs"><button class="tab on" data-t="live">Live</button><button class="tab" data-t="day">Field day (simulated)</button><button class="tab" data-t="fw">Firmware: ArduPilot SITL (simulated)</button></div>
+
+<main id="live">
+  <section class="card s4">
+    <h2>Spray weather at the field <span class="muted small" id="pack"></span></h2>
+    <div id="gate"><span class="badge none">NO MAST</span></div>
+    <div class="grid" id="wx"></div>
+    <div class="small muted" id="why" style="margin-top:8px"></div>
+  </section>
+  <section class="card s8">
+    <h2>Wind at the mast (2-min mean, 3-s gust) and the rule pack's limit</h2>
+    <div id="windchart" class="empty">Waiting for FieldMast readings…</div>
+  </section>
+  <section class="card s4">
+    <h2>Battery board</h2>
+    <div id="packs"></div>
+    <div class="pack"><input id="newpack" placeholder="pack id" style="width:90px"><button class="btn" id="addpack">add pack</button></div>
+  </section>
+  <section class="card s8">
+    <h2>As applied (SprayLog) <span class="muted small" id="aarun"></span></h2>
+    <div id="aa" class="empty">No SprayLog upload for a dispatched mission yet.</div>
+  </section>
+  <section class="card s12">
+    <h2>Devices</h2>
+    <div id="devs" class="empty">No device has reported yet.</div>
+  </section>
+</main>
+
+<main id="day" style="display:none">
+  <section class="card s12">
+    <div class="row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <h2 style="margin:0">Simulated field day</h2>
+      <select id="days"></select>
+      <span class="small muted">Run <code>python -m fieldpilot.cli fieldday</code> to make one.</span>
+    </div>
+    <div class="banner" id="daylabel" style="margin-top:10px">No simulated day yet.</div>
+  </section>
+  <section class="card s12"><div class="kpis" id="daykpis"></div></section>
+  <section class="card s12"><h2>Sorties: planned (outline) and flown (filled), by battery set; mast holds in red</h2><div id="gantt"></div></section>
+  <section class="card s6"><h2>Mast at each farm: wind and gust vs the 3 m/s limit; forecast dashed</h2><div id="daywind"></div></section>
+  <section class="card s6"><h2>Mast: relative humidity vs the 50 % limit, temperature</h2><div id="dayrh"></div></section>
+  <section class="card s6"><h2>As applied per farm</h2><div id="dayfarms"></div></section>
+  <section class="card s6"><h2>Farm map: zones to treat, SprayLog track coloured by flow <select id="farmsel"></select></h2><div id="farmmap"></div></section>
+</main>
+
+<main id="fw" style="display:none">
+  <section class="card s12">
+    <div class="row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <h2 style="margin:0">FieldPilot's sorties flown by unmodified ArduCopter, on a T1 physics model</h2>
+      <select id="fwruns"></select>
+      <span class="small muted">Run <code>python -m fieldpilot.cli sitl</code> (Linux/WSL) to make one.</span>
+    </div>
+    <div class="banner" id="fwlabel" style="margin-top:10px">No firmware run yet.</div>
+  </section>
+  <section class="card s12"><div class="kpis" id="fwkpis"></div></section>
+  <section class="card s6"><h2>Each sortie: the firmware's log against the plan and the ArduPilot timing model</h2><div id="fwsorties"></div></section>
+  <section class="card s6"><h2>True track coloured by pump flow; zones solid, the zones as flown (moved upwind) dashed</h2><div id="fwmap"></div></section>
+  <section class="card s12"><h2>Every saved run: drift compensation on and off</h2><div id="fwall"></div></section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (v, d=1) => v == null || isNaN(v) ? "–" : (+v).toFixed(d);
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
+  for (const id of ["live", "day", "fw"]) $("#" + id).style.display = b.dataset.t === id ? "" : "none";
+  if (b.dataset.t === "day") loadDays();
+  if (b.dataset.t === "fw") loadRuns();
+});
+
+if (location.hash === "#day") document.querySelector('.tab[data-t="day"]').click();
+if (location.hash === "#fw") document.querySelector('.tab[data-t="fw"]').click();
+
+/* ---------------------------------------------------------------- charts */
+function lineChart(series, opt) {
+  // series: [{pts:[[x,y]...], color, dash, width}], opt: {xmin,xmax,ymin,ymax,hlines:[{y,color,label}], xfmt}
+  const W = 720, H = opt.h || 200, L = 36, R = 10, T = 10, B = 24;
+  const sx = x => L + (x - opt.xmin) / Math.max(1e-9, opt.xmax - opt.xmin) * (W - L - R);
+  const sy = y => T + (1 - (y - opt.ymin) / Math.max(1e-9, opt.ymax - opt.ymin)) * (H - T - B);
+  let g = "";
+  for (let k = 0; k <= 4; k++) {
+    const y = opt.ymin + k * (opt.ymax - opt.ymin) / 4;
+    g += `<line x1="${L}" x2="${W-R}" y1="${sy(y)}" y2="${sy(y)}" stroke="#233630"/><text x="4" y="${sy(y)+3}">${fmt(y, opt.ydp ?? 1)}</text>`;
+  }
+  for (const t of (opt.xticks || [])) g += `<text x="${sx(t[0])-12}" y="${H-6}">${esc(t[1])}</text>`;
+  for (const h of (opt.hlines || [])) g += `<line x1="${L}" x2="${W-R}" y1="${sy(h.y)}" y2="${sy(h.y)}" stroke="${h.color}" stroke-dasharray="5 4"/><text x="${W-R-90}" y="${sy(h.y)-4}" style="fill:${h.color}">${esc(h.label)}</text>`;
+  for (const s of series) {
+    if (!s.pts.length) continue;
+    const d = s.pts.map((p, i) => (i ? "L" : "M") + sx(p[0]).toFixed(1) + " " + sy(p[1]).toFixed(1)).join(" ");
+    g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width || 1.6}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""}/>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+}
+
+function fieldMap(zones, treat, track, home, opt = {}) {
+  const pts = [];
+  Object.values(zones).forEach(p => p.forEach(q => pts.push(q)));
+  track.forEach(t => pts.push([t[0], t[1]]));
+  if (home) pts.push(home);
+  if (!pts.length) return '<div class="empty">No geometry.</div>';
+  const lat0 = pts[0][0], k = Math.cos(lat0 * Math.PI / 180);
+  const xy = p => [(p[1]) * k, p[0]];
+  const xs = pts.map(p => xy(p)[0]), ys = pts.map(p => xy(p)[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const W = 640, H = Math.max(220, Math.min(460, W * (y1 - y0) / Math.max(1e-12, x1 - x0)));
+  const pad = 14, s = Math.min((W - 2*pad) / Math.max(1e-12, x1 - x0), (H - 2*pad) / Math.max(1e-12, y1 - y0));
+  const P = p => { const [x, y] = xy(p); return [pad + (x - x0) * s, H - pad - (y - y0) * s]; };
+  let g = "";
+  for (const [z, poly] of Object.entries(zones)) {
+    const on = treat.includes(z);
+    const d = poly.map((p, i) => (i ? "L" : "M") + P(p).map(v => v.toFixed(1)).join(" ")).join(" ") + "Z";
+    const c = poly.reduce((a, p) => [a[0] + p[0] / poly.length, a[1] + p[1] / poly.length], [0, 0]);
+    g += `<path d="${d}" fill="${on ? "rgba(232,163,58,.18)" : "rgba(255,255,255,.03)"}" stroke="${on ? "#e8a33a" : "#2d443c"}"/>` +
+         `<text x="${P(c)[0]-6}" y="${P(c)[1]+4}">${esc(z)}</text>`;
+  }
+  const maxq = Math.max(0.1, ...track.map(t => t[2] || 0));
+  for (let i = 1; i < track.length; i++) {
+    const a = P(track[i-1]), b = P(track[i]), q = (track[i][2] || 0) / maxq;
+    const col = q > 0.05 ? `rgb(${Math.round(60 + 60*q)},${Math.round(150 + 80*q)},${Math.round(230 - 120*q)})` : "#4a5d55";
+    g += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${col}" stroke-width="${q > 0.05 ? 2 : 1}"/>`;
+  }
+  if (home) { const h = P(home); g += `<circle cx="${h[0]}" cy="${h[1]}" r="5" fill="#76b900"/><text x="${h[0]+7}" y="${h[1]+4}">take-off</text>`; }
+  return `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+}
+
+/* ---------------------------------------------------------------- live */
+async function live() {
+  let d;
+  try { d = await (await fetch("/api/ops")).json(); } catch (e) { return; }
+  $("#pack").textContent = "· " + d.rule_pack;
+  const s = d.site, r = s.reading;
+  $("#gate").innerHTML = s.ok === true ? '<span class="badge go">GO</span>' :
+    s.ok === false ? '<span class="badge nogo">NO-GO</span>' : '<span class="badge none">' + (r ? "WAIT" : "NO MAST") + "</span>";
+  $("#wx").innerHTML = r ? [["wind (2-min)", fmt(r.wind_ms) + " m/s"], ["gust", fmt(r.gust_ms) + " m/s"],
+    ["temperature", fmt(r.temp_c) + " °C"], ["humidity", fmt(r.rh_pct, 0) + " %"], ["Delta T", fmt(r.delta_t)],
+    ["age", fmt(r.age_s, 0) + " s"]].map(([k, v]) => `<div class="m"><div>${k}</div><b>${v}</b></div>`).join("") : "";
+  $("#why").innerHTML = r ? `${esc(r.device_id)} · ${esc(s.reasons.join("; ") || "inside every limit")}` : esc(s.reasons.join("; "));
+  const h = d.mast_history || [];
+  if (h.length > 1) {
+    const t0 = h[0].t, t1 = h[h.length - 1].t;
+    const ymax = Math.max(4, ...h.map(x => x.gust_ms || 0)) + 0.5;
+    $("#windchart").innerHTML = lineChart([
+      {pts: h.filter(x => x.gust_ms != null).map(x => [x.t, x.gust_ms]), color: "#5aa7e8", width: 1, dash: "3 3"},
+      {pts: h.filter(x => x.wind_ms != null).map(x => [x.t, x.wind_ms]), color: "#76b900", width: 2}],
+      {xmin: t0, xmax: t1, ymin: 0, ymax, hlines: [{y: d.rule_pack === "GOOD-PRACTICE" ? 4.5 : 3.0, color: "#ef4f4f", label: "wind limit"}],
+       xticks: [[t0, new Date(t0*1000).toLocaleTimeString().slice(0,5)], [t1, new Date(t1*1000).toLocaleTimeString().slice(0,5)]]});
+  }
+  $("#packs").innerHTML = (d.packs || []).map(p => `<div class="pack"><b>pack ${esc(p.pack_id)}</b>
+      <span class="chip ${esc(p.state)}">${esc(p.state || "?")}</span><span class="small muted">${fmt(p.minutes_in_state,0)} min · ${p.flights_today} flights today</span>
+      ${["flying","charging","charged"].map(st => `<button class="btn" data-p="${esc(p.pack_id)}" data-s="${st}">${st}</button>`).join("")}</div>`).join("")
+      || '<div class="empty">No packs yet: add one.</div>';
+  $("#packs").querySelectorAll("button").forEach(b => b.onclick = () => setPack(b.dataset.p, b.dataset.s));
+  const devs = d.devices || [];
+  $("#devs").innerHTML = devs.length ? `<table><tr><th>Device</th><th>Kind</th><th>Last seen</th><th>Firmware</th><th>Supply</th><th>Wi-Fi</th></tr>` +
+    devs.map(x => `<tr><td>${esc(x.device_id)} ${x.simulated ? '<span class="tag">SIMULATED</span>' : ""}</td><td>${esc(x.kind)}</td>
+      <td class="${x.last_seen_s > 60 ? "amber" : "good"}">${fmt(x.last_seen_s,0)} s ago</td><td>${esc(x.fw)}</td>
+      <td>${x.battery_v != null ? fmt(x.battery_v,1) + " V" : "–"}</td><td>${x.rssi != null ? x.rssi + " dBm" : "–"}</td></tr>`).join("") + "</table>" :
+    '<div class="empty">No device has reported yet. Flash firmware/fieldmast and firmware/spraylog, or run <code>python -m fieldpilot.cli devsim mast</code>.</div>';
+  const aa = d.as_applied;
+  if (aa) {
+    $("#aarun").textContent = "· " + aa.run_id + " · " + aa.mission_id;
+    $("#aa").innerHTML = aaTable(aa) + fieldMap(d.field.zones, aa.zones.map(z => z.zone_id), aa.track || [], d.field.home);
+  }
+}
+function aaTable(aa) {
+  return `<table><tr><th>Zone</th><th>Planned L</th><th>Applied L</th><th>Deviation</th><th>L/ha</th></tr>` +
+    aa.zones.map(z => `<tr><td>${esc(z.zone_id)}</td><td>${fmt(z.planned_l,2)}</td><td>${fmt(z.applied_l,2)}</td>
+      <td class="${Math.abs(z.deviation_pct) > 15 ? "bad" : "good"}">${z.deviation_pct > 0 ? "+" : ""}${fmt(z.deviation_pct,1)} %</td><td>${fmt(z.applied_l_ha,1)}</td></tr>`).join("") +
+    `</table><p class="small">On target <b>${fmt(aa.on_target_pct,1)} %</b> · untreated part of field ${fmt(aa.litres_in_field_untreated,3)} L ·
+     outside field ${fmt(aa.litres_outside_field,3)} L · unlocated ${fmt(aa.litres_unlocated,3)} L ·
+     ${aa.flags.length ? '<span class="bad">' + esc(aa.flags.join("; ")) + "</span>" : '<span class="good">no flags</span>'}</p>`;
+}
+async function setPack(p, s) {
+  await fetch("/api/batteries/" + encodeURIComponent(p), {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({state: s})});
+  live();
+}
+$("#addpack").onclick = () => { const v = $("#newpack").value.trim(); if (v) { setPack(v, "charged"); $("#newpack").value = ""; } };
+live(); setInterval(() => { if ($("#live").style.display !== "none") live(); }, 3000);
+
+/* ---------------------------------------------------------------- field day */
+let DAY = null;
+async function loadDays() {
+  const ds = await (await fetch("/api/fieldday")).json();
+  $("#days").innerHTML = ds.map(d => `<option>${esc(d)}</option>`).join("");
+  $("#days").onchange = () => loadDay($("#days").value);
+  if (ds.length) loadDay(ds[0]);
+}
+const mins = hm => { const [h, m] = hm.split(":").map(Number); return h * 60 + m; };
+async function loadDay(day) {
+  DAY = await (await fetch("/api/fieldday/" + day)).json();
+  const s = DAY.summary;
+  $("#daylabel").innerHTML = `<b>${esc(DAY.label)}</b> · ${esc(DAY.operator)} · ${esc(DAY.aircraft)} · ${esc(DAY.flight_controller)} · rules ${esc(DAY.rules)} · weather: ${esc(DAY.weather_source)}`;
+  $("#daykpis").innerHTML = [
+    ["farms completed", `${s.farms_completed} / ${s.farms_planned}`], ["sorties flown", s.sorties_flown],
+    ["litres sprayed (SprayLog)", fmt(s.litres_measured_by_spraylog, 1)], ["SprayLog vs truth", fmt(s.spraylog_error_pct, 2) + " %"],
+    ["lowest on-target", fmt(s.on_target_pct_min, 1) + " %"], ["lowest zone coverage", fmt(s.zone_coverage_pct_min, 1) + " %"],
+    ["mast holds", s.mast_holds], ["mean start delay", fmt(s.start_delay_min.mean, 1) + " min"],
+    ["flight time vs plan", fmt(s.flight_time_vs_plan_pct, 1) + " %"], ["K3 breakpoint vs cut", fmt(s.k3_breakpoint_vs_planned_cut_m_max, 1) + " m"],
+    ["abandoned on site", s.farms_abandoned_on_site.length], ["deferred by plan", s.farms_deferred_by_plan]]
+    .map(([k, v]) => `<div class="kpi"><div>${k}</div><b>${esc(v)}</b></div>`).join("");
+  // gantt
+  const tl = DAY.timeline, farms = [...new Set(DAY.farms.map(f => f.job_id))];
+  const name = id => (DAY.farms.find(f => f.job_id === id) || {}).farmer || id;
+  const holds = DAY.holds || [];
+  const t0 = 6 * 60, t1 = Math.max(12 * 60, ...tl.map(t => mins(t.actual_start) + t.flight_s / 60 + 5), ...holds.map(h => mins(h.at) + 3));
+  const W = 1000, L = 120, rowH = 30, H = 26 + farms.length * rowH;
+  const X = m => L + (m - t0) / (t1 - t0) * (W - L - 10);
+  let g = "";
+  for (let h = 6; h * 60 <= t1; h++) g += `<line x1="${X(h*60)}" x2="${X(h*60)}" y1="14" y2="${H}" stroke="#233630"/><text x="${X(h*60)-12}" y="11">${String(h).padStart(2,"0")}:00</text>`;
+  g += `<rect x="${X(11*60)}" y="14" width="${X(14*60)-X(11*60)}" height="${H-14}" fill="rgba(239,79,79,.06)"/><text x="${X(11*60)+4}" y="${H-4}" style="fill:#ef4f4f">outside SOP hours</text>`;
+  farms.forEach((id, i) => {
+    const y = 18 + i * rowH;
+    g += `<text x="4" y="${y + 15}">${esc(name(id)).slice(0, 18)}</text>`;
+    tl.filter(t => t.job_id === id).forEach(t => {
+      const ps = mins(t.planned_start), as = mins(t.actual_start), dur = t.flight_s / 60;
+      const col = t.battery_set === 1 ? "#76b900" : t.battery_set === 2 ? "#5aa7e8" : "#e8a33a";
+      g += `<rect x="${X(ps)}" y="${y+2}" width="${Math.max(2, X(ps + t.planned_flight_s/60) - X(ps))}" height="${rowH-10}" fill="none" stroke="${col}" stroke-dasharray="3 2"/>`;
+      g += `<rect x="${X(as)}" y="${y+4}" width="${Math.max(2, X(as + dur) - X(as))}" height="${rowH-14}" fill="${col}"><title>sortie ${t.sortie}: ${t.actual_start} (plan ${t.planned_start}), ${t.k3_end}, ${t.sprayed_l} L</title></rect>`;
+    });
+    holds.filter(h => h.job_id === id).forEach(h => g += `<rect x="${X(mins(h.at))}" y="${y+4}" width="${Math.max(2, X(mins(h.at)+2)-X(mins(h.at)))}" height="${rowH-14}" fill="#ef4f4f" opacity=".7"><title>${esc(h.reasons.join("; "))}</title></rect>`);
+  });
+  $("#gantt").innerHTML = `<svg viewBox="0 0 ${W} ${H}">${g}</svg><p class="small muted">Green = battery set 1, blue = set 2. Dashed outline = the day plan's slot; filled = flown by the K3-A Pro twin.</p>`;
+  // mast charts (minutes in order of the day)
+  const mm = DAY.mast_minutes;
+  const xm = mm.map(m => mins(m.t));
+  if (mm.length) {
+    const xmin = Math.min(...xm), xmax = Math.max(...xm);
+    const ticks = []; for (let h = Math.ceil(xmin/60); h*60 <= xmax; h++) ticks.push([h*60, String(h).padStart(2,"0") + ":00"]);
+    $("#daywind").innerHTML = lineChart([
+      {pts: mm.map((m, i) => [xm[i], m.gust_ms]), color: "#5aa7e8", width: 1},
+      {pts: mm.map((m, i) => [xm[i], m.wind_ms]), color: "#76b900", width: 2},
+      {pts: mm.map((m, i) => [xm[i], m.forecast_wind_ms]), color: "#c3d3ca", width: 1, dash: "4 4"}],
+      {xmin, xmax, ymin: 0, ymax: Math.max(4.5, ...mm.map(m => m.gust_ms || 0)) + 0.3, hlines: [{y: 3, color: "#ef4f4f", label: "3 m/s (SOP)"}], xticks: ticks});
+    $("#dayrh").innerHTML = lineChart([
+      {pts: mm.map((m, i) => [xm[i], m.rh_pct]), color: "#5aa7e8", width: 2},
+      {pts: mm.map((m, i) => [xm[i], m.temp_c]), color: "#e8a33a", width: 1.5}],
+      {xmin, xmax, ymin: 0, ymax: 100, ydp: 0, hlines: [{y: 50, color: "#ef4f4f", label: "RH 50 % (SOP)"}, {y: 35, color: "#e8a33a", label: "35 °C (SOP)"}], xticks: ticks}) +
+      '<p class="small muted">Blue = RH %, amber = temperature °C.</p>';
+  }
+  $("#dayfarms").innerHTML = `<table><tr><th>Farm</th><th>Zones</th><th>Sorties</th><th>Planned L</th><th>Measured L</th><th>On target</th><th>Coverage</th><th>Status</th></tr>` +
+    DAY.farms.map(f => { const a = f.as_applied || {}; const cov = Object.values(f.coverage || {}).map(c => c.covered_pct);
+      return `<tr><td>${esc(f.farmer)}</td><td>${f.zones.length}</td><td>${f.flown_sorties}/${f.planned_sorties}</td><td>${fmt(f.planned_l,2)}</td>
+      <td>${fmt(a.litres_total,2)}</td><td>${a.on_target_pct != null ? fmt(a.on_target_pct,1) + " %" : "–"}</td>
+      <td>${cov.length ? fmt(Math.min(...cov),1) + " %" : "–"}</td>
+      <td class="${f.completed ? "good" : "bad"}">${f.completed ? "done" : f.gave_up ? "abandoned " + esc(f.gave_up.at) : "not flown"}</td></tr>`; }).join("") + "</table>";
+  $("#farmsel").innerHTML = DAY.farms.map((f, i) => `<option value="${i}">${esc(f.farmer)}</option>`).join("");
+  $("#farmsel").onchange = drawFarm; drawFarm();
+}
+/* ---------------------------------------------------------------- firmware (SITL) */
+function xyMap(zones, flown, treat, tracks) {
+  const pts = [[0, 0]];
+  Object.values(zones).forEach(p => p.forEach(q => pts.push(q)));
+  tracks.forEach(t => t.forEach(q => pts.push(q)));
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const W = 640, H = Math.max(220, Math.min(460, W * (y1 - y0) / Math.max(1e-9, x1 - x0)));
+  const pad = 14, sc = Math.min((W - 2*pad) / Math.max(1e-9, x1 - x0), (H - 2*pad) / Math.max(1e-9, y1 - y0));
+  const P = p => [pad + (p[0] - x0) * sc, H - pad - (p[1] - y0) * sc];
+  const path = poly => poly.map((p, i) => (i ? "L" : "M") + P(p).map(v => v.toFixed(1)).join(" ")).join(" ") + "Z";
+  let g = "";
+  for (const [z, poly] of Object.entries(zones)) {
+    const on = treat.includes(z), c = poly.reduce((a, p) => [a[0] + p[0] / poly.length, a[1] + p[1] / poly.length], [0, 0]);
+    g += `<path d="${path(poly)}" fill="${on ? "rgba(232,163,58,.16)" : "rgba(255,255,255,.03)"}" stroke="${on ? "#e8a33a" : "#2d443c"}"/><text x="${P(c)[0]-6}" y="${P(c)[1]+4}">${esc(z)}</text>`;
+  }
+  for (const [z, poly] of Object.entries(flown || {})) if (treat.includes(z)) g += `<path d="${path(poly)}" fill="none" stroke="#c3d3ca" stroke-dasharray="3 3" opacity=".7"/>`;
+  const maxq = Math.max(0.1, ...tracks.flat().map(t => t[2] || 0));
+  for (const tr of tracks) for (let i = 1; i < tr.length; i++) {
+    const a = P(tr[i-1]), b = P(tr[i]), q = (tr[i][2] || 0) / maxq;
+    const col = q > 0.05 ? `rgb(${Math.round(60 + 60*q)},${Math.round(150 + 80*q)},${Math.round(230 - 120*q)})` : "#4a5d55";
+    g += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${col}" stroke-width="${q > 0.05 ? 1.6 : 0.8}"/>`;
+  }
+  const h = P([0, 0]); g += `<circle cx="${h[0]}" cy="${h[1]}" r="5" fill="#76b900"/><text x="${h[0]+7}" y="${h[1]+4}">take-off</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+}
+let RUNS = [];
+async function loadRuns() {
+  RUNS = await (await fetch("/api/sitl")).json();
+  $("#fwruns").innerHTML = RUNS.map(r => `<option value="${esc(r.run)}">${esc(r.run)} · ${esc((r.field || "").split(" (")[0])} · compensation ${r.drift_compensation ? "on" : "off"}</option>`).join("");
+  $("#fwruns").onchange = () => loadRun($("#fwruns").value);
+  $("#fwall").innerHTML = RUNS.length ? `<table><tr><th>Run</th><th>Field</th><th>Drift compensation</th><th>Sorties</th><th>Flight s (plan · timing model)</th><th>Energy Wh (plan)</th><th>On target, per sortie</th><th>Lowest coverage</th><th>Zone dose vs plan</th></tr>` +
+    RUNS.map(r => { const d = Object.values(r.dose_deviation_pct || {});
+      return `<tr><td>${esc(r.run)}</td><td>${esc((r.field || "").split(" (")[0])}</td><td class="${r.drift_compensation ? "good" : "muted"}">${r.drift_compensation ? "on" : "off"}</td><td>${r.sorties}</td>
+      <td>${fmt(r.flight_s,0)} (${fmt(r.planned_s,0)} · ${fmt(r.ardupilot_model_s,0)})</td><td>${fmt(r.energy_wh,0)} (${fmt(r.planned_energy_wh,0)})</td>
+      <td>${r.on_target_pct.map(v => fmt(v,1) + " %").join(" / ")}</td><td>${fmt(r.coverage_min_pct,1)} %</td>
+      <td>${d.length ? fmt(Math.min(...d),1) + " to " + fmt(Math.max(...d),1) + " %" : "–"}</td></tr>`; }).join("") + "</table>" :
+    '<div class="empty">No firmware run saved. On Linux or WSL: build ArduCopter SITL, then <code>python -m fieldpilot.cli sitl --ardupilot &lt;tree&gt;</code>.</div>';
+  if (RUNS.length) loadRun(RUNS[0].run);
+}
+async function loadRun(name) {
+  const r = await (await fetch("/api/sitl/" + encodeURIComponent(name))).json();
+  const j = r.job || {}, ss = r.sorties || [], comp = r.drift_compensation || {};
+  $("#fwlabel").innerHTML = `<b>${esc(r.label)}</b> · ${esc(r.firmware)} · ${esc(r.aircraft)} · ${esc(r.field)} · wind ${fmt(r.site.wind,1)} m/s from ${fmt(r.site.wind_dir,0)}°, GPS noise ${fmt(r.site.gps_noise,1)} m · drift compensation ${comp.applied ? "on, lines moved " + fmt(comp.upwind_offset_m,1) + " m upwind" : "off"}`;
+  const dose = Object.values(j.dose_deviation_pct || {});
+  $("#fwkpis").innerHTML = [
+    ["flight time (plan)", `${fmt(j.flight_s,0)} s (${fmt(j.planned_s,0)})`], ["timing model", fmt(j.ardupilot_model_s,0) + " s"],
+    ["energy (plan)", `${fmt(j.energy_wh,0)} Wh (${fmt(j.planned_energy_wh,0)})`], ["litres sprayed", fmt(j.litres,2) + " L"],
+    ["lowest pack left", fmt(Math.min(...ss.map(s => s.battery_left_pct)),1) + " %"], ["lowest pack voltage", fmt(Math.min(...ss.map(s => s.min_voltage_v)),2) + " V"],
+    ["deposited on target", ss.map(s => fmt(s.deposited_on_target_pct,1)).join(" / ") + " %"], ["lowest zone coverage", fmt(j.coverage_min_pct,1) + " %"],
+    ["zone dose vs plan", dose.length ? fmt(Math.min(...dose),1) + " to " + fmt(Math.max(...dose),1) + " %" : "–"],
+    ["true line error, median", fmt(Math.max(...ss.map(s => s.xte_true_m.median)),2) + " m"]]
+    .map(([k, v]) => `<div class="kpi"><div>${k}</div><b>${esc(v)}</b></div>`).join("");
+  $("#fwsorties").innerHTML = `<table><tr><th>#</th><th>Mass</th><th>Take-off+transit s</th><th>Spraying s</th><th>Return+land s</th><th>Total s (plan)</th><th>Pack left</th><th>Litres (plan)</th></tr>` +
+    ss.map(s => { const ph = s.phases || {}, m = s.ardupilot_model || {};
+      return `<tr><td>${s.sortie}</td><td>${fmt((s.frame || {}).mass,1)} kg</td><td>${fmt(ph.takeoff_and_transit_s,1)} <span class="muted">(${fmt(m.takeoff_and_transit_s,1)})</span></td>
+      <td>${fmt(ph.spraying_s,1)} <span class="muted">(${fmt(m.spraying_s,1)})</span></td><td>${fmt(ph.return_and_land_s,1)} <span class="muted">(${fmt(m.return_and_land_s,1)})</span></td>
+      <td>${fmt(s.flight_s,1)} (${fmt(s.planned_s,1)})</td><td>${fmt(s.battery_left_pct,1)} %</td><td>${fmt(s.litres,2)} (${fmt(s.planned_litres,2)})</td></tr>`; }).join("") +
+    `</table><p class="small muted">Grey = FieldPilot's ArduPilot timing model, predicted from the firmware's parameters (S-curves, RTL_ALT, RTL_LOIT_TIME, LAND_SPEED), not fitted to these logs.</p>`;
+  $("#fwmap").innerHTML = xyMap(r.zone_xy || {}, r.flown_zone_xy, r.zones || [], ss.map(s => s.track || []));
+}
+function drawFarm() {
+  const f = DAY.farms[+$("#farmsel").value || 0];
+  const a = f.as_applied || {};
+  $("#farmmap").innerHTML = fieldMap(f.zone_polygons, f.zones, f.track || [], f.home) +
+    (a.zones ? aaTable(a) : '<div class="empty">Not flown.</div>');
+}
+</script>
+</body>
+</html>

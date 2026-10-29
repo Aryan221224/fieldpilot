@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldPilot · operator desk</title>
+<style>
+  :root{
+    --bg:#0b1310; --panel:#111c18; --panel2:#15231e; --line:#233630; --line2:#2d443c;
+    --ink:#e8f1ec; --ink2:#c3d3ca; --muted:#8aa196; --faint:#5f7569;
+    --nv:#76b900; --ok:#3fb37f; --warn:#e8a33a; --danger:#ef4f4f; --info:#5aa7e8;
+    --r:10px; --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif}
+  header{display:flex;align-items:center;gap:16px;padding:12px 18px;border-bottom:1px solid var(--line)}
+  header b{font-size:19px} header span{color:var(--muted);font-size:13px}
+  header a{margin-left:auto;color:var(--ink2);font-size:13px}
+  main{display:grid;grid-template-columns:400px 1fr;gap:0;min-height:calc(100vh - 56px)}
+  .col{padding:14px;display:flex;flex-direction:column;gap:12px}
+  .left{border-right:1px solid var(--line)}
+  h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:2px 0 6px;font-weight:600}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+  .btn{border:1px solid var(--line2);background:var(--panel2);color:var(--ink);border-radius:8px;padding:9px 12px;font:inherit;cursor:pointer}
+  .btn.primary{background:var(--nv);border-color:var(--nv);color:#0b1a02;font-weight:650}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  textarea,input,select{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:8px;font:inherit}
+  textarea{width:100%;min-height:150px;resize:vertical}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .grow{flex:1}
+  .muted{color:var(--muted)} .small{font-size:12.5px}
+  .job{border:1px solid var(--line);border-radius:8px;padding:9px;background:var(--panel2)}
+  .job b{font-size:14.5px} .job .msg{color:var(--muted);font-size:12.5px;margin-top:3px}
+  .flag{display:inline-block;font-size:11.5px;color:#f1d68e;background:#211b0c;border:1px solid #5a4a1f;border-radius:99px;padding:1px 8px;margin:4px 4px 0 0}
+  .tag{display:inline-block;font-size:11.5px;border-radius:99px;padding:1px 8px;margin-right:4px;border:1px solid var(--line2);color:var(--ink2)}
+  .tag.nv{border-color:#3b5c1a;color:#cdeb9f;background:#16220d}
+  .job input{width:70px;padding:3px 6px}
+  table{border-collapse:collapse;width:100%}
+  td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;font-size:13.5px}
+  th{color:var(--muted);font-weight:600}
+  td.good{color:var(--ok);font-weight:650} td.bad{color:var(--danger);font-weight:650}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px}
+  .kpi div{font-size:12px;color:var(--muted)} .kpi b{font-size:22px}
+  .brief{font-size:16px;line-height:1.6}
+  svg text{fill:var(--ink2);font-size:11px}
+  .empty{color:var(--faint);font-size:13.5px}
+  @media (max-width: 900px){ main{grid-template-columns:1fr} .left{border-right:0;border-bottom:1px solid var(--line)} .kpis{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+<header>
+  <b>FieldPilot</b><span>operator desk · every battery cycle, litre and flight minute where it pays</span>
+  <a href="/sims" style="margin-right:14px">simulation lab</a><a href="/">field console →</a>
+</header>
+<main>
+  <section class="col left">
+    <div>
+      <h2>Bookings (calls, WhatsApp, voice notes)</h2>
+      <textarea id="msgs" placeholder="One booking per line, Hindi / Hinglish / English"></textarea>
+      <div class="row" style="margin-top:8px">
+        <select id="demosel" title="demo day"></select>
+        <button class="btn" id="demo">Load demo</button>
+        <button class="btn primary grow" id="read">Read with Nemotron</button>
+      </div>
+      <div class="small muted" id="readnote" style="margin-top:6px"></div>
+    </div>
+    <div>
+      <h2>Your kit</h2>
+      <div class="card row small">
+        <label>Date <input type="date" id="date"></label>
+        <label>Battery sets <input type="number" id="bat" min="1" max="12" value="3" style="width:60px"></label>
+        <label>Chargers <input type="number" id="chg" min="1" max="6" value="1" style="width:55px"></label>
+        <label>Charge min <input type="number" id="cmin" min="30" max="240" value="120" style="width:65px"></label>
+      </div>
+    </div>
+    <div>
+      <h2>Jobs <span class="muted small" id="jobcount"></span></h2>
+      <div id="jobs" class="col" style="padding:0;gap:8px"><div class="empty">Read the bookings first.</div></div>
+      <button class="btn primary" id="plan" style="width:100%;margin-top:10px" disabled>Plan my day</button>
+    </div>
+  </section>
+  <section class="col">
+    <div class="kpis" id="kpis"></div>
+    <div>
+      <h2>Timeline (local time) · green = spray window at that farm under <span id="rulename">the rule pack</span> · ticks = sorties (battery set)</h2>
+      <div class="card"><svg id="tl" width="100%" viewBox="0 0 900 60"></svg><div class="empty" id="tlempty">No plan yet.</div></div>
+    </div>
+    <div class="row" style="align-items:stretch">
+      <div class="grow" style="min-width:320px">
+        <h2>Same bookings, same forecast, same batteries</h2>
+        <div class="card"><table id="cmp"><tr><td class="empty">No plan yet.</td></tr></table></div>
+      </div>
+      <div class="grow" style="min-width:320px">
+        <h2>Operator brief <span class="muted small" id="briefby"></span></h2>
+        <div class="card brief" id="brief"><span class="empty">No plan yet.</span></div>
+        <div class="small muted" id="tfcost" style="margin-top:6px"></div>
+        <div class="row" style="margin-top:8px"><button class="btn" id="speak" disabled>Read aloud</button>
+          <a class="btn" id="sheet" href="/api/desk/sheet" target="_blank" style="text-decoration:none;display:none">Print day sheet</a></div>
+      </div>
+    </div>
+    <div>
+      <h2>Call these farmers</h2>
+      <div class="card" id="calls"><span class="empty">No plan yet.</span></div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const S = {demo:null, jobs:[], res:null, extras:[]};
+$("#date").value = new Date(Date.now() + 864e5).toISOString().slice(0,10);
+
+(async () => {
+  const d = await (await fetch("/api/desk/demos")).json();
+  $("#demosel").innerHTML = Object.entries(d).map(([k,v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("");
+})();
+$("#demo").onclick = async () => {
+  S.demo = await (await fetch("/api/desk/demo/" + $("#demosel").value)).json();
+  S.extras = S.demo.messages.map(m => typeof m === "string" ? {text:m} : m);
+  $("#msgs").value = S.extras.map(m => m.text).join("\n");
+  const o = S.demo.operator || {};
+  $("#bat").value = o.battery_sets ?? 3; $("#chg").value = o.chargers ?? 1; $("#cmin").value = o.charge_min ?? 120;
+};
+function operator(){
+  const o = Object.assign({}, (S.demo && S.demo.operator) || {});
+  o.battery_sets = +$("#bat").value; o.chargers = +$("#chg").value; o.charge_min = +$("#cmin").value;
+  return o;
+}
+$("#read").onclick = async () => {
+  const lines = $("#msgs").value.split("\n").map(s => s.trim()).filter(Boolean);
+  const msgs = lines.map(t => S.extras.find(m => m.text === t) || {text:t});
+  $("#read").disabled = true; $("#readnote").textContent = "Nemotron is reading " + msgs.length + " bookings…";
+  const r = await fetch("/api/desk/intake", {method:"POST", headers:{"Content-Type":"application/json"},
+                                             body: JSON.stringify({messages: msgs, operator: operator()})});
+  const j = await r.json(); $("#read").disabled = false;
+  if(!r.ok){ $("#readnote").textContent = j.detail || "failed"; return; }
+  $("#readnote").innerHTML = `read by <span class="tag nv">${esc(j.model)}</span> on Nebius Token Factory · numbers checked against the message`;
+  S.jobs = j.jobs; drawJobs();
+};
+function drawJobs(){
+  $("#jobcount").textContent = S.jobs.length ? `(${S.jobs.length})` : "";
+  $("#jobs").innerHTML = S.jobs.map((j,i) => `<div class="job">
+    <b>${esc(j.farmer || "?")}</b> · ${esc(j.village || "?")} · ${esc(j.crop || "?")}${j.problem ? " · " + esc(j.problem) : ""}
+    <div class="msg">“${esc(j.message)}”</div>
+    <div class="row small" style="margin-top:6px">
+      <label>field ha <input data-i="${i}" data-k="area_ha" value="${j.area_ha ?? ""}"></label>
+      <label>spray ha <input data-i="${i}" data-k="spray_ha" value="${j.spray_ha ?? ""}" placeholder="whole"></label>
+      ${j.spray_ha != null ? '<span class="tag">scanned · zones only</span>' : '<span class="tag">not scanned</span>'}
+    </div>
+    ${(j.confirm||[]).map(c => `<span class="flag">${esc(c)}</span>`).join("")}
+  </div>`).join("") || '<div class="empty">No jobs.</div>';
+  $("#jobs").querySelectorAll("input").forEach(el => el.onchange = () => {
+    const v = el.value.trim(), job = S.jobs[+el.dataset.i], k = el.dataset.k;
+    if (k === "area_ha" && v !== "")      // the operator corrected what Nemotron read: keep it
+      fetch("/api/desk/correct", {method:"POST", headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({job, corrections: {area_ha: +v}})}).catch(() => {});
+    job[k] = v === "" ? null : +v; });
+  $("#plan").disabled = !S.jobs.length;
+}
+$("#plan").onclick = async () => {
+  $("#plan").disabled = true; $("#plan").textContent = "Fetching forecasts for every farm…";
+  const r = await fetch("/api/desk/plan", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({jobs: S.jobs, operator: operator(), date: $("#date").value})});
+  const j = await r.json(); $("#plan").disabled = false; $("#plan").textContent = "Plan my day";
+  if(!r.ok){ alertBox(j.detail || "failed"); return; }
+  S.res = j; drawResult();
+};
+function alertBox(t){ $("#calls").innerHTML = `<span class="bad">${esc(t)}</span>`; }
+
+function drawResult(){
+  const fp = S.res.fieldpilot, td = S.res.baseline, a = fp.metrics, b = td.metrics;
+  const cur = (operator().currency || "");
+  $("#rulename").textContent = S.res.rules.title;
+  $("#kpis").innerHTML = [
+    ["farms fully served in window", `${a.farms_served_in_window} / ${a.farms_booked}`],
+    ["effective ha per battery cycle", a.effective_ha_per_battery_cycle],
+    ["sorties outside spray window", a.out_of_window_sorties],
+    ["mix left over (L)", a.leftover_mix_l]
+  ].map(([k,v]) => `<div class="kpi"><div>${k}</div><b>${v}</b></div>`).join("");
+  const rows = [
+    ["Farms fully served in window", a.farms_served_in_window, b.farms_served_in_window, 1],
+    ["Farms visited", a.farms_served, b.farms_served, 0],
+    ["Effective ha per battery cycle", a.effective_ha_per_battery_cycle, b.effective_ha_per_battery_cycle, 1],
+    ["Sorties outside spray window", a.out_of_window_sorties, b.out_of_window_sorties, -1],
+    ["Hectares sprayed", a.sprayed_ha, b.sprayed_ha, 0],
+    ["…of which not needed", a.sprayed_beyond_need_ha, b.sprayed_beyond_need_ha, -1],
+    ["Battery cycles (sorties)", a.battery_cycles, b.battery_cycles, -1],
+    ["Flight minutes", a.flight_min, b.flight_min, 0],
+    ["Mix left over (L)", a.leftover_mix_l, b.leftover_mix_l, -1],
+    ["Farmers pay " + cur, a.farmer_cost, b.farmer_cost, 0],
+    ["Drive km", a.drive_km, b.drive_km, 0],
+    ["Last farm done", a.finish || "–", b.finish || "–", 0]];
+  $("#cmp").innerHTML = `<tr><th></th><th>FieldPilot plan</th><th>Booking order · whole field · full tanks</th></tr>` +
+    rows.map(([k,x,y,dir]) => {
+      const cls = dir && typeof x === "number" ? ((x-y)*dir > 0 ? "good" : (x-y)*dir < 0 ? "bad" : "") : "";
+      return `<tr><td>${k}</td><td class="${cls}">${x}</td><td>${y}</td></tr>`; }).join("");
+  $("#brief").textContent = S.res.brief.text;
+  $("#briefby").textContent = S.res.brief.by === "template" ? "(template" + (S.res.brief.note ? ": " + S.res.brief.note : "") + ")" : "written by " + S.res.brief.by;
+  const tf = S.res.token_factory;
+  $("#tfcost").textContent = tf ? `Today's AI on Nebius Token Factory: ${tf.calls} Nemotron calls` +
+    (tf.schema_constrained_calls ? ` (${tf.schema_constrained_calls} schema-constrained)` : "") +
+    ` · ${tf.prompt_tokens + tf.completion_tokens} tokens · about $${tf.usd_estimate}` : "";
+  $("#speak").disabled = false; $("#sheet").style.display = "";
+  const calls = (fp.deferred || []).map(d => `<div>📞 <b>${esc(d.farmer || d.job_id)}</b>: ${esc(d.reason)} — next window <b>${esc(d.next_window || "?")}</b></div>`)
+    .concat((S.res.callback || []).map(c => `<div>📞 <b>${esc(c.farmer || c.job_id)}</b>: ${esc((c.why||[]).join("; "))}</div>`));
+  $("#calls").innerHTML = calls.join("") || '<span class="muted">Nobody: every booking fits today.</span>';
+  drawTimeline();
+}
+function drawTimeline(){
+  const fp = S.res.fieldpilot, W = S.res.windows || {}, ids = Object.keys(W);
+  const x0 = 150, x1 = 880, h0 = 5, h1 = 19, rowH = 26, top = 22;
+  const X = (hh, mm=0) => x0 + (hh + mm/60 - h0) / (h1 - h0) * (x1 - x0);
+  const byId = Object.fromEntries(fp.plan.map(r => [r.job_id, r]));
+  const name = id => (S.jobs.find(j => j.job_id === id) || {}).farmer || id;
+  let g = "";
+  for(let h = h0; h < h1; h += 1) g += `<text x="${X(h)+2}" y="14">${String(h).padStart(2,"0")}</text>`;
+  ids.forEach((id, i) => {
+    const y = top + i * rowH;
+    g += `<text x="4" y="${y+16}">${esc(name(id))}</text>`;
+    W[id].forEach(c => g += `<rect x="${X(c.h)}" y="${y+3}" width="${X(c.h+1)-X(c.h)-1}" height="${rowH-8}" fill="${c.ok ? '#16351f' : '#2a1515'}"><title>${c.h}:00 wind ${c.wind} m/s · RH ${c.rh}% · ${c.temp} °C${c.ok ? "" : " · " + (c.why||[]).join("; ")}</title></rect>`);
+    const r = byId[id];
+    let lastX = -99;
+    if(r) r.sorties.forEach(s => { const [hh, mm] = s.start.split(":").map(Number); const x = X(hh,mm);
+      g += `<rect x="${x-2}" y="${y+5}" width="5" height="${rowH-12}" fill="${s.in_window ? '#76b900' : '#ef4f4f'}"><title>${s.start}–${s.end} battery set ${s.battery_set}</title></rect>`;
+      if(x - lastX > 28){ g += `<text x="${x+5}" y="${y+16}" style="font-size:10px">${s.start} B${s.battery_set}</text>`; lastX = x; } });
+  });
+  const H = top + ids.length * rowH + 6;
+  $("#tl").setAttribute("viewBox", `0 0 900 ${H}`); $("#tl").innerHTML = g; $("#tlempty").style.display = "none";
+}
+$("#speak").onclick = () => {
+  if(!("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(S.res.brief.text); u.lang = operator().language || "en"; speechSynthesis.speak(u);
+};
+</script>
+</body>
+</html>

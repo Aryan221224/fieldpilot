@@ -1,0 +1,69 @@
+{
+ "_note": "Demo day: one 40 L spray-drone service near Londrina, Paraná, Brazil. No drone-specific weather law, so the GOOD-PRACTICE pack (wind 1-4.5 m/s, Delta T 2-10) applies. Alqueire = alqueire paulista (24 200 m2), flagged. Pins are approximate town centres. Rate is an example.",
+ "operator": {
+  "name": "Serviço de pulverização · Londrina (demo)",
+  "base": [
+   -23.31,
+   -51.16
+  ],
+  "country": "BR",
+  "utc_offset_h": -3,
+  "rules": "GOOD-PRACTICE",
+  "language": "pt",
+  "currency": "R$",
+  "rate_per_ha": 90,
+  "drone": "agri_40l",
+  "battery_sets": 4,
+  "chargers": 2,
+  "charge_min": 45,
+  "setup_min": 20,
+  "turnaround_min": 2,
+  "road_kmh": 45,
+  "road_factor": 1.3,
+  "day_start": "05:30",
+  "day_end": "19:00",
+  "local_units": {
+   "alqueire": 24200
+  }
+ },
+ "messages": [
+  {
+   "text": "Bom dia, aqui é o João da Fazenda Santa Rita em Cambé. Tenho 12 hectares de soja com ferrugem começando. Dá pra vir amanhã cedo?",
+   "spray_ha": 5.5,
+   "pin": [
+    -23.27,
+    -51.28
+   ]
+  },
+  {
+   "text": "Oi, Maria de Rolândia. 3 alqueires de milho, lagarta-do-cartucho. Preciso essa semana.",
+   "pin": [
+    -23.31,
+    -51.37
+   ]
+  },
+  {
+   "text": "Carlos, Ibiporã. Café, 8 ha, bicho-mineiro. Pode ser quinta.",
+   "spray_ha": 3.0,
+   "pin": [
+    -23.27,
+    -51.05
+   ]
+  },
+  {
+   "text": "Sítio Boa Vista, Tamarana. Soja 20 hectares, percevejo. Quanto antes melhor.",
+   "spray_ha": 9.0,
+   "pin": [
+    -23.72,
+    -51.1
+   ]
+  },
+  {
+   "text": "Ana aqui, Londrina, horta de tomate, meio hectare, requeima.",
+   "pin": [
+    -23.33,
+    -51.2
+   ]
+  }
+ ]
+}

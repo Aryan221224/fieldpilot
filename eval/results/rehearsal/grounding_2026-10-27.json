@@ -1,0 +1,1108 @@
+{
+ "summary": {
+  "n": 18,
+  "today": "2026-10-27",
+  "weather": "SYNTHETIC weather, not for the submission: SYNTHETIC weather -- NOT FOR ADVICE",
+  "ensemble": {
+   "weather_years": 2,
+   "param_draws": 1
+  },
+  "label_waiting_days": 7,
+  "wind_limit_ms": 3.0,
+  "fieldpilot": {
+   "wasted_flights": 0,
+   "unsafe_flights": 0,
+   "flights": 5
+  },
+  "nemotron_alone": {
+   "model": "REHEARSAL-mock/nemotron-3-super-120b-a12b",
+   "answered": 18,
+   "errors": 0,
+   "agreement_with_twin": 0.611,
+   "wasted_flights": 4,
+   "unsafe_flights": 5,
+   "confident_zero_yields": 0,
+   "flights": 13,
+   "mean_regret_inr_ha": 1674,
+   "median_yield_error": 1.79
+  },
+  "mode": {
+   "llm": "REHEARSAL (mock Token Factory, not Nebius)",
+   "vision": "REHEARSAL (mock Token Factory, not Nebius)",
+   "search": "OFFLINE-CACHE",
+   "drone": "sim"
+  }
+ },
+ "rows": [
+  {
+   "scenario": {
+    "sid": "S01",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "late blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 40,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 44502/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.72,
+      "margin_cvar_inr_ha": 133085
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.96,
+      "margin_cvar_inr_ha": 88583
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": true,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.79,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S02",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "early blight",
+    "category": "disease",
+    "severity": 2,
+    "bbch": 35,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 15455/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 12.2,
+      "margin_cvar_inr_ha": 137319
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 11.13,
+      "margin_cvar_inr_ha": 121863
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": true,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.246,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S03",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "early blight",
+    "category": "disease",
+    "severity": 1,
+    "bbch": 31,
+    "confidence": 0.88,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 4225/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 12.47,
+      "margin_cvar_inr_ha": 142254
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 12.11,
+      "margin_cvar_inr_ha": 138029
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": true,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.064,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S04",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "late blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 85,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 14,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Doing nothing has the best worst-case margin.",
+    "options": [
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 0.42,
+      "margin_cvar_inr_ha": 4677
+     },
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 0.42,
+      "margin_cvar_inr_ha": 3577
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": true,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 1100,
+    "yield_error": 58.524,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S05",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "leaf spot",
+    "category": "disease",
+    "severity": 2,
+    "bbch": 89,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 10,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Doing nothing has the best worst-case margin.",
+    "options": [
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 0.15,
+      "margin_cvar_inr_ha": 1648
+     },
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 0.15,
+      "margin_cvar_inr_ha": 548
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": true,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 1100,
+    "yield_error": 165.667,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S06",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "healthy",
+    "category": "none",
+    "severity": 0,
+    "bbch": 40,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Zone is healthy: nothing to treat.",
+    "options": [
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 12.63,
+      "margin_cvar_inr_ha": 141738
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "no_action",
+    "fly_drone": false,
+    "model_said_fly_drone": false,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 0.979,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S07",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "healthy",
+    "category": "none",
+    "severity": 0,
+    "bbch": 75,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Zone is healthy: nothing to treat.",
+    "options": [
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 2.86,
+      "margin_cvar_inr_ha": 30458
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "no_action",
+    "fly_drone": false,
+    "model_said_fly_drone": false,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 7.741,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S08",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "nitrogen deficiency",
+    "category": "nutrient_deficiency",
+    "severity": 2,
+    "bbch": 35,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Manual urea top-dress, 30 kg N/ha raises the worst-20% margin by INR 5920/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "topdress_n",
+      "yield_t_ha_p50": 17.84,
+      "margin_cvar_inr_ha": 192187
+     },
+     {
+      "code": "foliar_n",
+      "yield_t_ha_p50": 17.52,
+      "margin_cvar_inr_ha": 188256
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 17.15,
+      "margin_cvar_inr_ha": 186267
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "topdress_n",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "no_action",
+    "fly_drone": false,
+    "model_said_fly_drone": false,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 5920,
+    "yield_error": 0.458,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S09",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "nitrogen deficiency",
+    "category": "nutrient_deficiency",
+    "severity": 1,
+    "bbch": 45,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Manual urea top-dress, 30 kg N/ha raises the worst-20% margin by INR 3096/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "topdress_n",
+      "yield_t_ha_p50": 17.41,
+      "margin_cvar_inr_ha": 182119
+     },
+     {
+      "code": "foliar_n",
+      "yield_t_ha_p50": 17.2,
+      "margin_cvar_inr_ha": 179952
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 17.1,
+      "margin_cvar_inr_ha": 179023
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "topdress_n",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "no_action",
+    "fly_drone": false,
+    "model_said_fly_drone": false,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 3096,
+    "yield_error": 0.462,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S10",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "water stress",
+    "category": "water_stress",
+    "severity": 2,
+    "bbch": 40,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Irrigate 3 cm raises the worst-20% margin by INR 16382/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "irrigate",
+      "yield_t_ha_p50": 14.09,
+      "margin_cvar_inr_ha": 158120
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 12.63,
+      "margin_cvar_inr_ha": 141738
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "irrigate",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "no_action",
+    "fly_drone": false,
+    "model_said_fly_drone": false,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 16382,
+    "yield_error": 0.979,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S11",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "aphids",
+    "category": "pest",
+    "severity": 1,
+    "bbch": 35,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 4235/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 12.46,
+      "margin_cvar_inr_ha": 139405
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 12.09,
+      "margin_cvar_inr_ha": 135170
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": true,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.068,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S12",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "aphids",
+    "category": "pest",
+    "severity": 3,
+    "bbch": 45,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 43008/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.54,
+      "margin_cvar_inr_ha": 130027
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.82,
+      "margin_cvar_inr_ha": 87019
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": true,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.834,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S13",
+    "crop": "wheat",
+    "variety": "Winter_wheat_101",
+    "label": "yellow rust",
+    "category": "disease",
+    "severity": 2,
+    "bbch": 30,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": []
+   },
+   "twin": {
+    "feasible": false,
+    "notes": [
+     "Winter_wheat_101 needs a 16.8 h optimum day but the longest day at 28.45 deg is 14.5 h: development stalls and WOFOST would report 0 kg/ha with no error. Refusing."
+    ],
+    "reason": "Refused: cultivar cannot complete development here.",
+    "options": []
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": true,
+    "unsafe_flight": false,
+    "confident_zero": false,
+    "regret_inr_ha": null,
+    "agrees_with_twin": false
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S14",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "late blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 40,
+    "confidence": 0.86,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": true,
+    "review_note": "conformal set has 2 labels (early blight, late blight)",
+    "unsafe_reasons": [
+     "zone unverified: conformal set has 2 labels (early blight, late blight)"
+    ]
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 44502/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.72,
+      "margin_cvar_inr_ha": 133085
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.96,
+      "margin_cvar_inr_ha": 88583
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": false,
+    "held_back_by": [
+     "zone unverified: conformal set has 2 labels (early blight, late blight)"
+    ]
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": true,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.79,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S15",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "leaf spot",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 40,
+    "confidence": 0.6,
+    "wind_ms": 1.5,
+    "harvest_in_days": 60,
+    "needs_review": true,
+    "review_note": "model canopy 80% vs pixel canopy 38% disagree",
+    "unsafe_reasons": [
+     "zone unverified: model canopy 80% vs pixel canopy 38% disagree"
+    ]
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 44502/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.72,
+      "margin_cvar_inr_ha": 133085
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.96,
+      "margin_cvar_inr_ha": 88583
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": false,
+    "held_back_by": [
+     "zone unverified: model canopy 80% vs pixel canopy 38% disagree"
+    ]
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": true,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.79,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S16",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "late blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 40,
+    "confidence": 0.9,
+    "wind_ms": 4.2,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": [
+     "wind 4.2 m/s >= 3 m/s"
+    ]
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 44502/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.72,
+      "margin_cvar_inr_ha": 133085
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.96,
+      "margin_cvar_inr_ha": 88583
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": false,
+    "held_back_by": [
+     "wind 4.2 m/s >= 3 m/s"
+    ]
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": true,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.79,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S17",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "early blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 45,
+    "confidence": 0.9,
+    "wind_ms": 3.4,
+    "harvest_in_days": 60,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": [
+     "wind 3.4 m/s >= 3 m/s"
+    ]
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 43008/ha and wins in 100% of simulated seasons.",
+    "options": [
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 11.54,
+      "margin_cvar_inr_ha": 130027
+     },
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 8.82,
+      "margin_cvar_inr_ha": 87019
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "spot_spray",
+    "fly": false,
+    "held_back_by": [
+     "wind 3.4 m/s >= 3 m/s"
+    ]
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": false,
+    "unsafe_flight": true,
+    "confident_zero": false,
+    "regret_inr_ha": 0,
+    "yield_error": 1.834,
+    "agrees_with_twin": true
+   }
+  },
+  {
+   "scenario": {
+    "sid": "S18",
+    "crop": "potato",
+    "variety": "Potato_701",
+    "label": "late blight",
+    "category": "disease",
+    "severity": 3,
+    "bbch": 80,
+    "confidence": 0.9,
+    "wind_ms": 1.5,
+    "harvest_in_days": 5,
+    "needs_review": false,
+    "review_note": "",
+    "unsafe_reasons": [
+     "harvest in 5 d < label waiting period 7 d"
+    ]
+   },
+   "twin": {
+    "feasible": true,
+    "notes": [],
+    "reason": "Doing nothing has the best worst-case margin.",
+    "options": [
+     {
+      "code": "no_action",
+      "yield_t_ha_p50": 1.09,
+      "margin_cvar_inr_ha": 12833
+     },
+     {
+      "code": "spot_spray",
+      "yield_t_ha_p50": 1.1,
+      "margin_cvar_inr_ha": 11978
+     }
+    ]
+   },
+   "fieldpilot": {
+    "recommended": "no_action",
+    "fly": false,
+    "held_back_by": []
+   },
+   "fieldpilot_score": {
+    "wasted_flight": false,
+    "unsafe_flight": false
+   },
+   "nemotron_alone": {
+    "action": "spot_spray",
+    "fly_drone": true,
+    "model_said_fly_drone": true,
+    "yield_t_ha": 25.0,
+    "yield_confidence": 0.5,
+    "rationale": "rehearsal stand-in: act on any visible finding"
+   },
+   "score": {
+    "wasted_flight": true,
+    "unsafe_flight": true,
+    "confident_zero": false,
+    "regret_inr_ha": 855,
+    "yield_error": 21.936,
+    "agrees_with_twin": false
+   }
+  }
+ ]
+}

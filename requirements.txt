@@ -1,0 +1,16 @@
+openai>=1.40
+pcse>=6.0,<7
+numpy
+scipy
+pillow
+shapely>=2
+fastapi
+uvicorn
+python-multipart
+httpx
+pymavlink
+pyserial
+tavily-python
+pyyaml
+pytest
+matplotlib

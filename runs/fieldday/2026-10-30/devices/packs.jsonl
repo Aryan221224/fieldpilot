@@ -1,0 +1,80 @@
+{"pack_id": "1", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "2", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "1", "state": "flying", "t": 1793321264.471191, "note": "J-01 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793321632.871191, "note": "after J-01 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793324480.143264, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793324747.810691, "note": "J-07 sortie 1"}
+{"pack_id": "2", "state": "charging", "t": 1793325162.810691, "note": "after J-07 sortie 1"}
+{"pack_id": "2", "state": "charged", "t": 1793327935.156035, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793325396.955153, "note": "J-07 sortie 2"}
+{"pack_id": "1", "state": "charging", "t": 1793327935.156035, "note": "after J-07 sortie 2"}
+{"pack_id": "1", "state": "charged", "t": 1793330389.114535, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793327935.156035, "note": "J-07 sortie 3"}
+{"pack_id": "2", "state": "charging", "t": 1793330389.114535, "note": "after J-07 sortie 3"}
+{"pack_id": "2", "state": "charged", "t": 1793333232.296418, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793333456.247474, "note": "J-04 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793333909.047474, "note": "after J-04 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793336884.241565, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793334050.82244, "note": "J-04 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793336884.241565, "note": "after J-04 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793339858.424091, "note": ""}
+{"pack_id": "1", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "2", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "1", "state": "flying", "t": 1793321264.471191, "note": "J-01 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793321632.871191, "note": "after J-01 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793324480.143264, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793324747.810691, "note": "J-07 sortie 1"}
+{"pack_id": "2", "state": "charging", "t": 1793325162.810691, "note": "after J-07 sortie 1"}
+{"pack_id": "2", "state": "charged", "t": 1793327935.156035, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793325396.955153, "note": "J-07 sortie 2"}
+{"pack_id": "1", "state": "charging", "t": 1793327935.156035, "note": "after J-07 sortie 2"}
+{"pack_id": "1", "state": "charged", "t": 1793330389.114535, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793327935.156035, "note": "J-07 sortie 3"}
+{"pack_id": "2", "state": "charging", "t": 1793330389.114535, "note": "after J-07 sortie 3"}
+{"pack_id": "2", "state": "charged", "t": 1793333232.296418, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793333456.247474, "note": "J-04 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793333909.047474, "note": "after J-04 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793336884.241565, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793334050.82244, "note": "J-04 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793336884.241565, "note": "after J-04 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793339858.424091, "note": ""}
+{"pack_id": "1", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "2", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "1", "state": "flying", "t": 1793321264.471191, "note": "J-01 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793321632.871191, "note": "after J-01 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793324480.143264, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793324747.810691, "note": "J-07 sortie 1"}
+{"pack_id": "2", "state": "charging", "t": 1793325162.810691, "note": "after J-07 sortie 1"}
+{"pack_id": "2", "state": "charged", "t": 1793327935.156035, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793325396.955153, "note": "J-07 sortie 2"}
+{"pack_id": "1", "state": "charging", "t": 1793327935.156035, "note": "after J-07 sortie 2"}
+{"pack_id": "1", "state": "charged", "t": 1793330389.114535, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793327935.156035, "note": "J-07 sortie 3"}
+{"pack_id": "2", "state": "charging", "t": 1793330389.114535, "note": "after J-07 sortie 3"}
+{"pack_id": "2", "state": "charged", "t": 1793333232.296418, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793333456.247474, "note": "J-04 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793333909.047474, "note": "after J-04 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793336884.241565, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793334050.82244, "note": "J-04 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793336884.241565, "note": "after J-04 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793339858.424091, "note": ""}
+{"pack_id": "1", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "2", "state": "charged", "t": 1793316600.0, "note": "night charge"}
+{"pack_id": "1", "state": "flying", "t": 1793321264.471191, "note": "J-01 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793321632.871191, "note": "after J-01 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793324480.143264, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793324747.810691, "note": "J-07 sortie 1"}
+{"pack_id": "2", "state": "charging", "t": 1793325162.810691, "note": "after J-07 sortie 1"}
+{"pack_id": "2", "state": "charged", "t": 1793327935.156035, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793325396.955153, "note": "J-07 sortie 2"}
+{"pack_id": "1", "state": "charging", "t": 1793327935.156035, "note": "after J-07 sortie 2"}
+{"pack_id": "1", "state": "charged", "t": 1793330389.114535, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793327935.156035, "note": "J-07 sortie 3"}
+{"pack_id": "2", "state": "charging", "t": 1793330389.114535, "note": "after J-07 sortie 3"}
+{"pack_id": "2", "state": "charged", "t": 1793333232.296418, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793333456.247474, "note": "J-04 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793333909.047474, "note": "after J-04 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793336884.241565, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793334050.82244, "note": "J-04 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793336884.241565, "note": "after J-04 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793339858.424091, "note": ""}

@@ -1,0 +1,1577 @@
+{
+ "run_id": "R-085646-2ec1",
+ "created_utc": "2026-10-29T08:56:46+00:00",
+ "mode": {
+  "llm": "nebius-token-factory",
+  "vision": "nebius-token-factory",
+  "search": "tavily",
+  "drone": "sim"
+ },
+ "models": {
+  "agent": "nvidia/nemotron-3-super-120b-a12b",
+  "vision": "nvidia/Nemotron-3.5-Super-VL"
+ },
+ "field": {
+  "name": "Bennett demo plot (REPLACE corners with your real plot)",
+  "geofence": [
+   [
+    28.449778134777272,
+    77.58363826386604
+   ],
+   [
+    28.449778134777272,
+    77.58441475713873
+   ],
+   [
+    28.45028119133638,
+    77.58441475713873
+   ],
+   [
+    28.45028119133638,
+    77.58363826386604
+   ]
+  ],
+  "home": [
+   28.449805084235795,
+   77.58366891491627
+  ],
+  "zones": [
+   {
+    "zone_id": "A1",
+    "polygon": [
+     [
+      28.44985,
+      77.58372
+     ],
+     [
+      28.44985,
+      77.58392434033492
+     ],
+     [
+      28.450029663056824,
+      77.58392434033492
+     ],
+     [
+      28.450029663056824,
+      77.58372
+     ]
+    ]
+   },
+   {
+    "zone_id": "A2",
+    "polygon": [
+     [
+      28.44985,
+      77.58392434033492
+     ],
+     [
+      28.44985,
+      77.58412868066983
+     ],
+     [
+      28.450029663056824,
+      77.58412868066983
+     ],
+     [
+      28.450029663056824,
+      77.58392434033492
+     ]
+    ]
+   },
+   {
+    "zone_id": "A3",
+    "polygon": [
+     [
+      28.44985,
+      77.58412868066983
+     ],
+     [
+      28.44985,
+      77.58433302100475
+     ],
+     [
+      28.450029663056824,
+      77.58433302100475
+     ],
+     [
+      28.450029663056824,
+      77.58412868066983
+     ]
+    ]
+   },
+   {
+    "zone_id": "B1",
+    "polygon": [
+     [
+      28.450029663056824,
+      77.58372
+     ],
+     [
+      28.450029663056824,
+      77.58392434033492
+     ],
+     [
+      28.45020932611365,
+      77.58392434033492
+     ],
+     [
+      28.45020932611365,
+      77.58372
+     ]
+    ]
+   },
+   {
+    "zone_id": "B2",
+    "polygon": [
+     [
+      28.450029663056824,
+      77.58392434033492
+     ],
+     [
+      28.450029663056824,
+      77.58412868066983
+     ],
+     [
+      28.45020932611365,
+      77.58412868066983
+     ],
+     [
+      28.45020932611365,
+      77.58392434033492
+     ]
+    ]
+   },
+   {
+    "zone_id": "B3",
+    "polygon": [
+     [
+      28.450029663056824,
+      77.58412868066983
+     ],
+     [
+      28.450029663056824,
+      77.58433302100475
+     ],
+     [
+      28.45020932611365,
+      77.58433302100475
+     ],
+     [
+      28.45020932611365,
+      77.58412868066983
+     ]
+    ]
+   }
+  ],
+  "crop": "potato",
+  "variety": "Potato_701",
+  "sowing_date": "2026-10-20",
+  "max_alt_m": 12.0,
+  "min_alt_m": 2.0,
+  "treat_alt_m": 3.0,
+  "notes": "Placeholder coordinates near Bennett University, Greater Noida, sized for the T1 10 L quad (60 x 40 m, six 20 x 20 m zones, 4 m swath). Walk the real plot corners with a phone GPS and replace sw_corner.",
+  "area_m2": 4256.0,
+  "compliance": {
+   "_note": "Operator paperwork the SOP checks read. Fill in the real values; anything left null is reported as unverified and needs a written override at Approve.",
+   "product": "Mancozeb 75% WP",
+   "pest": "late blight",
+   "dose_per_ha": 1000,
+   "notice_sent_utc": null,
+   "pilot_dgca": null,
+   "buffer_m": null
+  }
+ },
+ "observations": {
+  "A1": {
+   "zone_id": "A1",
+   "n_images": 2,
+   "crop_detected": "unknown",
+   "crop_confidence": 0.1,
+   "bbch": -1,
+   "bbch_confidence": 0.1,
+   "canopy_cover_pct": 45.0,
+   "canopy_cover_exg_pct": 38.0,
+   "lesion_index_pct": 0.2,
+   "findings": [
+    {
+     "category": "none",
+     "label": "healthy",
+     "severity": 0,
+     "confidence": 0.5,
+     "evidence": "green foliage with no visible lesions, discoloration, or pests"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Images show green leafy vegetation on bare soil but lack detail to verify potato or assign a BBCH stage.",
+   "primary": {
+    "category": "none",
+    "label": "healthy",
+    "severity": 0,
+    "confidence": 0.5,
+    "evidence": "green foliage with no visible lesions, discoloration, or pests"
+   }
+  },
+  "A2": {
+   "zone_id": "A2",
+   "n_images": 2,
+   "crop_detected": "potato",
+   "crop_confidence": 0.7,
+   "bbch": 16,
+   "bbch_confidence": 0.6,
+   "canopy_cover_pct": 35.0,
+   "canopy_cover_exg_pct": 39.5,
+   "lesion_index_pct": 6.8,
+   "findings": [
+    {
+     "category": "disease",
+     "label": "early blight",
+     "severity": 2,
+     "confidence": 0.65,
+     "evidence": "numerous small brown circular spots scattered across green leaf surfaces"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Low-growing green plants with brown leaf spots consistent with early potato growth and possible early blight; exact species and pathogen cannot be confirmed from these images alone.",
+   "primary": {
+    "category": "disease",
+    "label": "early blight",
+    "severity": 2,
+    "confidence": 0.65,
+    "evidence": "numerous small brown circular spots scattered across green leaf surfaces"
+   }
+  },
+  "A3": {
+   "zone_id": "A3",
+   "n_images": 2,
+   "crop_detected": "potato",
+   "crop_confidence": 0.6,
+   "bbch": 12,
+   "bbch_confidence": 0.5,
+   "canopy_cover_pct": 25.0,
+   "canopy_cover_exg_pct": 36.0,
+   "lesion_index_pct": 0.2,
+   "findings": [
+    {
+     "category": "none",
+     "label": "healthy",
+     "severity": 0,
+     "confidence": 0.7,
+     "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pest damage"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Early-stage potato plants with low canopy cover and no visible abnormalities.",
+   "primary": {
+    "category": "none",
+    "label": "healthy",
+    "severity": 0,
+    "confidence": 0.7,
+    "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pest damage"
+   }
+  },
+  "B1": {
+   "zone_id": "B1",
+   "n_images": 2,
+   "crop_detected": "potato",
+   "crop_confidence": 0.7,
+   "bbch": 14,
+   "bbch_confidence": 0.6,
+   "canopy_cover_pct": 25.0,
+   "canopy_cover_exg_pct": 33.8,
+   "lesion_index_pct": 1.9,
+   "findings": [
+    {
+     "category": "none",
+     "label": "healthy",
+     "severity": 0,
+     "confidence": 0.8,
+     "evidence": "green leaves with no visible lesions, spots, or discoloration"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Small potato seedlings with sparse canopy and brown soil visible between plants.",
+   "primary": {
+    "category": "none",
+    "label": "healthy",
+    "severity": 0,
+    "confidence": 0.8,
+    "evidence": "green leaves with no visible lesions, spots, or discoloration"
+   }
+  },
+  "B2": {
+   "zone_id": "B2",
+   "n_images": 2,
+   "crop_detected": "potato",
+   "crop_confidence": 0.7,
+   "bbch": 16,
+   "bbch_confidence": 0.5,
+   "canopy_cover_pct": 45.0,
+   "canopy_cover_exg_pct": 37.6,
+   "lesion_index_pct": 7.1,
+   "findings": [
+    {
+     "category": "disease",
+     "label": "early blight",
+     "severity": 2,
+     "confidence": 0.6,
+     "evidence": "numerous small brown circular spots scattered across green leaf surfaces"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Low-growing green plants with brown leaf spots consistent with potato early blight; exact species and stage cannot be confirmed from these views alone.",
+   "primary": {
+    "category": "disease",
+    "label": "early blight",
+    "severity": 2,
+    "confidence": 0.6,
+    "evidence": "numerous small brown circular spots scattered across green leaf surfaces"
+   }
+  },
+  "B3": {
+   "zone_id": "B3",
+   "n_images": 2,
+   "crop_detected": "potato",
+   "crop_confidence": 0.6,
+   "bbch": 30,
+   "bbch_confidence": 0.5,
+   "canopy_cover_pct": 45.0,
+   "canopy_cover_exg_pct": 44.0,
+   "lesion_index_pct": 0.1,
+   "findings": [
+    {
+     "category": "none",
+     "label": "healthy",
+     "severity": 0,
+     "confidence": 0.7,
+     "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pests"
+    }
+   ],
+   "image_quality": {
+    "usable": true,
+    "issues": []
+   },
+   "prediction_set": [],
+   "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+   "needs_review": true,
+   "review_reasons": [
+    "conformal set has 0 labels (empty); a human must pick"
+   ],
+   "source": "nvidia/Nemotron-3.5-Super-VL",
+   "reasoning": "",
+   "notes": "Close-range photos show green potato-like foliage covering roughly half the ground, but leaf detail is too coarse to confirm species or stage precisely.",
+   "primary": {
+    "category": "none",
+    "label": "healthy",
+    "severity": 0,
+    "confidence": 0.7,
+    "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pests"
+   }
+  }
+ },
+ "evals": {
+  "A1": {
+   "zone_id": "A1",
+   "category": "none",
+   "severity": 0,
+   "emergence": "2026-10-26",
+   "dvs_now": 0.35,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.3,
+     "yield_t_ha_p50": 20.14,
+     "yield_t_ha_p90": 31.03,
+     "margin_mean_inr_ha": 268635,
+     "margin_cvar_inr_ha": 177664,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "no_action",
+   "decision_reason": "Zone is healthy: nothing to treat.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.0,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-01-30"
+  },
+  "A2": {
+   "zone_id": "A2",
+   "category": "disease",
+   "severity": 2,
+   "emergence": "2026-10-27",
+   "dvs_now": 0.18,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "spot_spray",
+     "label": "Drone spot-spray, protectant fungicide",
+     "drone": true,
+     "cost_inr_ha": 1100.0,
+     "yield_t_ha_p10": 15.68,
+     "yield_t_ha_p50": 20.58,
+     "yield_t_ha_p90": 30.49,
+     "margin_mean_inr_ha": 264634,
+     "margin_cvar_inr_ha": 181135,
+     "gain_vs_no_action_cvar": 2365,
+     "p_better_than_no_action": 1.0
+    },
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.36,
+     "yield_t_ha_p50": 19.27,
+     "yield_t_ha_p90": 27.04,
+     "margin_mean_inr_ha": 243745,
+     "margin_cvar_inr_ha": 178770,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "spot_spray",
+   "decision_reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 2365/ha and wins in 100% of simulated seasons.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.01,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-02-01"
+  },
+  "A3": {
+   "zone_id": "A3",
+   "category": "none",
+   "severity": 0,
+   "emergence": "2026-10-28",
+   "dvs_now": 0.09,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.37,
+     "yield_t_ha_p50": 20.67,
+     "yield_t_ha_p90": 33.58,
+     "margin_mean_inr_ha": 282080,
+     "margin_cvar_inr_ha": 178405,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "no_action",
+   "decision_reason": "Zone is healthy: nothing to treat.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.0,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-02-02"
+  },
+  "B1": {
+   "zone_id": "B1",
+   "category": "none",
+   "severity": 0,
+   "emergence": "2026-10-28",
+   "dvs_now": 0.14,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.37,
+     "yield_t_ha_p50": 20.67,
+     "yield_t_ha_p90": 33.58,
+     "margin_mean_inr_ha": 282080,
+     "margin_cvar_inr_ha": 178405,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "no_action",
+   "decision_reason": "Zone is healthy: nothing to treat.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.0,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-02-02"
+  },
+  "B2": {
+   "zone_id": "B2",
+   "category": "disease",
+   "severity": 2,
+   "emergence": "2026-10-27",
+   "dvs_now": 0.18,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "spot_spray",
+     "label": "Drone spot-spray, protectant fungicide",
+     "drone": true,
+     "cost_inr_ha": 1100.0,
+     "yield_t_ha_p10": 15.68,
+     "yield_t_ha_p50": 20.58,
+     "yield_t_ha_p90": 30.49,
+     "margin_mean_inr_ha": 264634,
+     "margin_cvar_inr_ha": 181135,
+     "gain_vs_no_action_cvar": 2365,
+     "p_better_than_no_action": 1.0
+    },
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.36,
+     "yield_t_ha_p50": 19.27,
+     "yield_t_ha_p90": 27.04,
+     "margin_mean_inr_ha": 243745,
+     "margin_cvar_inr_ha": 178770,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "spot_spray",
+   "decision_reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 2365/ha and wins in 100% of simulated seasons.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.01,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-02-01"
+  },
+  "B3": {
+   "zone_id": "B3",
+   "category": "none",
+   "severity": 0,
+   "emergence": "2026-10-26",
+   "dvs_now": 0.35,
+   "feasible": true,
+   "feasibility_notes": [],
+   "options": [
+    {
+     "code": "no_action",
+     "label": "No action (re-scout in 7 days)",
+     "drone": false,
+     "cost_inr_ha": 0.0,
+     "yield_t_ha_p10": 15.3,
+     "yield_t_ha_p50": 20.14,
+     "yield_t_ha_p90": 31.03,
+     "margin_mean_inr_ha": 268635,
+     "margin_cvar_inr_ha": 177664,
+     "gain_vs_no_action_cvar": 0,
+     "p_better_than_no_action": null
+    }
+   ],
+   "recommended": "no_action",
+   "decision_reason": "Zone is healthy: nothing to treat.",
+   "weather_source": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)",
+   "assumptions": {
+    "price_inr_per_kg_fresh": 12.0,
+    "dry_matter_fraction": 0.21,
+    "alpha": 0.8,
+    "ensemble": 15,
+    "damage_rate_per_day_median": 0.0,
+    "min_gain_inr_ha": 500.0,
+    "min_p_better": 0.6,
+    "engine": "Wofost72_WLP_CWB",
+    "initial_soil_n_kg_ha": 60.0
+   },
+   "maturity": "2027-01-30"
+  }
+ },
+ "plans": {
+  "P-A1-no_action": {
+   "plan_id": "P-A1-no_action",
+   "zone_id": "A1",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.3,
+   "yield_t_ha_p50": 20.14,
+   "yield_t_ha_p90": 31.03,
+   "margin_mean_inr_ha": 268635,
+   "margin_cvar_inr_ha": 177664,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": true
+  },
+  "P-A2-spot_spray": {
+   "plan_id": "P-A2-spot_spray",
+   "zone_id": "A2",
+   "code": "spot_spray",
+   "label": "Drone spot-spray, protectant fungicide",
+   "drone": true,
+   "cost_inr_ha": 1100.0,
+   "yield_t_ha_p10": 15.68,
+   "yield_t_ha_p50": 20.58,
+   "yield_t_ha_p90": 30.49,
+   "margin_mean_inr_ha": 264634,
+   "margin_cvar_inr_ha": 181135,
+   "gain_vs_no_action_cvar": 2365,
+   "p_better_than_no_action": 1.0,
+   "recommended": true
+  },
+  "P-A2-no_action": {
+   "plan_id": "P-A2-no_action",
+   "zone_id": "A2",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.36,
+   "yield_t_ha_p50": 19.27,
+   "yield_t_ha_p90": 27.04,
+   "margin_mean_inr_ha": 243745,
+   "margin_cvar_inr_ha": 178770,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": false
+  },
+  "P-A3-no_action": {
+   "plan_id": "P-A3-no_action",
+   "zone_id": "A3",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.37,
+   "yield_t_ha_p50": 20.67,
+   "yield_t_ha_p90": 33.58,
+   "margin_mean_inr_ha": 282080,
+   "margin_cvar_inr_ha": 178405,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": true
+  },
+  "P-B1-no_action": {
+   "plan_id": "P-B1-no_action",
+   "zone_id": "B1",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.37,
+   "yield_t_ha_p50": 20.67,
+   "yield_t_ha_p90": 33.58,
+   "margin_mean_inr_ha": 282080,
+   "margin_cvar_inr_ha": 178405,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": true
+  },
+  "P-B2-spot_spray": {
+   "plan_id": "P-B2-spot_spray",
+   "zone_id": "B2",
+   "code": "spot_spray",
+   "label": "Drone spot-spray, protectant fungicide",
+   "drone": true,
+   "cost_inr_ha": 1100.0,
+   "yield_t_ha_p10": 15.68,
+   "yield_t_ha_p50": 20.58,
+   "yield_t_ha_p90": 30.49,
+   "margin_mean_inr_ha": 264634,
+   "margin_cvar_inr_ha": 181135,
+   "gain_vs_no_action_cvar": 2365,
+   "p_better_than_no_action": 1.0,
+   "recommended": true
+  },
+  "P-B2-no_action": {
+   "plan_id": "P-B2-no_action",
+   "zone_id": "B2",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.36,
+   "yield_t_ha_p50": 19.27,
+   "yield_t_ha_p90": 27.04,
+   "margin_mean_inr_ha": 243745,
+   "margin_cvar_inr_ha": 178770,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": false
+  },
+  "P-B3-no_action": {
+   "plan_id": "P-B3-no_action",
+   "zone_id": "B3",
+   "code": "no_action",
+   "label": "No action (re-scout in 7 days)",
+   "drone": false,
+   "cost_inr_ha": 0.0,
+   "yield_t_ha_p10": 15.3,
+   "yield_t_ha_p50": 20.14,
+   "yield_t_ha_p90": 31.03,
+   "margin_mean_inr_ha": 268635,
+   "margin_cvar_inr_ha": 177664,
+   "gain_vs_no_action_cvar": 0,
+   "p_better_than_no_action": null,
+   "recommended": true
+  }
+ },
+ "flight": {
+  "weather": {
+   "source": "open-meteo forecast",
+   "go": false,
+   "reasons": [
+    "59% chance of rain within 2 h (wash-off)"
+   ],
+   "now": {
+    "wind_ms": 2.4,
+    "gust_ms": 6.5,
+    "rain_prob_2h": 59.0,
+    "temp_c": 28.4
+   },
+   "next_window_utc": "2026-10-29T08:00",
+   "limits": {
+    "wind_ms": 5.0,
+    "gust_ms": 7.0,
+    "rain_prob_2h": 40,
+    "temp_c": 35.0
+   }
+  },
+  "preflight": {
+   "ok": true,
+   "issues": [],
+   "battery_pct": 96.0,
+   "gps_fix": 3,
+   "backend": "sim"
+  }
+ },
+ "advisories": [
+  {
+   "source": "tavily",
+   "query": "early blight potato India management advisory",
+   "answer": "To manage early blight in potato crops in India, sources recommend using fungicides, particularly systemic fungicides that inhibit pathogen growth after infection. Organic growers are limited to protectant fungicides like copper-based fungicides and Bacillus subtilis biofungicides. Cultural practices such as planting resistant varieties, crop rotation with non-host crops, balanced nitrogen fertilization, and avoiding excessive irrigation are also advised. Fungicide applications should be timed based on disease risk, with early and frequent applications in high-risk regions and less frequent applications in lower-risk areas. Good resistance management strategies include rotating fungicides with differing modes of action and using multisite fungicides.",
+   "results": [
+    {
+     "title": "Cost effective management of early blight disease of potato (Solanum tuberosum) caused by Alternaria solani | The Indian Journal of Agricult",
+     "url": "https://epubs.icar.org.in/index.php/IJAgS/article/view/123003",
+     "content": "Uttam B, Pal S, Mondal B and Singh R K. 2020. Management of early blight of potato through fungicides under field and laboratory conditions. European Journal of Biotechnology and Bioscience 8(2): 31–34.\n\nVincent J M.1947. Distortion of fungal hyphae in the presence of certain inhibitors. Nature 29: 389–91.\n\nWheeler B E J. 1969. An Introduction to Plant Diseases. John Wiley and Sons. Ltd. London.\n\nYadav V K, Kumar V and Mani A. 2018. Evaluation of fungicides, bio-control agents and plant extracts against early blight of potato caused by Alternaria solani. International Journal of Chemical Studi",
+     "score": 0.745
+    },
+    {
+     "title": "How To Manage Early Blight in Your Potato Crops - Growing Produce",
+     "url": "https://www.growingproduce.com/crop-protection/disease-control/how-to-manage-early-blight-in-your-potato-crops",
+     "content": "Organic potato growers are limited to protectant fungicides, including copper-based fungicides and Bacillus subtilis biofungicides, for early blight management. When these are the only options, starting early and repeating at shorter intervals is generally advised.\n\nSystemic fungicides are absorbed into plant tissues and can inhibit pathogen growth after infection. They are most effective when applied within hours or a few days of infection. Depending on the product, the systemics used for early blight management will either move across the leaf (translaminar movement) or upward in the plant’s",
+     "score": 0.685
+    },
+    {
+     "title": "Early Blight of Potato | NDSU Agriculture",
+     "url": "https://www.ndsu.edu/agriculture/extension/publications/early-blight-potato",
+     "content": "Most commercially acceptable potato cultivars are susceptible to early blight; therefore, foliar fungicide application is the primary means for managing early blight.\n Fungicide selection and rotation should be approached with the goals of obtaining effective disease management and reducing the risk of the early blight pathogen developing fungicide insensitivity.\n Practice good resistance management strategies by 1) rotating and combining (tank-mix or prepackaged) fungicides with differing modes of action and 2) including multisite (group M) fungicides.\n Mancozeb and chlorothalonil are the mos",
+     "score": 0.683
+    },
+    {
+     "title": "management of early blight of potato through selected ...",
+     "url": "https://saulibrary.edu.bd/daatj/public/uploads/Reg.%20%2010-04129_11.pdf",
+     "content": "potatoes, tomatoes, peppers, and eggplants are grown. The disease can damage both potato foliage and tubers and can causes yield losses of 5-50%. Early blight is a poly cyclic disease that can cause more than one disease epidemics within a single cropping season. It is difficult to control because of its capacity to produce huge amounts of secondary inoculum. Since the disease is very important in causing economic losses of yields on potato crop, developing and using effective and appropriate management options is unquestionable. Using good cultural practices and applying chemical fungicides a",
+     "score": 0.682
+    },
+    {
+     "title": "integrated disease management of early blight (alternaria ...",
+     "url": "https://www.researchgate.net/publication/354199655_INTEGRATED_DISEASE_MANAGEMENT_OF_EARLY_BLIGHT_ALTERNARIA_SOLANI_OF_POTATO",
+     "content": "Using good cultural practices and applying chemical fungicides are important in reducing as well as managing of early blight disease of potato.",
+     "score": 0.668
+    }
+   ]
+  }
+ ],
+ "mission": null,
+ "proposal": {
+  "mission_id": null,
+  "mission_ok": null,
+  "headline": "No drone flight recommended; all zones need human review before any action.",
+  "rationale": "Inspection found early blight in zones A2 and B2 (severity 2, confidence 0.65 and 0.6) while other zones appeared healthy. Simulation showed that a drone spot‑spray of protectant fungicide would raise the worst‑20% margin by INR 2365/ha and be better than no action in 100% of simulated seasons for those zones. However every zone is flagged for human review because the vision model’s conformal set is empty (uncalibrated, p>=0.85 gate), so the drone cannot treat any zone until a human verifies the findings. Therefore no flight is proposed at this time.",
+  "rationale_hi": "जाँच में जोन A2 और B2 में शुरुआती ब्लाइट (गंभीरता 2, विश्वास 0.65 और 0.6) पाया गया, जबकि अन्य जोन स्वस्थ दिखे। सिमुलेशन से पता चला कि ड्रोन स्पॉट‑स्प्रे से सुरक्षात्मक फफूंदनाशक लगाने पर सबसे खराब 20% मार्जिन 2365 INR/ha बढ़ेगा और कोई कार्रवाई न करने की तुलना में 100% मौसमों में बेहतर होगा। लेकिन सभी जोन मानवीय समीक्षा के लिए चिह्नित हैं क्योंकि दृष्टि मॉडल का conformal set खाली है (uncalibrated, p>=0.85 गेट), इसलिए मानव पुष्टि होने तक ड्रोन किसी जोन का इलाज नहीं कर सकता। इस कारण अभी कोई उड़ान प्रस्ताव नहीं की जाती।",
+  "zones_for_human_review": [
+   "A1",
+   "A2",
+   "A3",
+   "B1",
+   "B2",
+   "B3"
+  ],
+  "manual_actions": [
+   "Scout zones A2 and B2 to confirm early blight severity",
+   "If confirmed, apply protectant fungicide manually or via ground equipment following label directions",
+   "Monitor healthy zones for any disease development"
+  ],
+  "sop_verdict": null,
+  "sop_headline": null,
+  "label": null,
+  "status": "advice_only",
+  "submitted_utc": "2026-10-29T08:58:36+00:00"
+ },
+ "label": null,
+ "sop": null,
+ "violations": [
+  {
+   "tool": "submit_proposal",
+   "args": {
+    "mission_id": "None"
+   },
+   "why": "unknown mission_id",
+   "t": "2026-10-29T08:58:27+00:00"
+  },
+  {
+   "tool": "submit_proposal",
+   "args": {
+    "mission_id": "None"
+   },
+   "why": "unknown mission_id",
+   "t": "2026-10-29T08:58:32+00:00"
+  }
+ ],
+ "trace": [
+  {
+   "t": 1793264211.12,
+   "type": "status",
+   "message": "run started",
+   "mode": {
+    "llm": "nebius-token-factory",
+    "vision": "nebius-token-factory",
+    "search": "tavily",
+    "drone": "sim"
+   },
+   "models": {
+    "agent": "nvidia/nemotron-3-super-120b-a12b",
+    "vision": "nvidia/Nemotron-3.5-Super-VL"
+   },
+   "zones": [
+    "A1",
+    "A2",
+    "A3",
+    "B1",
+    "B2",
+    "B3"
+   ]
+  },
+  {
+   "t": 1793264214.57,
+   "type": "thought",
+   "text": "We need to inspect all zones. Then proceed as needed. Let's call inspect_zones without args.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264214.57,
+   "type": "tool_call",
+   "name": "inspect_zones",
+   "arguments": {},
+   "step": 1,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264229.73,
+   "type": "tool_result",
+   "name": "inspect_zones",
+   "ok": true,
+   "seconds": 15.16,
+   "result": {
+    "zones": [
+     {
+      "zone": "A1",
+      "crop": "unknown",
+      "bbch": -1,
+      "canopy_cover_pct": 45.0,
+      "canopy_cover_pixels_pct": 38.0,
+      "finding": "healthy",
+      "category": "none",
+      "severity": 0,
+      "confidence": 0.5,
+      "evidence": "green foliage with no visible lesions, discoloration, or pests",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     },
+     {
+      "zone": "A2",
+      "crop": "potato",
+      "bbch": 16,
+      "canopy_cover_pct": 35.0,
+      "canopy_cover_pixels_pct": 39.5,
+      "finding": "early blight",
+      "category": "disease",
+      "severity": 2,
+      "confidence": 0.65,
+      "evidence": "numerous small brown circular spots scattered across green leaf surfaces",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     },
+     {
+      "zone": "A3",
+      "crop": "potato",
+      "bbch": 12,
+      "canopy_cover_pct": 25.0,
+      "canopy_cover_pixels_pct": 36.0,
+      "finding": "healthy",
+      "category": "none",
+      "severity": 0,
+      "confidence": 0.7,
+      "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pest damage",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     },
+     {
+      "zone": "B1",
+      "crop": "potato",
+      "bbch": 14,
+      "canopy_cover_pct": 25.0,
+      "canopy_cover_pixels_pct": 33.8,
+      "finding": "healthy",
+      "category": "none",
+      "severity": 0,
+      "confidence": 0.8,
+      "evidence": "green leaves with no visible lesions, spots, or discoloration",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     },
+     {
+      "zone": "B2",
+      "crop": "potato",
+      "bbch": 16,
+      "canopy_cover_pct": 45.0,
+      "canopy_cover_pixels_pct": 37.6,
+      "finding": "early blight",
+      "category": "disease",
+      "severity": 2,
+      "confidence": 0.6,
+      "evidence": "numerous small brown circular spots scattered across green leaf surfaces",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     },
+     {
+      "zone": "B3",
+      "crop": "potato",
+      "bbch": 30,
+      "canopy_cover_pct": 45.0,
+      "canopy_cover_pixels_pct": 44.0,
+      "finding": "healthy",
+      "category": "none",
+      "severity": 0,
+      "confidence": 0.7,
+      "evidence": "uniform green foliage with no visible spots, lesions, discoloration, or pests",
+      "needs_human_review": true,
+      "review_reasons": [
+       "conformal set has 0 labels (empty); a human must pick"
+      ],
+      "gate": "UNCALIBRATED: conservative threshold p>=0.85",
+      "source": "nvidia/Nemotron-3.5-Super-VL"
+     }
+    ],
+    "zones_without_photos": []
+   }
+  },
+  {
+   "t": 1793264232.15,
+   "type": "thought",
+   "text": "We need to run simulation for zones not purely healthy? Actually we should simulate all zones maybe. But we need to exclude zones where needs_human_review? All zones have needs_human_review true due to calibration issue. According to rule: zone flagged for human review is never treated. So none can be treated. We'll just note that all zones need human review. No flight. Submit proposal with mission_id null, zones_for_human_review all zones, manual actions like scouting, etc. Need to also possibly search advisories? Since disease found early blight in A2 and B2, but zones need human review, so no treatment. Still we could search advisories for context but not needed for decision. However procedure says if disease or pest found, search_advisories once for the finding + crop + India, to cite current local guidance. Do not let search results change twin's decision. We'll do that anyway.\n\nLet's search for early blight potato India.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264232.15,
+   "type": "tool_call",
+   "name": "search_advisories",
+   "arguments": {
+    "query": "early blight potato India management advisory"
+   },
+   "step": 2,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264241.48,
+   "type": "tool_result",
+   "name": "search_advisories",
+   "ok": true,
+   "seconds": 9.33,
+   "result": {
+    "UNTRUSTED_DATA": true,
+    "source": "tavily",
+    "query": "early blight potato India management advisory",
+    "answer": "To manage early blight in potato crops in India, sources recommend using fungicides, particularly systemic fungicides that inhibit pathogen growth after infection. Organic growers are limited to protectant fungicides like copper-based fungicides and Bacillus subtilis biofungicides. Cultural practices such as planting resistant varieties, crop rotation with non-host crops, balanced nitrogen fertilization, and avoiding excessive irrigation are also advised. Fungicide applications should be timed based on disease risk, with early and frequent applications in high-risk regions and less frequent applications in lower-risk areas. Good resistance management strategies include rotating fungicides with differing modes of action and using multisite fungicides.",
+    "results": [
+     {
+      "title": "Cost effective management of early blight disease of potato (Solanum tuberosum) caused by Alternaria solani | The Indian Journal of Agricult",
+      "url": "https://epubs.icar.org.in/index.php/IJAgS/article/view/123003",
+      "content": "Uttam B, Pal S, Mondal B and Singh R K. 2020. Management of early blight of potato through fungicides under field and laboratory conditions. European Journal of Biotechnology and Bioscience 8(2): 31–34.\n\nVincent J M.1947. Distortion of fungal hyphae in the presence of certain inhibitors. Nature 29: 389–91.\n\nWheeler B E J. 1969. An Introduction to Plant Diseases. John Wiley and Sons. Ltd. London.\n\nYadav V K, Kumar V and Mani A. 2018. Evaluation of fungicides, bio-control agents and plant extracts against early blight of potato caused by Alternaria solani. International Journal of Chemical Studi",
+      "score": 0.745
+     },
+     {
+      "title": "How To Manage Early Blight in Your Potato Crops - Growing Produce",
+      "url": "https://www.growingproduce.com/crop-protection/disease-control/how-to-manage-early-blight-in-your-potato-crops",
+      "content": "Organic potato growers are limited to protectant fungicides, including copper-based fungicides and Bacillus subtilis biofungicides, for early blight management. When these are the only options, starting early and repeating at shorter intervals is generally advised.\n\nSystemic fungicides are absorbed into plant tissues and can inhibit pathogen growth after infection. They are most effective when applied within hours or a few days of infection. Depending on the product, the systemics used for early blight management will either move across the leaf (translaminar movement) or upward in the plant’s",
+      "score": 0.685
+     },
+     {
+      "title": "Early Blight of Potato | NDSU Agriculture",
+      "url": "https://www.ndsu.edu/agriculture/extension/publications/early-blight-potato",
+      "content": "Most commercially acceptable potato cultivars are susceptible to early blight; therefore, foliar fungicide application is the primary means for managing early blight.\n Fungicide selection and rotation should be approached with the goals of obtaining effective disease management and reducing the risk of the early blight pathogen developing fungicide insensitivity.\n Practice good resistance management strategies by 1) rotating and combining (tank-mix or prepackaged) fungicides with differing modes of action and 2) including multisite (group M) fungicides.\n Mancozeb and chlorothalonil are the mos",
+      "score": 0.683
+     },
+     {
+      "title": "management of early blight of potato through selected ...",
+      "url": "https://saulibrary.edu.bd/daatj/public/uploads/Reg.%20%2010-04129_11.pdf",
+      "content": "potatoes, tomatoes, peppers, and eggplants are grown. The disease can damage both potato foliage and tubers and can causes yield losses of 5-50%. Early blight is a poly cyclic disease that can cause more than one disease epidemics within a single cropping season. It is difficult to control because of its capacity to produce huge amounts of secondary inoculum. Since the disease is very important in causing economic losses of yields on potato crop, developing and using effective and appropriate management options is unquestionable. Using good cultural practices and applying chemical fungicides a",
+      "score": 0.682
+     },
+     {
+      "title": "integrated disease management of early blight (alternaria ...",
+      "url": "https://www.researchgate.net/publication/354199655_INTEGRATED_DISEASE_MANAGEMENT_OF_EARLY_BLIGHT_ALTERNARIA_SOLANI_OF_POTATO",
+      "content": "Using good cultural practices and applying chemical fungicides are important in reducing as well as managing of early blight disease of potato.",
+      "score": 0.668
+     }
+    ]
+   }
+  },
+  {
+   "t": 1793264244.59,
+   "type": "thought",
+   "text": "We need to run simulate_zone_options for all zones? Probably just those with findings (A2,B2) maybe others too. Let's simulate for all zones.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264244.59,
+   "type": "tool_call",
+   "name": "simulate_zone_options",
+   "arguments": {
+    "zone_ids": [
+     "A1",
+     "A2",
+     "A3",
+     "B1",
+     "B2",
+     "B3"
+    ]
+   },
+   "step": 3,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264281.92,
+   "type": "tool_result",
+   "name": "simulate_zone_options",
+   "ok": true,
+   "seconds": 37.34,
+   "result": {
+    "zones": [
+     {
+      "zone": "A1",
+      "finding": "healthy",
+      "severity": 0,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-26",
+      "dvs_now": 0.35,
+      "recommended": "no_action",
+      "recommended_plan_id": "P-A1-no_action",
+      "reason": "Zone is healthy: nothing to treat.",
+      "options": [
+       {
+        "plan_id": "P-A1-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 20.14,
+        "margin_cvar_inr_ha": 177664,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     },
+     {
+      "zone": "A2",
+      "finding": "early blight",
+      "severity": 2,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-27",
+      "dvs_now": 0.18,
+      "recommended": "spot_spray",
+      "recommended_plan_id": "P-A2-spot_spray",
+      "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 2365/ha and wins in 100% of simulated seasons.",
+      "options": [
+       {
+        "plan_id": "P-A2-spot_spray",
+        "code": "spot_spray",
+        "label": "Drone spot-spray, protectant fungicide",
+        "drone": true,
+        "yield_t_ha_p50": 20.58,
+        "margin_cvar_inr_ha": 181135,
+        "gain_vs_no_action_cvar": 2365,
+        "p_better_than_no_action": 1.0
+       },
+       {
+        "plan_id": "P-A2-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 19.27,
+        "margin_cvar_inr_ha": 178770,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     },
+     {
+      "zone": "A3",
+      "finding": "healthy",
+      "severity": 0,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-28",
+      "dvs_now": 0.09,
+      "recommended": "no_action",
+      "recommended_plan_id": "P-A3-no_action",
+      "reason": "Zone is healthy: nothing to treat.",
+      "options": [
+       {
+        "plan_id": "P-A3-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 20.67,
+        "margin_cvar_inr_ha": 178405,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     },
+     {
+      "zone": "B1",
+      "finding": "healthy",
+      "severity": 0,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-28",
+      "dvs_now": 0.14,
+      "recommended": "no_action",
+      "recommended_plan_id": "P-B1-no_action",
+      "reason": "Zone is healthy: nothing to treat.",
+      "options": [
+       {
+        "plan_id": "P-B1-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 20.67,
+        "margin_cvar_inr_ha": 178405,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     },
+     {
+      "zone": "B2",
+      "finding": "early blight",
+      "severity": 2,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-27",
+      "dvs_now": 0.18,
+      "recommended": "spot_spray",
+      "recommended_plan_id": "P-B2-spot_spray",
+      "reason": "Drone spot-spray, protectant fungicide raises the worst-20% margin by INR 2365/ha and wins in 100% of simulated seasons.",
+      "options": [
+       {
+        "plan_id": "P-B2-spot_spray",
+        "code": "spot_spray",
+        "label": "Drone spot-spray, protectant fungicide",
+        "drone": true,
+        "yield_t_ha_p50": 20.58,
+        "margin_cvar_inr_ha": 181135,
+        "gain_vs_no_action_cvar": 2365,
+        "p_better_than_no_action": 1.0
+       },
+       {
+        "plan_id": "P-B2-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 19.27,
+        "margin_cvar_inr_ha": 178770,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     },
+     {
+      "zone": "B3",
+      "finding": "healthy",
+      "severity": 0,
+      "feasible": true,
+      "feasibility_notes": [],
+      "effective_emergence": "2026-10-26",
+      "dvs_now": 0.35,
+      "recommended": "no_action",
+      "recommended_plan_id": "P-B3-no_action",
+      "reason": "Zone is healthy: nothing to treat.",
+      "options": [
+       {
+        "plan_id": "P-B3-no_action",
+        "code": "no_action",
+        "label": "No action (re-scout in 7 days)",
+        "drone": false,
+        "yield_t_ha_p50": 20.14,
+        "margin_cvar_inr_ha": 177664,
+        "gain_vs_no_action_cvar": 0,
+        "p_better_than_no_action": null
+       }
+      ],
+      "blocked_for_review": true
+     }
+    ],
+    "assumptions": {
+     "price_inr_per_kg_fresh": 12.0,
+     "dry_matter_fraction": 0.21,
+     "alpha": 0.8,
+     "ensemble": 15,
+     "damage_rate_per_day_median": 0.0,
+     "min_gain_inr_ha": 500.0,
+     "min_p_better": 0.6,
+     "engine": "Wofost72_WLP_CWB",
+     "initial_soil_n_kg_ha": 60.0
+    },
+    "weather": "Open-Meteo ERA5 reanalysis, daily (2020-10-24 to 2026-10-29)"
+   }
+  },
+  {
+   "t": 1793264295.03,
+   "type": "thought",
+   "text": "We need to proceed: we have recommendations for A2 and B2 spot_spray. Need to check flight window, then build treatment mission with plan IDs P-A2-spot_spray and P-B2-spot_spray. Then verify_label (use default operator product). Then check_sop. Finally submit_proposal.\n\nLet's call check_flight_window.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264295.03,
+   "type": "tool_call",
+   "name": "check_flight_window",
+   "arguments": {},
+   "step": 4,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264296.52,
+   "type": "tool_result",
+   "name": "check_flight_window",
+   "ok": true,
+   "seconds": 1.49,
+   "result": {
+    "weather_go": false,
+    "weather_reasons": [
+     "59% chance of rain within 2 h (wash-off)"
+    ],
+    "now": {
+     "wind_ms": 2.4,
+     "gust_ms": 6.5,
+     "rain_prob_2h": 59.0,
+     "temp_c": 28.4
+    },
+    "next_window_utc": "2026-10-29T08:00",
+    "weather_source": "open-meteo forecast",
+    "drone_ready": true,
+    "drone_issues": [],
+    "battery_pct": 96.0
+   }
+  },
+  {
+   "t": 1793264307.62,
+   "type": "thought",
+   "text": "We need to decide about building treatment mission for recommended plans P-A2-spot_spray and P-B2-spot_spray. However all zones blocked_for_review = true due to conformal set empty -> needs human review. According to procedure: zone flagged for human review is never treated. So we cannot treat them despite recommendations. Therefore we should not build mission. We'll just propose no flight. Need to submit proposal with mission_id null, headline, rationale citing tool numbers (we have inspection results, simulation results, maybe advisories? Not needed). Provide zones_for_human_review: all zones (since all need review). Manual actions: scout, possibly apply fungicide manually if needed.\n\nLet's craft rationale: Inspection shows early blight in A2 and B2 with severity 2, confidence ~0.65 and 0.6. Simulation indicates spot spray would increase margin by INR 2365/ha with 100% probability better than no action. However all zones require human review (uncalibrated model) so no drone action advised. Therefore recommend ground scouting and possible manual fungicide spray after verification.\n\nProvide Hindi translation.\n\nNow submit_proposal.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264307.62,
+   "type": "tool_call",
+   "name": "submit_proposal",
+   "arguments": {
+    "mission_id": "None",
+    "headline": "No drone flight recommended; all zones need human review before any action.",
+    "rationale": "Inspection found early blight in zones A2 and B2 (severity 2, confidence 0.65 and 0.6) while other zones appeared healthy. Simulation showed that a drone spot‑spray of protectant fungicide would raise the worst‑20% margin by INR 2365/ha and be better than no action in 100% of simulated seasons for those zones. However every zone is flagged for human review because the vision model’s conformal set is empty (uncalibrated, p>=0.85 gate), so the drone cannot treat any zone until a human verifies the findings. Therefore no flight is proposed at this time.",
+    "rationale_hi": "जाँच में जोन A2 और B2 में शुरुआती ब्लाइट (गंभीरता 2, विश्वास 0.65 और 0.6) पाया गया, जबकि अन्य जोन स्वस्थ दिखे। सिमुलेशन से पता चला कि ड्रोन स्पॉट‑स्प्रे से सुरक्षात्मक फफूंदनाशक लगाने पर सबसे खराब 20% मार्जिन 2365 INR/ha बढ़ेगा और कोई कार्रवाई न करने की तुलना में 100% मौसमों में बेहतर होगा। लेकिन सभी जोन मानवीय समीक्षा के लिए चिह्नित हैं क्योंकि दृष्टि मॉडल का conformal set खाली है (uncalibrated, p>=0.85 गेट), इसलिए मानव पुष्टि होने तक ड्रोन किसी जोन का इलाज नहीं कर सकता। इस कारण अभी कोई उड़ान प्रस्ताव नहीं की जाती।",
+    "zones_for_human_review": [
+     "A1",
+     "A2",
+     "A3",
+     "B1",
+     "B2",
+     "B3"
+    ],
+    "manual_actions": [
+     "Scout zones A2 and B2 to confirm early blight severity",
+     "If confirmed, apply protectant fungicide manually or via ground equipment following label directions",
+     "Monitor healthy zones for any disease development"
+    ]
+   },
+   "step": 5,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264307.62,
+   "type": "tool_result",
+   "name": "submit_proposal",
+   "ok": false,
+   "seconds": 0.0,
+   "result": {
+    "error": "unknown mission_id 'None'; build the mission first or submit with mission_id null"
+   }
+  },
+  {
+   "t": 1793264312.32,
+   "type": "thought",
+   "text": "We need to correct: mission_id should be null (JSON null) not string \"None\". In submit_proposal, mission_id accepts ['string','null']. So we need to pass null JSON value. Let's resend with mission_id: null.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264312.32,
+   "type": "tool_call",
+   "name": "submit_proposal",
+   "arguments": {
+    "mission_id": "None",
+    "headline": "No drone flight recommended; all zones need human review before any action.",
+    "rationale": "Inspection found early blight in zones A2 and B2 (severity 2, confidence 0.65 and 0.6) while other zones appeared healthy. Simulation showed that a drone spot‑spray of protectant fungicide would raise the worst‑20% margin by INR 2365/ha and be better than no action in 100% of simulated seasons for those zones. However every zone is flagged for human review because the vision model’s conformal set is empty (uncalibrated, p>=0.85 gate), so the drone cannot treat any zone until a human verifies the findings. Therefore no flight is proposed at this time.",
+    "rationale_hi": "जाँच में जोन A2 और B2 में शुरुआती ब्लाइट (गंभीरता 2, विश्वास 0.65 और 0.6) पाया गया, जबकि अन्य जोन स्वस्थ दिखे। सिमुलेशन से पता चला कि ड्रोन स्पॉट‑स्प्रे से सुरक्षात्मक फफूंदनाशक लगाने पर सबसे खराब 20% मार्जिन 2365 INR/ha बढ़ेगा और कोई कार्रवाई न करने की तुलना में 100% मौसमों में बेहतर होगा। लेकिन सभी जोन मानवीय समीक्षा के लिए चिह्नित हैं क्योंकि दृष्टि मॉडल का conformal set खाली है (uncalibrated, p>=0.85 गेट), इसलिए मानव पुष्टि होने तक ड्रोन किसी जोन का इलाज नहीं कर सकता। इस कारण अभी कोई उड़ान प्रस्ताव नहीं की जाती।",
+    "zones_for_human_review": [
+     "A1",
+     "A2",
+     "A3",
+     "B1",
+     "B2",
+     "B3"
+    ],
+    "manual_actions": [
+     "Scout zones A2 and B2 to confirm early blight severity",
+     "If confirmed, apply protectant fungicide manually or via ground equipment following label directions",
+     "Monitor healthy zones for any disease development"
+    ]
+   },
+   "step": 6,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264312.32,
+   "type": "tool_result",
+   "name": "submit_proposal",
+   "ok": false,
+   "seconds": 0.0,
+   "result": {
+    "error": "unknown mission_id 'None'; build the mission first or submit with mission_id null"
+   }
+  },
+  {
+   "t": 1793264316.32,
+   "type": "thought",
+   "text": "We need to pass mission_id as JSON null? The type is ['string','null']. Should we send literal null? In previous attempts they sent None string? Actually error says unknown mission_id 'None' meaning they interpreted string \"None\". We need to send JSON null. How to represent? Probably just omit mission_id? But required? Not required. submit_proposal requires headline and rationale; mission_id optional. So we can omit mission_id entirely. Let's try without mission_id.",
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264316.32,
+   "type": "tool_call",
+   "name": "submit_proposal",
+   "arguments": {
+    "headline": "No drone flight recommended; all zones need human review before any action.",
+    "rationale": "Inspection found early blight in zones A2 and B2 (severity 2, confidence 0.65 and 0.6) while other zones appeared healthy. Simulation showed that a drone spot‑spray of protectant fungicide would raise the worst‑20% margin by INR 2365/ha and be better than no action in 100% of simulated seasons for those zones. However every zone is flagged for human review because the vision model’s conformal set is empty (uncalibrated, p>=0.85 gate), so the drone cannot treat any zone until a human verifies the findings. Therefore no flight is proposed at this time.",
+    "rationale_hi": "जाँच में जोन A2 और B2 में शुरुआती ब्लाइट (गंभीरता 2, विश्वास 0.65 और 0.6) पाया गया, जबकि अन्य जोन स्वस्थ दिखे। सिमुलेशन से पता चला कि ड्रोन स्पॉट‑स्प्रे से सुरक्षात्मक फफूंदनाशक लगाने पर सबसे खराब 20% मार्जिन 2365 INR/ha बढ़ेगा और कोई कार्रवाई न करने की तुलना में 100% मौसमों में बेहतर होगा। लेकिन सभी जोन मानवीय समीक्षा के लिए चिह्नित हैं क्योंकि दृष्टि मॉडल का conformal set खाली है (uncalibrated, p>=0.85 गेट), इसलिए मानव पुष्टि होने तक ड्रोन किसी जोन का इलाज नहीं कर सकता। इस कारण अभी कोई उड़ान प्रस्ताव नहीं की जाती।",
+    "zones_for_human_review": [
+     "A1",
+     "A2",
+     "A3",
+     "B1",
+     "B2",
+     "B3"
+    ],
+    "manual_actions": [
+     "Scout zones A2 and B2 to confirm early blight severity",
+     "If confirmed, apply protectant fungicide manually or via ground equipment following label directions",
+     "Monitor healthy zones for any disease development"
+    ]
+   },
+   "step": 7,
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "protocol": "native"
+  },
+  {
+   "t": 1793264316.32,
+   "type": "tool_result",
+   "name": "submit_proposal",
+   "ok": true,
+   "seconds": 0.0,
+   "result": {
+    "accepted": true,
+    "status": "advice_only",
+    "note": "The operator decides. You cannot start the drone."
+   }
+  },
+  {
+   "t": 1793264316.32,
+   "type": "proposal",
+   "proposal": {
+    "mission_id": null,
+    "mission_ok": null,
+    "headline": "No drone flight recommended; all zones need human review before any action.",
+    "rationale": "Inspection found early blight in zones A2 and B2 (severity 2, confidence 0.65 and 0.6) while other zones appeared healthy. Simulation showed that a drone spot‑spray of protectant fungicide would raise the worst‑20% margin by INR 2365/ha and be better than no action in 100% of simulated seasons for those zones. However every zone is flagged for human review because the vision model’s conformal set is empty (uncalibrated, p>=0.85 gate), so the drone cannot treat any zone until a human verifies the findings. Therefore no flight is proposed at this time.",
+    "rationale_hi": "जाँच में जोन A2 और B2 में शुरुआती ब्लाइट (गंभीरता 2, विश्वास 0.65 और 0.6) पाया गया, जबकि अन्य जोन स्वस्थ दिखे। सिमुलेशन से पता चला कि ड्रोन स्पॉट‑स्प्रे से सुरक्षात्मक फफूंदनाशक लगाने पर सबसे खराब 20% मार्जिन 2365 INR/ha बढ़ेगा और कोई कार्रवाई न करने की तुलना में 100% मौसमों में बेहतर होगा। लेकिन सभी जोन मानवीय समीक्षा के लिए चिह्नित हैं क्योंकि दृष्टि मॉडल का conformal set खाली है (uncalibrated, p>=0.85 गेट), इसलिए मानव पुष्टि होने तक ड्रोन किसी जोन का इलाज नहीं कर सकता। इस कारण अभी कोई उड़ान प्रस्ताव नहीं की जाती।",
+    "zones_for_human_review": [
+     "A1",
+     "A2",
+     "A3",
+     "B1",
+     "B2",
+     "B3"
+    ],
+    "manual_actions": [
+     "Scout zones A2 and B2 to confirm early blight severity",
+     "If confirmed, apply protectant fungicide manually or via ground equipment following label directions",
+     "Monitor healthy zones for any disease development"
+    ],
+    "sop_verdict": null,
+    "sop_headline": null,
+    "label": null,
+    "status": "advice_only",
+    "submitted_utc": "2026-10-29T08:58:36+00:00"
+   },
+   "mission": null
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+runs/*
+# the simulated evidence is published: ArduCopter SITL reports and the field day
+!runs/sitl/
+!runs/fieldday/
+# the live operator days and field-agent runs the submission cites
+!runs/day_*.json
+!runs/day_*.html
+!runs/live/
+# ...but not the 10-23 MB dataflash logs and simulator state (rerun `cli sitl` to regenerate)
+runs/sitl/*/sortie_*/logs/
+runs/sitl/*/sortie_*/eeprom.bin
+runs/sitl/*/sortie_*/terrain/
+vendor/
+calibration.json
+*.log
+*.mp4
+.pytest_tmp/
+
+# private planning notes, never published
+internal/
+
+# the Windows app build and local logs
+dist/
+build/
+*.spec
+*_log.txt
+*_stdout.txt
+FieldPilot_log.txt
