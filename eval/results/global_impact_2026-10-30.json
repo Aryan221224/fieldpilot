@@ -1,0 +1,102 @@
+{
+ "inputs": {
+  "china_ha_treatments": 203000000.0,
+  "us_ha_treatments": 6640000.0,
+  "fleet_drones": 600000,
+  "battery_wh": 1566.6,
+  "battery_cycles_rated": 1500,
+  "battery_price_usd": 2799.0,
+  "depth_of_discharge": 0.8,
+  "charger_efficiency": 0.9,
+  "grid_g_co2_per_kwh": 445.0,
+  "realisation": 0.25
+ },
+ "sources": {
+  "china_ha_2025": {
+   "fact": "about 203 million hectare-treatments by agricultural drones in China in 2025 (178 million in 2024)",
+   "source": "CleanTechnica, 20 Sep 2026, https://cleantechnica.com/2026/09/20/china-agricultural-drones-30-times-us/"
+  },
+  "us_ha_2025": {
+   "fact": "about 16.4 million acres = 6.64 million hectare-treatments in the USA in 2025 (American Spray Drone Coalition 2025 Impact Survey)",
+   "source": "CleanTechnica, 20 Sep 2026 (same article)"
+  },
+  "fleet_2025": {
+   "fact": "over 600,000 DJI agricultural drones in use globally at the end of 2025",
+   "source": "DJI Agriculture annual report, 29 Apr 2026, https://www.aap.com.au/aapreleases/cision20260429ae46633/"
+  },
+  "battery": {
+   "fact": "DJI DB1560 (Agras T40/T50): 30,000 mAh, 52.22 V, about 1,567 Wh, up to 1,500 cycles, USD 2,799",
+   "source": "https://www.dronefly.com/products/dji-db1560-intelligent-flight-battery"
+  },
+  "grid_co2": {
+   "fact": "world-average CO2 intensity of electricity generation 445 g/kWh in 2024",
+   "source": "IEA Electricity 2025, https://iea.org/reports/electricity-2025/emissions"
+  },
+  "benchmark": {
+   "fact": "FieldPilot efficiency benchmark, 5 regions x 3 days, 105 bookings, live forecasts, SIMULATED flights",
+   "source": "eval/results/efficiency_2026-10-30.json"
+  }
+ },
+ "central": {
+  "realisation": 0.25,
+  "world_ha_treatments_floor": 209640000.0,
+  "baseline_per_sprayed_ha": {
+   "battery_cycles": 0.8796226980086841,
+   "flight_min": 4.999625692468933,
+   "leftover_mix_l": 1.4238658481808655
+  },
+  "gain_fraction_per_useful_ha": {
+   "battery_cycles": 0.7600025251237674,
+   "flight_min": 0.7695742914936053,
+   "leftover_mix_l": 0.9845048000189114
+  },
+  "today": {
+   "battery_cycles": 184404102.41054052,
+   "cycles_per_drone_per_year": 307.3401706842342,
+   "flight_hours": 17468692.169486452,
+   "leftover_mix_l": 298499236.41263664
+  },
+  "saved_per_year": {
+   "battery_cycles": 35036895.86879815,
+   "battery_packs": 23357.930579198768,
+   "energy_gwh": 48.79004539383039,
+   "co2_tonnes": 21711.570200254526,
+   "battery_wear_usd": 65378847.69117735,
+   "flight_hours": 3360864.0999131068,
+   "wasted_mix_litres": 73468482.76255515
+  },
+  "per_cycle": {
+   "grid_kwh": 1.3925333333333334,
+   "wear_usd": 1.866
+  }
+ },
+ "range": {
+  "0.1": {
+   "battery_cycles": 14014758.347519262,
+   "battery_packs": 9343.172231679508,
+   "energy_gwh": 19.516018157532155,
+   "co2_tonnes": 8684.62808010181,
+   "battery_wear_usd": 26151539.076470945,
+   "flight_hours": 1344345.6399652427,
+   "wasted_mix_litres": 29387393.10502206
+  },
+  "0.25": {
+   "battery_cycles": 35036895.86879815,
+   "battery_packs": 23357.930579198768,
+   "energy_gwh": 48.79004539383039,
+   "co2_tonnes": 21711.570200254526,
+   "battery_wear_usd": 65378847.69117735,
+   "flight_hours": 3360864.0999131068,
+   "wasted_mix_litres": 73468482.76255515
+  },
+  "0.5": {
+   "battery_cycles": 70073791.7375963,
+   "battery_packs": 46715.861158397536,
+   "energy_gwh": 97.58009078766078,
+   "co2_tonnes": 43423.14040050905,
+   "battery_wear_usd": 130757695.3823547,
+   "flight_hours": 6721728.1998262135,
+   "wasted_mix_litres": 146936965.5251103
+  }
+ }
+}

@@ -7,12 +7,16 @@ FieldPilot by Future Agri plans a spray-drone operator's whole day: which farm f
 - At the farm, Nemotron 3 Super runs the field agent's tools and Nemotron 3.5 Super VL reads the zone photos behind a calibrated conformal gate. A WOFOST crop twin and Tavily advisories decide what is worth spraying, and safety checks plus a human approve every flight.
 - For the closed JIYI K3-A Pro controller, the pilot gets a flight card. On open firmware, the same plan flies over MAVLink.
 
+Global impact (ESTIMATE, from our SIMULATED benchmark, counting only 25 % of the measured gain):
+Agricultural drones sprayed about 210 million hectare-treatments in 2025 in China and the USA alone. In simulation FieldPilot used 76 % fewer battery cycles, 77 % less flight time and 98 % less wasted tank mix per useful hectare. A quarter of that, applied to today's drone work, saves per year: about 35 M battery cycles, USD 65 M of battery wear, 73 M litres of wasted mix, 49 GWh of charging, 3.4 M pilot flight hours and 22 kt of CO2. Method, sources and tests: eval/global_impact.py, tests/test_global_impact.py, eval/results/global_impact_2026-10-30.md (10 % and 50 % cases included).
+
 What is real and what is simulated:
 - Drone footage: our T1 10 L quad, FieldPilot drone runs.
 - Desk and field console: FieldPilot.exe running live on our laptop with Nemotron on Nebius Token Factory (demo bookings, example zone photos, drone simulator).
-- Labelled SIMULATED: the 5-country benchmark, the K3-A Pro twin, the simulated field day and ArduPilot SITL.
+- Labelled SIMULATED: the 5-country benchmark and the global estimate built on it, the K3-A Pro twin, the simulated field day and ArduPilot SITL.
 
 Music: original, synthesised for this video. Voice: synthetic (Kokoro).
 Code and every result file: https://github.com/Aryan221224/fieldpilot
 
 Sources for the numbers on screen: DJI Agriculture annual report 2025 (about 600,000 agricultural drones in use); Feminism in India ground report, 4 Jun 2026 (8–9 min of spraying per battery, about 2 h to charge); Dainik Bhaskar via Navbharat Live, 15 Sep 2025 (90 % of Drone Didis in Madhya Pradesh at a loss).
+Global estimate inputs: CleanTechnica, 20 Sep 2026 (China about 203 M hectare-treatments in 2025; USA 6.64 M, American Spray Drone Coalition 2025 Impact Survey); DJI Agriculture annual report, 29 Apr 2026 (over 600,000 agricultural drones); 1,567 Wh / 1,500-cycle / USD 2,799 flagship spray-drone battery (dronefly.com listing); IEA Electricity 2025 (445 g CO2/kWh world average, 2024).
