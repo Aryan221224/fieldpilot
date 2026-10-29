@@ -119,7 +119,7 @@ Close Mission Planner afterwards — it holds the USB port.
 ### 3. Check, then run
 
 ```powershell
-cd C:\Users\aryan\Documents\FutureAgri\fieldpilot
+cd C:\path\to\fieldpilot
 ..\.venv-fp\Scripts\python.exe -m fieldpilot.bench --check --sink mavlink:COM5 --channel 9
 ```
 

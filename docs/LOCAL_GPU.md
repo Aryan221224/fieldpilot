@@ -22,7 +22,7 @@ file and the doctor, and `doctor --submission` ignores them.
 1. Install Ollama for Windows from https://ollama.com/download (per-user install, no admin needed).
 2. `ollama pull nemotron-3-nano:30b` (about 24 GB; the agent)
 3. `ollama pull nemotron3:33b` (about 28 GB; Nemotron 3 with image input, for perception)
-4. `cd C:\Users\aryan\Documents\FutureAgri\fieldpilot`
+4. `cd C:\path\to\fieldpilot`
 5. `copy .env.local.example .env.local`
 
 Both models fit in the A6000's 48 GB one at a time; Ollama swaps them as needed.
