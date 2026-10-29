@@ -99,15 +99,15 @@ Then Nemotron writes her brief in her own language, for under a tenth of a cent.
 Drones now spray over two hundred million hectares a year.
 
 26
-00:01:14,954 --> 00:01:19,293
-Count just a quarter of the gain we simulated, and FieldPilot saves about
+00:01:14,954 --> 00:01:19,255
+Count just a quarter of the gain in our tests, and FieldPilot saves about
 
 27
-00:01:19,293 --> 00:01:23,752
+00:01:19,255 --> 00:01:23,674
 thirty-five million battery cycles, sixty-five million dollars, and seventy
 
 28
-00:01:23,752 --> 00:01:26,308
+00:01:23,674 --> 00:01:26,208
 million litres of wasted spray, every year.
 
 29
