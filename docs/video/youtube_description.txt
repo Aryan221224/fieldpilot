@@ -1,0 +1,16 @@
+FieldPilot: Nemotron plans a spray-drone operator's day (Physical AI)
+
+FieldPilot by Future Agri plans a spray-drone operator's whole day: which farm first, which battery set flies it, whether the weather lets the spray land, and how many litres each refill needs.
+
+- NVIDIA Nemotron 3.5 Lightning on Nebius Token Factory reads WhatsApp bookings in Hindi, Hinglish and English as schema-constrained JSON; code checks every number against the message.
+- The day planner schedules every farm against the live forecast, India's 2023 drone SOP, and the operator's battery sets and charger.
+- At the farm, Nemotron 3 Super runs the field agent's tools and Nemotron 3.5 Super VL reads the zone photos behind a calibrated conformal gate. A WOFOST crop twin and Tavily advisories decide what is worth spraying, and safety checks plus a human approve every flight.
+- For the closed JIYI K3-A Pro controller, the pilot gets a flight card. On open firmware, the same plan flies over MAVLink.
+
+What is real and what is simulated:
+- Drone footage: our T1 10 L quad, flown by hand before FieldPilot existed.
+- Desk and field console: FieldPilot.exe running live on our laptop with Nemotron on Nebius Token Factory (demo bookings, example zone photos, drone simulator).
+- Labelled SIMULATED: the 5-country benchmark, the K3-A Pro twin, the simulated field day and ArduPilot SITL.
+
+Music: original, synthesised for this video. Voice: synthetic (Kokoro).
+Code and every result file: https://github.com/Aryan221224/fieldpilot

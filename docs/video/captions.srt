@@ -1,0 +1,203 @@
+1
+00:00:00,500 --> 00:00:02,949
+This is our T1, a ten-litre spray drone.
+
+2
+00:00:03,169 --> 00:00:05,933
+Six hundred thousand drones like it now work farms.
+
+3
+00:00:06,153 --> 00:00:08,469
+Every one comes with an app that plans the flight.
+
+4
+00:00:08,689 --> 00:00:10,642
+None of them plans the operator's day.
+
+5
+00:00:11,300 --> 00:00:15,700
+In India, a Drone Didi gets eight or nine minutes of spraying per battery, then
+
+6
+00:00:15,700 --> 00:00:17,148
+waits two hours to charge.
+
+7
+00:00:17,368 --> 00:00:21,038
+Sorties fly in booking order, into noon wind where the spray drifts.
+
+8
+00:00:21,258 --> 00:00:24,425
+In one state, ninety percent of these operators lose money.
+
+9
+00:00:24,645 --> 00:00:26,026
+The problem isn't the drone.
+
+10
+00:00:26,246 --> 00:00:26,969
+It's the day.
+
+11
+00:00:27,500 --> 00:00:29,276
+FieldPilot is the missing layer.
+
+12
+00:00:29,496 --> 00:00:34,214
+NVIDIA Nemotron, on Nebius Token Factory, reads the bookings, plans the day around
+
+13
+00:00:34,214 --> 00:00:38,586
+the weather, the rules and her batteries, and hands the pilot a flight card.
+
+14
+00:00:40,300 --> 00:00:42,888
+Seven WhatsApp bookings, in Hindi and Hinglish.
+
+15
+00:00:43,108 --> 00:00:47,838
+Nemotron three point five Lightning turns them into schema-checked JSON, then code
+
+16
+00:00:47,838 --> 00:00:50,145
+checks every number against the message.
+
+17
+00:00:50,365 --> 00:00:53,783
+A local unit like the bigha gets flagged for a call, never guessed.
+
+18
+00:00:54,500 --> 00:00:55,338
+Plan my day.
+
+19
+00:00:55,558 --> 00:01:00,100
+Green is when the rules allow spraying at each farm, and sorties are packed onto her
+
+20
+00:01:00,100 --> 00:01:01,019
+two battery sets.
+
+21
+00:01:01,239 --> 00:01:05,883
+Same bookings, same forecast, same batteries: the usual way flies five sorties
+
+22
+00:01:05,883 --> 00:01:09,277
+outside the window, and wastes thirty-nine litres of mix.
+
+23
+00:01:09,498 --> 00:01:11,455
+FieldPilot: none, and under two.
+
+24
+00:01:11,675 --> 00:01:15,287
+Then Nemotron writes her brief in Hindi, for under a tenth of a cent.
+
+25
+00:01:15,900 --> 00:01:20,620
+Simulated across five countries and a hundred and five bookings: two point four
+
+26
+00:01:20,620 --> 00:01:25,281
+times the useful hectares, on forty-three percent fewer battery cycles, and no
+
+27
+00:01:25,281 --> 00:01:26,655
+sorties in bad weather.
+
+28
+00:01:27,300 --> 00:01:32,636
+At the farm, Nemotron 3 Super runs the tools, and Super VL reads each zone's photos.
+
+29
+00:01:32,856 --> 00:01:37,778
+A gate calibrated on a hundred and fifty labelled leaves passes healthy zones, and
+
+30
+00:01:37,778 --> 00:01:39,519
+sends unsure ones to a human.
+
+31
+00:01:39,739 --> 00:01:40,648
+She confirms.
+
+32
+00:01:40,868 --> 00:01:43,616
+The crop twin says only one zone pays to spray.
+
+33
+00:01:43,836 --> 00:01:48,084
+And with an eighty-six percent chance of rain, the safety checks refuse to fly.
+
+34
+00:01:48,304 --> 00:01:49,559
+Nemotron proposes.
+
+35
+00:01:49,779 --> 00:01:50,787
+Physics decides.
+
+36
+00:01:51,007 --> 00:01:52,054
+A human approves.
+
+37
+00:01:53,000 --> 00:01:54,639
+This is the hardware it plans for.
+
+38
+00:01:54,859 --> 00:01:57,640
+Our T1, on a JIYI K3-A Pro controller.
+
+39
+00:01:57,860 --> 00:02:00,817
+These are our own manual flights, from before FieldPilot.
+
+40
+00:02:05,000 --> 00:02:08,451
+The controller is closed, so FieldPilot doesn't replace the pilot.
+
+41
+00:02:08,671 --> 00:02:13,319
+It hands her a flight card: the zones, the line spacing, the speed, the dose, and
+
+42
+00:02:13,319 --> 00:02:15,155
+exactly how many litres to load.
+
+43
+00:02:21,000 --> 00:02:24,011
+Every battery, every litre, only where the crop needs it.
+
+44
+00:02:25,300 --> 00:02:30,143
+To prove the cards fly, a twin of the K3-A Pro flies them, and runs the tank dry
+
+45
+00:02:30,143 --> 00:02:32,444
+within four metres of the planned cut.
+
+46
+00:02:32,664 --> 00:02:37,751
+On open firmware, unmodified ArduPilot flew our plan within one percent of its time
+
+47
+00:02:37,751 --> 00:02:38,303
+and dose.
+
+48
+00:02:39,000 --> 00:02:43,166
+Asked alone, Nemotron would have flown in eleven of eighteen situations where it
+
+49
+00:02:43,166 --> 00:02:43,687
+shouldn't.
+
+50
+00:02:43,907 --> 00:02:45,314
+FieldPilot: zero.
+
+51
+00:02:45,534 --> 00:02:47,392
+FieldPilot, by Future Agri.

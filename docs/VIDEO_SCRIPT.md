@@ -9,6 +9,26 @@ Every number below comes from a saved file in this repository (see "Source" in e
 Simulated results carry the word SIMULATED on screen. Never present a simulated or rehearsal number
 as a field result.
 
+## The final cut (2:55, as published)
+
+The shot list further down was the plan. This is what the published cut contains.
+
+| Time | Scene | What is on screen | Source of every number |
+|---|---|---|---|
+| 0:00–0:11 | Hook | Our T1 spraying, real footage labelled *manual flight, before FieldPilot* | DJI Agriculture annual report 2025 (600,000 drones) |
+| 0:11–0:27 | The problem | Pilot and drone footage with number cards: 8–9 min per battery, about 2 h to charge, 90 % of Drone Didis in Madhya Pradesh at a loss | Feminism in India, 4 Jun 2026; Dainik Bhaskar via Navbharat Live, 15 Sep 2025 |
+| 0:27–0:40 | How it works | Animated flow: bookings → Nemotron 3.5 Lightning → day planner → brief; inspect (Super VL + gate) → decide (Nemotron 3 Super, WOFOST, Tavily) → checks → flight card or MAVLink | Architecture in [README](../README.md) |
+| 0:40–0:54 | Read | FieldPilot.exe desk on the laptop, live: 7 demo bookings read on Token Factory; the bigha flag | Live desk run, 29 Oct 2026 |
+| 0:54–1:16 | Plan my day | Live timeline for 30 Oct 2026, comparison table, bars, Hindi brief, AI cost | Desk on screen: 6 vs 4 farms in window, 0 vs 5 sorties outside it, 1.8 vs 39.4 L left over, 12 vs 15 battery cycles; 8 Nemotron calls, 4,572 tokens, about $0.00045 |
+| 1:16–1:27 | At scale (SIMULATED) | Benchmark bars | `eval/results/efficiency_2026-10-30.json` |
+| 1:27–1:52 | At the farm | Field console, live: trace, gate sends A2 and B2 to a human, she confirms, twin says only B2 pays, the weather check refuses to fly (86 % rain within 2 h) | Live console run, 29 Oct 2026, example photos (synthetic), drone simulator |
+| 1:52–2:25 | Hardware | Our T1 (real footage, manual flights), then the flight card the pilot gets: A2 · B2, 4.0 m, 4.5 m/s, 3.0 m AGL, 1.33 L/mu, load 1.6 L | [`docs/video/flight_card_M-A6E6CF.html`](video/flight_card_M-A6E6CF.html) (rehearsal run) |
+| 2:25–2:39 | Proof (SIMULATED) | K3-A Pro twin, field-day SprayLog map, ArduPilot SITL | [`docs/video/k3twin_150x120m.md`](video/k3twin_150x120m.md); `runs/fieldday/2026-10-31/`; `runs/sitl/20261028T180419Z/` |
+| 2:39–2:55 | Close | Nemotron alone: 11 bad calls of 18; FieldPilot: 0; title | `eval/results/grounding_2026-10-29.json` |
+
+Music is original, synthesised for the video. The voice is a synthetic voice (Kokoro, Apache-2.0).
+The drone footage predates FieldPilot and is labelled so on screen; no shot claims FieldPilot flew it.
+
 ## The story in one line
 
 *Every spray-drone app plans the flight. Nobody plans the operator's day. FieldPilot does it with
