@@ -1,0 +1,26 @@
+{"pack_id": "1", "state": "charged", "t": 1793403000.0, "note": "night charge"}
+{"pack_id": "2", "state": "charged", "t": 1793403000.0, "note": "night charge"}
+{"pack_id": "1", "state": "flying", "t": 1793407664.471191, "note": "J-01 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793408033.071191, "note": "after J-01 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793410880.343264, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793411148.010691, "note": "J-07 sortie 1"}
+{"pack_id": "2", "state": "charging", "t": 1793411552.610691, "note": "after J-07 sortie 1"}
+{"pack_id": "2", "state": "charged", "t": 1793414324.956035, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793411786.755153, "note": "J-07 sortie 2"}
+{"pack_id": "1", "state": "charging", "t": 1793414324.956035, "note": "after J-07 sortie 2"}
+{"pack_id": "1", "state": "charged", "t": 1793416778.914535, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793414324.956035, "note": "J-07 sortie 3"}
+{"pack_id": "2", "state": "charging", "t": 1793416778.914535, "note": "after J-07 sortie 3"}
+{"pack_id": "2", "state": "charged", "t": 1793419622.096418, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793419834.047474, "note": "J-04 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793420286.847474, "note": "after J-04 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793423262.041565, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793420428.62244, "note": "J-04 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793423262.041565, "note": "after J-04 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793426236.224091, "note": ""}
+{"pack_id": "1", "state": "flying", "t": 1793444400.0, "note": "J-06 sortie 1"}
+{"pack_id": "1", "state": "charging", "t": 1793444872.4, "note": "after J-06 sortie 1"}
+{"pack_id": "1", "state": "charged", "t": 1793447648.554861, "note": ""}
+{"pack_id": "2", "state": "flying", "t": 1793445161.50549, "note": "J-06 sortie 2"}
+{"pack_id": "2", "state": "charging", "t": 1793447648.554861, "note": "after J-06 sortie 2"}
+{"pack_id": "2", "state": "charged", "t": 1793450276.203962, "note": ""}

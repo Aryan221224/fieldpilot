@@ -129,6 +129,23 @@ On the same bookings, forecast and batteries, the common way of working served 3
 window against FieldPilot's 4, flew 8 sorties outside it against 0, and left 39.4 L of mixed
 product against 1.2 L.
 
+### The same day on the latest code: live Nemotron, live forecast (31 Oct 2026, seed 7)
+
+`runs/fieldday/2026-10-31/`. Nemotron 3.5 Lightning on Token Factory read all 7 bookings
+(7 schema-constrained, 7 areas accepted by the number check) and wrote the Hindi brief; the plan
+ran on the live Open-Meteo forecast; every sortie was flown by the K3-A Pro twin.
+
+| | |
+|---|---|
+| Farms planned / completed | 5 / 4 (J-05 abandoned: RH below 50 % at the mast for 30 min) |
+| Sorties flown (day plan's estimate) | 8 (10), every one inside the SOP hours with the mast at GO |
+| Flight time against the mission plan | −4.0 % |
+| Litres planned / sprayed / measured by SprayLog | 61.96 / 53.15 / 52.88 L |
+| K3-A Pro breakpoint against planned cut (worst) | 3.62 m |
+| Lowest zone coverage, drift compensation on / off | 95.6 % / 85.3 % (windiest farm: 96.4 % / 85.3 %) |
+| Against the common way (same bookings, forecast, batteries) | 5 farms in window vs 4, 0 sorties outside the window vs 6, 1.5 L mix left vs 39.4 L |
+| Token Factory | 8 calls, about $0.00043 |
+
 **What the day teaches.**
 
 - The morning window is short, so a 20–30 minute slip early in the day costs the last farm.
