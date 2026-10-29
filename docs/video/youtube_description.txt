@@ -2,7 +2,7 @@ FieldPilot: Nemotron plans a spray-drone operator's day (Physical AI)
 
 FieldPilot by Future Agri plans a spray-drone operator's whole day: which farm first, which battery set flies it, whether the weather lets the spray land, and how many litres each refill needs.
 
-- NVIDIA Nemotron 3.5 Lightning on Nebius Token Factory reads WhatsApp bookings in Hindi, Hinglish and English as schema-constrained JSON; code checks every number against the message.
+- NVIDIA Nemotron 3.5 Lightning on Nebius Token Factory reads WhatsApp bookings in any local language (the demo uses Hindi, Hinglish and English) as schema-constrained JSON, so the same tool works for operators anywhere in the world; code checks every number against the message.
 - The day planner schedules every farm against the live forecast, India's 2023 drone SOP, and the operator's battery sets and charger.
 - At the farm, Nemotron 3 Super runs the field agent's tools and Nemotron 3.5 Super VL reads the zone photos behind a calibrated conformal gate. A WOFOST crop twin and Tavily advisories decide what is worth spraying, and safety checks plus a human approve every flight.
 - For the closed JIYI K3-A Pro controller, the pilot gets a flight card. On open firmware, the same plan flies over MAVLink.

@@ -63,7 +63,7 @@ least 3 s.
 
 | | |
 |---|---|
-| Picture | FieldPilot.exe, **operator desk**, India demo: Hindi and Hinglish WhatsApp bookings → **Read with Nemotron** → job cards appear, one flagged *bigha taken as 2529 m² · confirm* |
+| Picture | FieldPilot.exe, **operator desk**, bookings in any local language (India demo: Hindi and Hinglish WhatsApp messages) → **Read with Nemotron** → job cards appear, one flagged *bigha taken as 2529 m² · confirm* |
 | OST | *Nemotron 3.5 Lightning on Nebius Token Factory · schema-constrained JSON*, then *Code checks every number the model reads* |
 | VO | "Nemotron 3.5 Lightning on Nebius Token Factory reads every booking, from Hindi voice notes to local units like the bigha. Then code checks every number it pulled out. If the farmer never said it, it goes on the call list, not into the plan." |
 | Source | `runs/day_2026-10-30_20261029T085856Z.json` (7 bookings, live) |

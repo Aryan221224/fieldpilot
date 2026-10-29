@@ -51,19 +51,19 @@ NVIDIA Nemotron, on Nebius Token Factory, reads the bookings, plans the day arou
 the weather, the rules and her batteries, and hands the pilot a flight card.
 
 14
-00:00:40,300 --> 00:00:42,438
-Seven bookings, in Hindi and Hinglish.
+00:00:40,300 --> 00:00:42,526
+Seven bookings, in any local language.
 
 15
-00:00:42,658 --> 00:00:47,388
+00:00:42,746 --> 00:00:47,476
 Nemotron three point five Lightning turns them into schema-checked JSON, then code
 
 16
-00:00:47,388 --> 00:00:49,695
+00:00:47,476 --> 00:00:49,783
 checks every number against the message.
 
 17
-00:00:49,914 --> 00:00:53,333
+00:00:50,003 --> 00:00:53,422
 A local unit like the bigha gets flagged for a call, never guessed.
 
 18
@@ -71,12 +71,12 @@ A local unit like the bigha gets flagged for a call, never guessed.
 Plan my day.
 
 19
-00:00:55,558 --> 00:01:00,100
-Green is when the rules allow spraying at each farm, and sorties are packed onto her
+00:00:55,558 --> 00:00:59,884
+Green is when the rules allow spraying at each farm, and sorties are packed onto
 
 20
-00:01:00,100 --> 00:01:01,019
-two battery sets.
+00:00:59,884 --> 00:01:01,019
+her two battery sets.
 
 21
 00:01:01,239 --> 00:01:05,883
@@ -91,113 +91,117 @@ outside the window, and wastes thirty-nine litres of mix.
 FieldPilot: none, and under two.
 
 24
-00:01:11,675 --> 00:01:15,287
-Then Nemotron writes her brief in Hindi, for under a tenth of a cent.
+00:01:11,675 --> 00:01:15,743
+Then Nemotron writes her brief in her own language, for under a tenth of a cent.
 
 25
-00:01:15,900 --> 00:01:20,620
+00:01:16,100 --> 00:01:20,820
 Simulated across five countries and a hundred and five bookings: two point four
 
 26
-00:01:20,620 --> 00:01:25,281
+00:01:20,820 --> 00:01:25,481
 times the useful hectares, on forty-three percent fewer battery cycles, and no
 
 27
-00:01:25,281 --> 00:01:26,655
+00:01:25,481 --> 00:01:26,855
 sorties in bad weather.
 
 28
-00:01:27,300 --> 00:01:32,636
-At the farm, Nemotron 3 Super runs the tools, and Super VL reads each zone's photos.
+00:01:27,300 --> 00:01:32,186
+At the farm, Nemotron 3 Super runs the tools, and Super VL reads each zone's
 
 29
+00:01:32,186 --> 00:01:32,636
+photos.
+
+30
 00:01:32,856 --> 00:01:37,778
 A gate calibrated on a hundred and fifty labelled leaves passes healthy zones, and
 
-30
+31
 00:01:37,778 --> 00:01:39,519
 sends unsure ones to a human.
 
-31
+32
 00:01:39,739 --> 00:01:40,648
 She confirms.
 
-32
+33
 00:01:40,868 --> 00:01:43,616
 The crop twin says only one zone pays to spray.
 
-33
+34
 00:01:43,836 --> 00:01:48,084
 And with an eighty-six percent chance of rain, the safety checks refuse to fly.
 
-34
+35
 00:01:48,304 --> 00:01:49,559
 Nemotron proposes.
 
-35
+36
 00:01:49,779 --> 00:01:50,787
 Physics decides.
 
-36
+37
 00:01:51,007 --> 00:01:52,054
 A human approves.
 
-37
+38
 00:01:53,000 --> 00:01:54,639
 This is the hardware it plans for.
 
-38
+39
 00:01:54,859 --> 00:01:57,640
 Our T1, on a JIYI K3-A Pro controller.
 
-39
+40
 00:01:57,860 --> 00:02:00,005
 These are our own FieldPilot drone runs.
 
-40
+41
 00:02:02,000 --> 00:02:05,451
 The controller is closed, so FieldPilot doesn't replace the pilot.
 
-41
+42
 00:02:05,671 --> 00:02:10,319
 It hands her a flight card: the zones, the line spacing, the speed, the dose, and
 
-42
+43
 00:02:10,319 --> 00:02:12,155
 exactly how many litres to load.
 
-43
+44
 00:02:14,400 --> 00:02:19,243
 To prove the cards fly, a twin of the K3-A Pro flies them, and runs the tank dry
 
-44
+45
 00:02:19,243 --> 00:02:21,544
 within four metres of the planned cut.
 
-45
-00:02:21,764 --> 00:02:26,851
-On open firmware, unmodified ArduPilot flew our plan within one percent of its time
-
 46
-00:02:26,851 --> 00:02:27,403
-and dose.
+00:02:21,764 --> 00:02:26,545
+On open firmware, unmodified ArduPilot flew our plan within one percent of its
 
 47
+00:02:26,545 --> 00:02:27,403
+time and dose.
+
+48
 00:02:29,400 --> 00:02:33,566
 Asked alone, Nemotron would have flown in eleven of eighteen situations where it
 
-48
+49
 00:02:33,566 --> 00:02:34,087
 shouldn't.
 
-49
+50
 00:02:34,307 --> 00:02:35,714
 FieldPilot: zero.
 
-50
+51
 00:02:47,400 --> 00:02:50,411
 Every battery, every litre, only where the crop needs it.
 
-51
+52
 00:02:55,200 --> 00:02:57,070
 FieldPilot, by Future Agri.
