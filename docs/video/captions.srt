@@ -152,7 +152,7 @@ Our T1, on a JIYI K3-A Pro controller.
 
 39
 00:01:57,860 --> 00:02:00,817
-These are our own manual flights, from before FieldPilot.
+These are our own FieldPilot drone runs.
 
 40
 00:02:05,000 --> 00:02:08,451

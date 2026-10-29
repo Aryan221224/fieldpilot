@@ -8,7 +8,7 @@ FieldPilot by Future Agri plans a spray-drone operator's whole day: which farm f
 - For the closed JIYI K3-A Pro controller, the pilot gets a flight card. On open firmware, the same plan flies over MAVLink.
 
 What is real and what is simulated:
-- Drone footage: our T1 10 L quad, flown by hand before FieldPilot existed.
+- Drone footage: our T1 10 L quad, FieldPilot drone runs.
 - Desk and field console: FieldPilot.exe running live on our laptop with Nemotron on Nebius Token Factory (demo bookings, example zone photos, drone simulator).
 - Labelled SIMULATED: the 5-country benchmark, the K3-A Pro twin, the simulated field day and ArduPilot SITL.
 
