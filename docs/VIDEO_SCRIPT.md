@@ -1,4 +1,4 @@
-# Demo video: FieldPilot in 2:55
+# Demo video: FieldPilot in 3:00
 
 **Runtime target: 2:55.** The rule is under 3:00, and judges may stop watching at 3:00. Upload to
 YouTube as Public. **Track: Physical AI.** The video must show the project working on its device,
@@ -9,7 +9,7 @@ Every number below comes from a saved file in this repository (see "Source" in e
 Simulated results carry the word SIMULATED on screen. Never present a simulated or rehearsal number
 as a field result.
 
-## The final cut (2:55, as published)
+## The final cut (3:00, as published)
 
 The shot list further down was the plan. This is what the published cut contains.
 
@@ -22,9 +22,9 @@ The shot list further down was the plan. This is what the published cut contains
 | 0:54–1:16 | Plan my day | Live timeline for 30 Oct 2026, comparison table, bars, Hindi brief, AI cost | Desk on screen: 6 vs 4 farms in window, 0 vs 5 sorties outside it, 1.8 vs 39.4 L left over, 12 vs 15 battery cycles; 8 Nemotron calls, 4,572 tokens, about $0.00045 |
 | 1:16–1:27 | At scale (SIMULATED) | Benchmark bars | `eval/results/efficiency_2026-10-30.json` |
 | 1:27–1:52 | At the farm | Field console, live: trace, gate sends A2 and B2 to a human, she confirms, twin says only B2 pays, the weather check refuses to fly (86 % rain within 2 h) | Live console run, 29 Oct 2026, example photos (synthetic), drone simulator |
-| 1:52–2:25 | Hardware | Our T1 (real footage, FieldPilot drone runs), then the flight card the pilot gets: A2 · B2, 4.0 m, 4.5 m/s, 3.0 m AGL, 1.33 L/mu, load 1.6 L | [`docs/video/flight_card_M-A6E6CF.html`](video/flight_card_M-A6E6CF.html) (rehearsal run) |
-| 2:25–2:39 | Proof (SIMULATED) | K3-A Pro twin, field-day SprayLog map, ArduPilot SITL | [`docs/video/k3twin_150x120m.md`](video/k3twin_150x120m.md); `runs/fieldday/2026-10-31/`; `runs/sitl/20261028T180419Z/` |
-| 2:39–2:55 | Close | Nemotron alone: 11 bad calls of 18; FieldPilot: 0; title | `eval/results/grounding_2026-10-29.json` |
+| 1:52–2:30 | Hardware | Our T1 (real footage, FieldPilot drone runs), then the flight card the pilot gets: A2 · B2, 4.0 m, 4.5 m/s, 3.0 m AGL, 1.33 L/mu, load 1.6 L | [`docs/video/flight_card_M-A6E6CF.html`](video/flight_card_M-A6E6CF.html) (rehearsal run) |
+| 2:30–2:44 | Proof (SIMULATED) | K3-A Pro twin, field-day SprayLog map, ArduPilot SITL | [`docs/video/k3twin_150x120m.md`](video/k3twin_150x120m.md); `runs/fieldday/2026-10-31/`; `runs/sitl/20261028T180419Z/` |
+| 2:44–3:00 | Close | Nemotron alone: 11 bad calls of 18; FieldPilot: 0; title | `eval/results/grounding_2026-10-29.json` |
 
 Music is original, synthesised for the video. The voice is a synthetic voice (Kokoro, Apache-2.0).
 The drone footage is our T1 on FieldPilot prototype runs, labelled *FieldPilot drone run* on screen.

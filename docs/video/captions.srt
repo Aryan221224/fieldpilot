@@ -151,7 +151,7 @@ This is the hardware it plans for.
 Our T1, on a JIYI K3-A Pro controller.
 
 39
-00:01:57,860 --> 00:02:00,817
+00:01:57,860 --> 00:02:00,005
 These are our own FieldPilot drone runs.
 
 40
@@ -167,37 +167,37 @@ It hands her a flight card: the zones, the line spacing, the speed, the dose, an
 exactly how many litres to load.
 
 43
-00:02:21,000 --> 00:02:24,011
+00:02:26,000 --> 00:02:29,011
 Every battery, every litre, only where the crop needs it.
 
 44
-00:02:25,300 --> 00:02:30,143
+00:02:30,300 --> 00:02:35,143
 To prove the cards fly, a twin of the K3-A Pro flies them, and runs the tank dry
 
 45
-00:02:30,143 --> 00:02:32,444
+00:02:35,143 --> 00:02:37,444
 within four metres of the planned cut.
 
 46
-00:02:32,664 --> 00:02:37,751
+00:02:37,664 --> 00:02:42,751
 On open firmware, unmodified ArduPilot flew our plan within one percent of its time
 
 47
-00:02:37,751 --> 00:02:38,303
+00:02:42,751 --> 00:02:43,303
 and dose.
 
 48
-00:02:39,000 --> 00:02:43,166
+00:02:44,000 --> 00:02:48,166
 Asked alone, Nemotron would have flown in eleven of eighteen situations where it
 
 49
-00:02:43,166 --> 00:02:43,687
+00:02:48,166 --> 00:02:48,687
 shouldn't.
 
 50
-00:02:43,907 --> 00:02:45,314
+00:02:48,907 --> 00:02:50,314
 FieldPilot: zero.
 
 51
-00:02:45,534 --> 00:02:47,392
+00:02:50,534 --> 00:02:52,392
 FieldPilot, by Future Agri.
