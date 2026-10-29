@@ -114,7 +114,7 @@ renamed model never breaks the demo.
 5b. `python3 eval/efficiency_bench.py --fill-submission` — the five-region benchmark on live forecasts; writes `eval/results/efficiency_*.json` + chart and the sentence into `docs/SUBMISSION.md`
 6. `python3 -m fieldpilot.cli run path/to/photos/` — one farm; photos named `A1_*.jpg`, `B2_*.jpg`…; plans for our T1 10 L quad by default (`FP_DRONE_SPEC=agri_40l` etc. for other presets)
 7. `python3 eval/grounding_eval.py` then `python3 eval/make_charts.py --fill-submission` — the Nemotron-alone baseline, chart and numbers
-8. `python3 -m pytest` — 194 tests, including the MAVLink mission handshake against a fake vehicle, multi-sortie approval, the SOP gate, the booking intake, the field-device firmware logic and a whole simulated field day (one flies a sortie in ArduCopter SITL; it runs when `FP_ARDUPILOT` points to an ArduPilot build, and is skipped otherwise)
+8. `python3 -m pytest` — 199 tests, including the MAVLink mission handshake against a fake vehicle, multi-sortie approval, the SOP gate, the booking intake, the field-device firmware logic and a whole simulated field day (one flies a sortie in ArduCopter SITL; it runs when `FP_ARDUPILOT` points to an ArduPilot build, and is skipped otherwise)
 9. `python3 -m fieldpilot.cli doctor --submission` — Devpost readiness
 10. `python3 -m fieldpilot.cli rehearse`, then after the real runs `python3 -m fieldpilot.cli deviation` — the predicted run and the measured sim-to-real gap ([docs/REHEARSAL.md](docs/REHEARSAL.md))
 11. `python3 -m fieldpilot.cli fieldday` — a whole operator day, simulated end to end on the production code: the K3-A Pro twin flies every sortie, the field devices are emulated, the spray lines are drift-compensated (`--no-drift-compensation` to compare, `--live` for Nemotron on Token Factory); replay it at http://localhost:8080/ops ([docs/REHEARSAL.md](docs/REHEARSAL.md#the-simulated-field-day), [docs/K3_TWIN.md](docs/K3_TWIN.md))
@@ -229,12 +229,16 @@ flies, every attempt is logged, and the run still ends in a legal proposal.
   from runs made with a real key.
 * The day-plan comparison is a schedule on a real forecast, not a field trial: drive times use a
   road factor, battery and charger numbers are the operator's inputs.
-* The grounding-eval baseline numbers do not exist until you run it with a key. The README and the
-  video should quote the JSON it writes, not a guess.
+* The grounding-eval and benchmark numbers come from the saved result files in `eval/results/`
+  (live runs on Token Factory, 29 Oct 2026); quote those files, not a guess.
 * WOFOST parameters are European calibrations; absolute yields are indicative, relative decisions
   are the defensible output. Disease is a simplified leaf-area-loss model, documented as such.
-* The conformal gate is UNCALIBRATED until you label ≥ 20 photos (`fieldpilot calibrate`); until then it
-  is conservative and says so on screen.
+* The conformal gate is calibrated on 150 public, labelled potato leaf photos (PlantDoc, PlantVillage;
+  `python eval/public_scans.py all`, results in `eval/results/calibration_2026-10-29.md`). On those
+  photos Nemotron 3.5 Super VL is right about healthy vs diseased 98 % of the time but close to a coin
+  toss between early and late blight, so a healthy zone passes on its own and every diseased zone goes
+  to the operator to pick the disease. These are leaf close-ups, not our drone scans: recalibrate on a
+  season of labelled field scans (`fieldpilot calibrate labels.csv`).
 
 ## Repository
 
@@ -253,7 +257,7 @@ firmware/        pump_bridge/ (bench pump) · fieldmast/ (ESP32 spray-weather ma
 web/            index.html field console · desk.html operator desk · ops.html field ops (no external assets)
 eval/            efficiency_bench.py (5 regions, live forecasts), grounding_eval.py (Nemotron alone vs FieldPilot), make_charts.py
 examples/        field_demo.json, desk_demo_in.json (India), desk_demo_br.json (Brazil), synthetic photos generator
-tests/           194 tests incl. mock Token Factory server, fake MAVLink vehicle, the SOP gate, firmware logic and SITL
+tests/           199 tests incl. mock Token Factory server, fake MAVLink vehicle, the SOP gate, firmware logic and SITL
 docs/            one topic per file: novelty, systems, firmware, deployment, models, K3 twin, rehearsal, setup, local GPU, drone, safety, architecture, submission, video, judging, checklist
 vendor/          pinned WOFOST crop parameters
 ```

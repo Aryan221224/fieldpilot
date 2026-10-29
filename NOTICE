@@ -6,3 +6,10 @@ Licensed under the Apache License, Version 2.0.
 Third-party data and software:
 - WOFOST crop parameters (github.com/ajwdewit/WOFOST_crop_parameters), fetched into vendor/ by scripts/setup_vendor.ps1.
 - PCSE (Wageningen Environmental Research), EUPL-1.2, installed from PyPI.
+
+Perception-gate calibration uses public photos that are NOT included in this repository;
+eval/public_scans.csv lists their URLs and eval/public_scans.py fetches them:
+- PlantDoc (Singh, Jain, Jain, Kayal, Kumawat, Batra; CoDS-COMAD 2020), CC BY 4.0,
+  https://github.com/pratikkayal/PlantDoc-Dataset
+- PlantVillage (Mohanty, Hughes, Salathé; Frontiers in Plant Science 2016), CC BY-SA 3.0,
+  https://github.com/spMohanty/PlantVillage-Dataset

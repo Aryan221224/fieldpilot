@@ -34,6 +34,12 @@ Specific, reproducible notes from building FieldPilot. Figures come from the liv
 
 - Model: `nvidia/Nemotron-3.5-Super-VL`
 - Latency per photo: 5.1 s (doctor, one 1024 px JPEG); images per request: we send up to 3 per zone
+- Calibration on 150 public, labelled potato leaf photos (PlantDoc + PlantVillage,
+  `eval/results/calibration_2026-10-29.md`): healthy vs diseased right 98 % of the time, exact
+  diagnosis 68 %; early and late blight are confused both ways (early→late 23 of 55, late→early 19 of
+  55). Asked for one free-text finding, the model named only its first guess, so the true label was
+  missing for a third of the photos; asking for a probability over a fixed list of candidates fixed
+  that. A note in the model card on known confusions would help anyone building a safety gate on it
 - JSON reliability on field photos: with reasoning on, 0 of 1 in the first doctor run (no JSON within 600 tokens); with reasoning off, every zone of the live field-agent run (6 of 6) came back as parseable JSON
 
 ## Nemotron on Hindi / Hinglish bookings (operator desk)

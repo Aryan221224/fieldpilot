@@ -107,7 +107,8 @@ faces the same constraints.
 - Not a chatbot. The model never chooses a dose, an area or a take-off.
 - Not proven at scale yet:
   - there has been no season-long pilot with an operator;
-  - the perception gate is not yet calibrated on a season of labelled scans;
+  - the perception gate is calibrated on 150 public leaf photos (healthy vs diseased right 98 % of
+    the time; early vs late blight is left to the operator), not yet on a season of our own field scans;
   - on the closed K3-A Pro the pilot types the card into the JIYI app by hand;
   - FieldMast, SprayLog and the ArduPilot path are tested in simulation and off-hardware, not
     yet in a field.

@@ -15,6 +15,7 @@ if exist dist\FieldPilot (echo LOCKED: dist\FieldPilot could not be removed >> b
 if not exist dist\FieldPilot\FieldPilot.exe (echo BUILD FAILED >> build_exe_log.txt & exit /b 1)
 for %%D in (web vendor examples sim docs eval) do xcopy /E /I /Y /Q %%D dist\FieldPilot\%%D >> build_exe_log.txt 2>&1
 if not exist dist\FieldPilot\runs mkdir dist\FieldPilot\runs
+if exist calibration.json copy /Y calibration.json dist\FieldPilot\calibration.json >> build_exe_log.txt
 for %%D in (fieldday sitl) do if exist runs\%%D robocopy runs\%%D dist\FieldPilot\runs\%%D /E /XF *.BIN *.bin *.tlog >> build_exe_log.txt 2>&1
 if exist "%TEMP%\fp_env_keep" (copy /Y "%TEMP%\fp_env_keep" dist\FieldPilot\.env >> build_exe_log.txt) else if exist .env (copy /Y .env dist\FieldPilot\.env >> build_exe_log.txt) else (copy /Y .env.example dist\FieldPilot\.env >> build_exe_log.txt)
 powershell -NoProfile -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\FieldPilot.lnk'); $s.TargetPath=(Resolve-Path dist\FieldPilot\FieldPilot.exe).Path; $s.WorkingDirectory=(Resolve-Path dist\FieldPilot).Path; $s.Save()" >> build_exe_log.txt 2>&1

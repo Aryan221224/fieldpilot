@@ -57,7 +57,52 @@ Return ONE JSON object with exactly these keys:
   "notes": "<one sentence>"
 }}
 If the zone looks healthy, return a single finding with category "none", label "healthy".
-List at most 3 findings, most important first."""
+List at most 3 findings, most important first.
+Also return "differential": a probability for EVERY one of these candidate diagnoses, summing
+to 1, e.g. {{"healthy": 0.1, ...}}: {candidates}. Spread the probability when two look alike;
+"other problem" covers anything not listed."""
+
+# Candidate diagnoses per crop for the differential: a fixed label set gives the conformal gate
+# one probability per label, so the true label can sit in the prediction set even when it is
+# not the model's first choice (a single free-text finding cannot).
+CANDIDATES = {
+    "potato": ["healthy", "early blight", "late blight", "other problem"],
+    "tomato": ["healthy", "early blight", "late blight", "septoria leaf spot", "other problem"],
+}
+GENERIC = ["healthy", "disease", "pest", "nutrient deficiency", "water stress", "other problem"]
+
+
+def candidates_for(crop: str) -> list[str]:
+    return CANDIDATES.get((crop or "").strip().lower(), GENERIC)
+
+
+def clean_differential(raw: Any, candidates: list[str]) -> dict[str, float] | None:
+    """The model's differential over ``candidates``, renormalised; None if unusable."""
+    if not isinstance(raw, dict):
+        return None
+    out = {}
+    for c in candidates:
+        v = raw.get(c)
+        if v is None:
+            v = next((raw[k] for k in raw if str(k).strip().lower() == c), 0.0)
+        try:
+            out[c] = max(0.0, float(v))
+        except (TypeError, ValueError):
+            out[c] = 0.0
+    tot = sum(out.values())
+    if tot <= 0:
+        return None
+    return {k: round(v / tot, 4) for k, v in out.items()}
+
+
+def true_label_prob(findings: list[dict], differential: dict | None, truth: str) -> float:
+    """p(true label) for conformal calibration: from the differential if there is one."""
+    truth = truth.strip().lower()
+    if differential:
+        return max([p for k, p in differential.items() if truth in k or k in truth] or [0.0])
+    return max([float(f.get("confidence") or 0) for f in findings
+                if truth in str(f.get("label", "")).lower() or str(f.get("label", "")).lower() in truth]
+               or [0.0])
 
 
 # ---------------------------------------------------------------------------
@@ -148,6 +193,22 @@ class ConformalGate:
     qhat: float | None = None
     n: int = 0
     fallback_threshold: float = 0.85     # used only when uncalibrated
+    # Second, coarser gate on the differential: healthy vs diseased. A vision model that cannot
+    # tell two blights apart can still be certain a leaf is healthy; then the zone needs no human.
+    coarse_alpha: float = 0.05
+    coarse_qhat: float | None = None
+    coarse_n: int = 0
+    # what the scores were computed from; a gate fitted on differentials is not applied to
+    # free-text finding confidences (a different, uncalibrated scale)
+    basis: str = "findings"
+
+    def coarse_set(self, differential: dict | None) -> list[str] | None:
+        """{'healthy'} / {'diseased'} / both, at the coarse gate; None when it does not apply."""
+        if not differential or self.coarse_qhat is None or self.coarse_n < 20:
+            return None
+        ph = float(differential.get("healthy", 0.0))
+        thr = 1.0 - float(self.coarse_qhat)
+        return [k for k, p in (("healthy", ph), ("diseased", 1.0 - ph)) if p >= thr]
 
     @property
     def calibrated(self) -> bool:
@@ -167,21 +228,27 @@ class ConformalGate:
         if not path or not Path(path).exists():
             return cls()
         d = json.loads(Path(path).read_text(encoding="utf-8"))
-        return cls(alpha=d["alpha"], qhat=d["qhat"], n=d["n"])
+        c = d.get("coarse") or {}
+        return cls(alpha=d["alpha"], qhat=d["qhat"], n=d["n"], coarse_alpha=c.get("alpha", 0.05),
+                   coarse_qhat=c.get("qhat"), coarse_n=c.get("n", 0), basis=d.get("basis", "findings"))
 
     def save(self, path: str | Path) -> None:
         Path(path).write_text(json.dumps({"alpha": self.alpha, "qhat": self.qhat, "n": self.n}), encoding="utf-8")
 
-    def prediction_set(self, findings: list[dict]) -> tuple[list[str], str]:
-        if self.calibrated:
+    def prediction_set(self, findings: list[dict],
+                       differential: dict | None = None) -> tuple[list[str], str]:
+        scored = list(differential.items()) if differential else \
+            [(f["label"], float(f.get("confidence", 0))) for f in findings]
+        basis = "differential" if differential else "findings"
+        if self.calibrated and basis == self.basis:
             thr = 1.0 - float(self.qhat)
             if self.qhat >= 1.0:
                 return ["<any>"], "calibrated: confidences uninformative at this alpha"
-            return [f["label"] for f in findings if float(f.get("confidence", 0)) >= thr], \
-                f"calibrated n={self.n}, alpha={self.alpha}, threshold p>={thr:.2f}"
+            return [k for k, p in scored if p >= thr], \
+                f"calibrated n={self.n}, alpha={self.alpha}, threshold p>={thr:.2f} ({basis})"
         thr = self.fallback_threshold
-        return [f["label"] for f in findings if float(f.get("confidence", 0)) >= thr], \
-            f"UNCALIBRATED: conservative threshold p>={thr:.2f}"
+        return [k for k, p in scored if p >= thr], \
+            f"UNCALIBRATED: conservative threshold p>={thr:.2f} ({basis})"
 
 
 # ---------------------------------------------------------------------------
@@ -208,6 +275,7 @@ class Observation:
     source: str
     reasoning: str = ""
     notes: str = ""
+    differential: dict | None = None
 
     def primary(self) -> dict:
         """The finding that drives the plan (highest severity x confidence)."""
@@ -244,18 +312,33 @@ def _clean_findings(raw: Any) -> list[dict]:
 
 
 def gate_observation(zone_id: str, raw: dict, px: list[dict], gate: ConformalGate,
-                     source: str, reasoning: str = "") -> Observation:
+                     source: str, reasoning: str = "", candidates: list[str] | None = None) -> Observation:
     findings = _clean_findings(raw.get("findings"))
+    diff = clean_differential(raw.get("differential"), candidates) if candidates else None
     exg = float(np.mean([p["canopy_cover_exg_pct"] for p in px])) if px else float("nan")
     lesion = float(np.mean([p["lesion_index_pct"] for p in px])) if px else 0.0
     cover = float(raw.get("canopy_cover_pct", exg if not math.isnan(exg) else 0) or 0)
     iq = raw.get("image_quality") or {"usable": True, "issues": []}
 
     reasons: list[str] = []
-    pset, gate_desc = gate.prediction_set(findings)
+    pset, gate_desc = gate.prediction_set(findings, diff)
+    cset = gate.coarse_set(diff)
+    if cset == ["healthy"] and len(pset) != 1:
+        pset = ["healthy"]
+        gate_desc += f"; coarse gate: healthy (alpha={gate.coarse_alpha})"
+    elif cset == ["diseased"] and len(pset) != 1:
+        reasons.append("the gate is sure the leaves are diseased but not which disease "
+                       f"({', '.join(x for x in pset if x != 'healthy')}); a human must pick")
+        pset = [x for x in pset if x != "healthy"] or pset
     if len(pset) != 1:
-        reasons.append(f"conformal set has {len(pset)} labels ({', '.join(pset) or 'empty'}); "
-                       "a human must pick")
+        if not reasons:
+            reasons.append(f"conformal set has {len(pset)} labels ({', '.join(pset) or 'empty'}); "
+                           "a human must pick")
+    elif diff:
+        top_f = max(findings, key=lambda f: f["severity"] * f["confidence"])
+        lab = top_f["label"].lower()
+        if not (pset[0] in lab or lab in pset[0]) and not (pset[0] == "healthy" and top_f["category"] == "none"):
+            reasons.append(f"the gate's label '{pset[0]}' and the model's finding '{top_f['label']}' disagree")
     if not iq.get("usable", True):
         reasons.append("image quality: " + ", ".join(iq.get("issues", [])) )
     if not math.isnan(exg) and abs(cover - exg) > 25:
@@ -273,7 +356,7 @@ def gate_observation(zone_id: str, raw: dict, px: list[dict], gate: ConformalGat
         lesion_index_pct=round(lesion, 1), findings=findings, image_quality=iq,
         prediction_set=pset, gate=gate_desc, needs_review=bool(reasons),
         review_reasons=reasons, source=source, reasoning=reasoning,
-        notes=str(raw.get("notes", ""))[:240])
+        notes=str(raw.get("notes", ""))[:240], differential=diff)
 
 
 def stub_raw(zone_id: str, px: list[dict], crop: str) -> dict:
@@ -318,9 +401,11 @@ class Perception:
         if self.llm is None:
             return gate_observation(zone_id, stub_raw(zone_id, px, self.crop), px, self.gate,
                                     source="OFFLINE-STUB (pixel heuristics)")
-        prompt = PROMPT.format(zone_id=zone_id, crop=self.crop, categories=list(CATEGORIES))
+        cands = candidates_for(self.crop)
+        prompt = PROMPT.format(zone_id=zone_id, crop=self.crop, categories=list(CATEGORIES),
+                               candidates=json.dumps(cands))
         raw, meta = self.llm.vision_json(prompt, images[:3], system=SYSTEM)
         if not isinstance(raw, dict):
             raw = {}
         return gate_observation(zone_id, raw, px, self.gate, source=meta["model"],
-                                reasoning=meta.get("reasoning", ""))
+                                reasoning=meta.get("reasoning", ""), candidates=cands)

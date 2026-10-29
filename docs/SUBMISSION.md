@@ -107,6 +107,12 @@ battery board, the devices and the as-applied map.
 
 - Across 15 region-days in five countries on live forecasts (105 bookings, same batteries), the common way of working flew 67.2 % of sorties outside the spray-weather window, sprayed 82.8 ha that scans showed did not need it and left 380.4 L of mixed product; FieldPilot flew 0.0 % outside the window, sprayed 0.0 ha beyond need, left 13.9 L (the last-refill margins), and fully served 32 farms in-window vs 9. Effective hectares per battery cycle: 0.316 baseline, 0.939 with scheduling and sortie planning alone (+197 %), 1.318 with field scans (+317 %) (`eval/results/efficiency_2026-10-30.json`).
 - On a live-forecast operator day of 7 bookings (2026-10-30, IN-SOP-2023 rules, same batteries), FieldPilot fully served 3 farms inside the spray window vs 0, at 0.328 effective ha per battery cycle vs 0.029 (+1031 %), with 0 sorties outside the window vs 10, 0.0 ha sprayed beyond need vs 2.39 and 0.9 L of mixed product left over vs 32.9 L (`runs/day_2026-10-30_20261029T085856Z.json`).
+- Perception gate, calibrated on 150 public, labelled potato leaf photos (PlantDoc, PlantVillage) with
+  Nemotron 3.5 Super VL: it is right about healthy vs diseased 98 % of the time, but only 68 % on the
+  exact diagnosis, because it confuses early and late blight. The split-conformal gate (fitted on 74
+  photos, tested on 76) lets a healthy zone through on its own (18 right, 0 wrong) and sends every
+  diseased zone to the operator with the candidate diseases, so the model's first guess never
+  triggers a spray (`eval/results/calibration_2026-10-29.md`).
 - With the T1's kit as shipped (2 packs, 1 charger), the aircraft is in the air for 12 % of
   India's 9-hour spray window: 13 sorties and 6.5 ha a day. The charger, not the drone, sets
   the day (`python -m fieldpilot.cli airframe`).
@@ -215,7 +221,7 @@ below 0.5 m/s.
 - Measured, not asserted. The benchmark and day numbers above come from saved result files.
   Separately, Nemotron alone would have flown in 7 situations where the crop twin says the
   spray loses money, and in 4 where the zone was unsafe or unverified.
-- 194 automated tests, including:
+- 199 automated tests, including:
   - the MAVLink mission handshake against a fake vehicle;
   - multi-sortie approval;
   - pass-cut conservation;
@@ -249,7 +255,8 @@ arithmetic decide everything in between.
   This path is proven in SITL. Next, one real hover log will confirm the T1 model.
 - More rule packs (EU derogations, US label drift language, China's aerial-application
   standards).
-- Calibrate the conformal gate on a season of labelled scans.
+- Recalibrate the conformal gate on a season of our own labelled drone scans (today it is calibrated
+  on 150 public leaf photos).
 
 ## Built during the submission period
 

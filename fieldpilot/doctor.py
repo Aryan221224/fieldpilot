@@ -204,7 +204,13 @@ def check_calibration() -> tuple[str, str, dict]:
     g = ConformalGate.load(p)
     if not g.calibrated:
         return WARN, f"calibration has n={g.n} (< 20): still uncalibrated", {"n": g.n}
-    return PASS, f"n={g.n}, alpha={g.alpha}, qhat={g.qhat}", {"n": g.n}
+    d = json.loads(p.read_text(encoding="utf-8"))
+    t = d.get("test") or {}
+    extra = (f"; held-out coverage {t['coverage']:.1%} on {t['n']} photos" if t.get("n") else "")
+    if t.get("coarse_coverage") is not None:
+        extra += f", healthy-vs-diseased gate {t['coarse_coverage']:.1%}"
+    src = f" ({d['source'].split(':')[0]})" if d.get("source") else ""
+    return PASS, f"n={g.n}, alpha={g.alpha}, qhat={g.qhat}{extra}{src}", {"n": g.n, **d}
 
 
 def live(cfg: Config | None = None) -> Report:

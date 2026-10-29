@@ -23,7 +23,7 @@ tested off the hardware, but nobody has soldered and flown it yet.
 
 | # | System | Hardware | What runs on it | Status |
 |---|---|---|---|---|
-| 1 | **FieldPilot server** | the operator's laptop (Windows/Linux, any 4 GB machine) or a small cloud VM | `python -m uvicorn fieldpilot.api:app`: day planner, field agent, rules, crop twin, sortie planner, flight cards, paperwork, device hub | built, 194 tests |
+| 1 | **FieldPilot server** | the operator's laptop (Windows/Linux, any 4 GB machine) or a small cloud VM | `python -m uvicorn fieldpilot.api:app`: day planner, field agent, rules, crop twin, sortie planner, flight cards, paperwork, device hub | built, 199 tests |
 | 2 | **Operator's phone** | any Android phone with Chrome | `/desk` (the day), `/` (one farm), `/ops` (devices, batteries, as applied) | built |
 | 3 | **Pilot's ground station** | the K3-A Pro's handheld remote with the JIYI app (the remote with a screen in our field video) | the pilot types in each card's zones, line spacing, speed, height and dose (L/mu), and loads the litres on the card | not ours; FieldPilot writes the card + KML |
 | 4 | **Aircraft** | T1 10 L quad (BOM ₹2.02 lakh as recorded), JIYI K3-A Pro, 4 nozzles on a 6 mm line | the controller flies the card; FieldPilot's K3-A Pro twin (`fieldpilot/k3sim.py`) predicts what it will do | aircraft exists; controller closed |

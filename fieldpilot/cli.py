@@ -138,8 +138,8 @@ def cmd_calibrate(args) -> int:
         for row in csv.DictReader(fh):
             o = per.observe("CAL", [Path(row["image_path"]).read_bytes()])
             truth = row["label"].strip().lower()
-            p = max([f["confidence"] for f in o.findings
-                     if truth in f["label"].lower() or f["label"].lower() in truth] or [0.0])
+            from .perception import true_label_prob
+            p = true_label_prob(o.findings, o.differential, truth)
             scores.append(1.0 - p)
             print(f"{row['image_path']}: truth={truth} p={p:.2f}")
     gate = ConformalGate.from_scores(scores, alpha=args.alpha)

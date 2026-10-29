@@ -48,3 +48,46 @@ def test_offline_stub_mix(demo_images):
     assert obs["B1"].needs_review                               # weak signal -> human
     assert obs["A1"].primary()["category"] == "none"
     assert all(o.source.startswith("OFFLINE") for o in obs.values())
+
+
+def test_differential_drives_the_conformal_set():
+    from fieldpilot.perception import (ConformalGate, candidates_for, clean_differential,
+                                       gate_observation, true_label_prob)
+    cands = candidates_for("potato")
+    d = clean_differential({"healthy": 1, "Early Blight": 6, "late blight": 3}, cands)
+    assert abs(sum(d.values()) - 1) < 1e-6 and d["early blight"] == 0.6
+    assert true_label_prob([], d, "late blight") == 0.3            # the 2nd choice still scores
+    g = ConformalGate(alpha=0.1, qhat=0.5, n=50, basis="differential")  # threshold p >= 0.5
+    raw = {"findings": [{"category": "disease", "label": "early blight", "severity": 2,
+                         "confidence": 0.8}], "differential": {"early blight": 0.7, "late blight": 0.3}}
+    o = gate_observation("A1", raw, [], g, source="t", candidates=cands)
+    assert o.prediction_set == ["early blight"] and not o.needs_review
+    raw["differential"] = {"early blight": 0.45, "late blight": 0.55}
+    o = gate_observation("A1", raw, [], g, source="t", candidates=cands)
+    assert o.prediction_set == ["late blight"] and o.needs_review    # gate and finding disagree
+    raw["differential"] = {"early blight": 0.5, "late blight": 0.5}
+    o = gate_observation("A1", raw, [], g, source="t", candidates=cands)
+    assert len(o.prediction_set) == 2 and o.needs_review           # a human picks
+
+
+def test_coarse_gate_passes_a_certain_healthy_zone_and_names_disease_for_a_human():
+    from fieldpilot.perception import ConformalGate, candidates_for, gate_observation
+    cands = candidates_for("potato")
+    g = ConformalGate(alpha=0.1, qhat=0.9, n=74, coarse_alpha=0.05, coarse_qhat=0.5, coarse_n=74, basis="differential")
+    healthy = {"findings": [{"category": "none", "label": "healthy", "severity": 0, "confidence": 0.7}],
+               "differential": {"healthy": 0.7, "early blight": 0.15, "late blight": 0.1, "other problem": 0.05}}
+    o = gate_observation("A1", healthy, [], g, source="t", candidates=cands)
+    assert o.prediction_set == ["healthy"] and not o.needs_review
+    sick = {"findings": [{"category": "disease", "label": "early blight", "severity": 2, "confidence": 0.6}],
+            "differential": {"healthy": 0.05, "early blight": 0.5, "late blight": 0.4, "other problem": 0.05}}
+    o = gate_observation("A2", sick, [], g, source="t", candidates=cands)
+    assert o.needs_review and "healthy" not in o.prediction_set
+    assert "diseased" in o.review_reasons[0]
+    # a healthy differential with a disease finding is a contradiction: review
+    odd = dict(healthy, findings=[{"category": "disease", "label": "late blight", "severity": 2, "confidence": 0.6}])
+    assert gate_observation("A3", odd, [], g, source="t", candidates=cands).needs_review
+    # round trip through calibration.json
+    import json, tempfile, os
+    p = os.path.join(tempfile.mkdtemp(), "c.json")
+    json.dump({"alpha": 0.1, "qhat": 0.9, "n": 74, "coarse": {"alpha": 0.05, "qhat": 0.5, "n": 74}}, open(p, "w"))
+    assert ConformalGate.load(p).coarse_set(healthy["differential"]) == ["healthy"]
