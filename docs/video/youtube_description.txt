@@ -14,3 +14,5 @@ What is real and what is simulated:
 
 Music: original, synthesised for this video. Voice: synthetic (Kokoro).
 Code and every result file: https://github.com/Aryan221224/fieldpilot
+
+Sources for the numbers on screen: DJI Agriculture annual report 2025 (about 600,000 agricultural drones in use); Feminism in India ground report, 4 Jun 2026 (8–9 min of spraying per battery, about 2 h to charge); Dainik Bhaskar via Navbharat Live, 15 Sep 2025 (90 % of Drone Didis in Madhya Pradesh at a loss).
